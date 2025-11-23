@@ -177,3 +177,48 @@ a:hover {
     color: #82d1ff;
 }
 
+/* Difficulty Chart */
+.difficulty-container {
+    margin-top: 40px;
+    padding: 30px 35px;
+    background: #161616;
+    border-radius: 14px;
+    border: 1px solid #222;
+    box-shadow: 0 0 18px rgba(0,0,0,0.30);
+}
+
+.difficulty-container h2 {
+    margin-bottom: 25px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4db8ff;
+}
+
+.difficulty-row {
+    display: grid;
+    grid-template-columns: 80px 160px 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid #252525;
+}
+
+.difficulty-row:last-child {
+    border-bottom: none;
+}
+
+.range {
+    font-weight: 700;
+    color: #82d1ff;
+}
+
+.label {
+    font-weight: 600;
+    color: #eaeaea;
+}
+
+.desc {
+    color: #cfcfcf;
+    line-height: 1.5;
+}
+
+
