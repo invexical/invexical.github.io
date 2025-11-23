@@ -1,0 +1,13 @@
+body {
+    background-color: #111;
+    color: #eee;
+    font-family: Arial;
+    padding: 40px;
+}
+
+.problem {
+    padding: 12px;
+    background: #1c1c1c;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
