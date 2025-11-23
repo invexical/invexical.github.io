@@ -1,3 +1,7 @@
+.difficulty-table th,
+.difficulty-table td {
+    padding: 12px 20px;   /* adds horizontal space */
+}
 .difficulty-table {
     border-collapse: collapse;
     width: 80%;
