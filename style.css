@@ -1,26 +1,126 @@
-.difficulty-table th,
-.difficulty-table td {
-    padding: 12px 20px;   /* adds horizontal space */
-}
-.difficulty-table {
-    border-collapse: collapse;
-    width: 80%;
-    margin: 20px 0;
-    font-size: 16px;
-    background: #fafafa;
+/* ===== GLOBAL RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
-.difficulty-table th {
-    background: #333;
+body {
+    background: #0f0f0f;
     color: white;
-    padding: 10px;
+    line-height: 1.6;
 }
 
-.difficulty-table td {
-    border: 1px solid #ccc;
-    padding: 8px 10px;
+/* ===== NAVIGATION BAR ===== */
+nav {
+    width: 100%;
+    padding: 20px 40px;
+    background: #0c0c0c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.difficulty-table tr:nth-child(even) {
-    background: #f2f2f2;
+nav h2 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #19A4FF, #20C997);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav a {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: white;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    width: 100%;
+    padding: 140px 20px;
+    background: linear-gradient(135deg, #0074FF, #00D4A0);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: white;
+    animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== PROBLEM LIST ===== */
+ul {
+    list-style: none;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0;
+}
+
+ul li a {
+    display: block;
+    background: #151515;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    transition: 0.3s ease;
+}
+
+ul li a:hover {
+    border-color: #00C9A7;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 255, 200, 0.15);
+}
+
+/* ===== PROBLEM PAGE STYLING ===== */
+.problem-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #141414;
+    border-radius: 14px;
+    border: 1px solid #222;
+}
+
+.problem-container h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.problem-container p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+/* ===== BACK LINK ===== */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #19A4FF;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.back-link:hover {
+    color: #20C997;
 }
