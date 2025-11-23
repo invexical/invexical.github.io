@@ -1,13 +1,24 @@
 body {
+    font-family: Arial, sans-serif;
     background-color: #111;
     color: #eee;
-    font-family: Arial;
-    padding: 40px;
+    padding: 20px;
 }
 
-.problem {
-    padding: 12px;
-    background: #1c1c1c;
-    margin-bottom: 10px;
-    border-radius: 8px;
+a {
+    color: #4fc3f7;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 6px;
 }
