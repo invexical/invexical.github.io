@@ -124,3 +124,56 @@ ul li a:hover {
 .back-link:hover {
     color: #20C997;
 }
+
+/* GLOBAL STYLING */
+body {
+    background: #0d0d0d;
+    color: #eee;
+    font-family: "Inter", Arial, sans-serif;
+    line-height: 1.75;
+    margin: 0;
+    padding: 40px;
+}
+
+/* HEADERS */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* SECTION WRAPPER */
+.section {
+    background: #161616;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.35);
+    border: 1px solid #222;
+}
+
+/* LABELS LIKE “Difficulty:”, “Core Concepts:” */
+.section b {
+    display: inline-block;
+    width: 180px;
+    font-weight: 700;
+    color: #4db8ff;
+}
+
+/* MATH OPTIONS */
+.options {
+    font-size: 1.4rem;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* BACK LINK */
+a {
+    color: #4db8ff;
+    font-size: 1.1rem;
+}
+
+a:hover {
+    color: #82d1ff;
+}
+
