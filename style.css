@@ -235,41 +235,37 @@ a:hover {
 /* ===== MATHJAX FIXES ===== */
 /* Preserve LaTeX font (STIX/Latin Modern) */
 /* MathJax: Classic LaTeX look */
-mjx-container {
+/* =======================
+   GRANDMA-SAFE MATHJAX FIX
+   ======================= */
+
+/* Use Computer Modern everywhere inside MathJax */
+mjx-container, 
+mjx-container * {
     font-family: "Computer Modern", "CMU Serif", serif !important;
-    font-size: 1em !important;           /* base inline math size */
-    line-height: 1.2em !important;
-    vertical-align: middle !important;   /* align inline math with text */
 }
 
-mjx-container.display {
-    font-size: 1.1em !important;         /* display math slightly bigger */
-    display: block !important;
-    margin: 0.5em 0 !important;
-    text-align: center;
+/* Inline math: nudge upward to align with Balthazar text */
+mjx-container:not([display]) {
+    font-size: 1em !important;
+    vertical-align: -0.12em !important; /* adjust this by ±0.03em if needed */
+    line-height: 1.1 !important;
 }
 
+/* Display math: centered & slightly bigger */
+mjx-container[display] {
+    font-size: 1.1em !important;
+    margin: 0.6em 0 !important;
+    text-align: center !important;
+    vertical-align: baseline !important;
+}
+
+/* Fractions, subscripts, exponents look normal */
 mjx-container mjx-mfrac,
 mjx-container mjx-msubsup,
 mjx-container mjx-munder,
 mjx-container mjx-mover {
-    font-size: 0.95em !important;        /* scale fractions/superscripts nicely */
-    vertical-align: middle !important;
+    font-size: 0.97em !important;
 }
 
-/* optional tiny spacing adjustment for inline math */
-p mjx-container, li mjx-container {
-    margin: 0 0.05em;
-}
-
-
-mjx-container mjx-mfrac,
-mjx-container mjx-msubsup,
-mjx-container mjx-munder,
-mjx-container mjx-mover {
-    font-size: 0.9em !important;
-    vertical-align: middle !important;
-}
-
-/* Fix line height in paragraphs with math */
 
