@@ -230,4 +230,22 @@ a:hover {
     line-height: 1.4;
 }
 
+/* Make all MathJax content smaller and better for inline display */
+mjx-container {
+    font-size: 1em !important;       /* Normal text size */
+    line-height: 1.2em !important;   /* Prevent oversized vertical spacing */
+}
+
+mjx-math {
+    display: inline !important;      /* Forces inline rendering where possible */
+    vertical-align: middle;          /* Align nicely with surrounding text */
+}
+
+.options mjx-container {
+    font-size: 0.9em !important;     /* Slightly smaller for multiple-choice options */
+}
+
+p, li, div {
+    line-height: 1.3em;              /* Optional: better spacing for paragraphs with math */
+}
 
