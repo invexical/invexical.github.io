@@ -3,13 +3,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Inter", sans-serif;
+    font-family: 'Times New Roman', Times, serif !important; /* override any previous font */
 }
 
 body {
-    background: #0f0f0f;
-    color: white;
-    line-height: 1.6;
+    background: #0d0d0d;
+    color: #eee;
+    line-height: 1.75;
+    padding: 40px;
 }
 
 /* ===== NAVIGATION BAR ===== */
@@ -125,49 +126,6 @@ ul li a:hover {
     color: #20C997;
 }
 
-/* GLOBAL STYLING */
-body {
-    background: #0d0d0d;
-    color: #eee;
-    font-family: "Inter", Arial, sans-serif;
-    line-height: 1.75;
-    margin: 0;
-    padding: 40px;
-}
-
-/* HEADERS */
-h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-/* SECTION WRAPPER */
-.section {
-    background: #161616;
-    padding: 20px 25px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    box-shadow: 0 0 18px rgba(0,0,0,0.35);
-    border: 1px solid #222;
-}
-
-/* LABELS LIKE “Difficulty:”, “Core Concepts:” */
-.section b {
-    display: inline-block;
-    width: 180px;
-    font-weight: 700;
-    color: #4db8ff;
-}
-
-/* MATH OPTIONS */
-.options {
-    font-size: 1.4rem;
-    margin: 20px 0;
-    text-align: center;
-}
-
-/* BACK LINK */
 a {
     color: #4db8ff;
     font-size: 1.1rem;
@@ -177,7 +135,42 @@ a:hover {
     color: #82d1ff;
 }
 
-/* Difficulty Chart */
+/* ===== SECTION STYLING ===== */
+.section {
+    background: #161616;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.35);
+    border: 1px solid #222;
+}
+
+.section b {
+    display: inline-block;
+    width: 180px;
+    font-weight: 700;
+    color: #4db8ff;
+}
+
+/* ===== OPTIONS / MATH ===== */
+.options {
+    font-size: 1.4rem;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* ===== DIFFICULTY / IDEAL TIME ===== */
+.ideal-time {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.ideal-list {
+    line-height: 1.4;
+}
+
+/* ===== DIFFICULTY CONTAINER ===== */
 .difficulty-container {
     margin-top: 40px;
     padding: 30px 35px;
@@ -220,62 +213,39 @@ a:hover {
     color: #cfcfcf;
     line-height: 1.5;
 }
-.ideal-time {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px; /* space between label and list */
-}
 
-.ideal-list {
-    line-height: 1.4;
-}
-
-/* Make all MathJax content smaller and better for inline display */
-/* MathJax fixes for inline alignment and sizing */
-/* === MathJax General Fixes === */
-
-/* Normal font for math */
-/* === Page font === */
-body {
-    font-family: 'Times New Roman', Times, serif;
-}
-
-/* === MathJax fixes === */
-mjx-container {
-    font-size: 1em !important;        /* Base size for math */
-    line-height: 1.2em !important;    /* Tighten vertical spacing */
-}
-
-/* Inline math alignment */
+/* ===== MATHJAX FIXES ===== */
+/* Preserve LaTeX font (STIX/Latin Modern) */
 mjx-container, mjx-math {
-    vertical-align: middle !important; /* Center math with text */
+    font-family: "STIXGeneral", "Latin Modern Math", "TeX Gyre Termes Math", "TeX Math", serif !important;
+    font-size: 1em !important;
+    line-height: 1.2em !important;
+    vertical-align: middle !important;
 }
 
-/* Display math slightly larger, but not huge, and centered */
+/* Display math slightly larger and centered */
 mjx-container.display {
     font-size: 1.1em !important;
-    display: block !important;       /* Keep block display for $$...$$ */
-    margin: 0.5em 0 !important;      /* Small spacing above/below */
+    display: block !important;
+    margin: 0.5em 0 !important;
     text-align: center;
 }
 
-/* Slightly smaller font for multiple-choice options */
+/* Slightly smaller for multiple-choice options */
 .options mjx-container {
     font-size: 0.95em !important;
 }
 
-/* Adjust fractions, subscripts, superscripts in inline math */
-mjx-container mjx-mfrac, 
-mjx-container mjx-msubsup, 
-mjx-container mjx-munder, 
+/* Fractions, subscripts, superscripts inline */
+mjx-container mjx-mfrac,
+mjx-container mjx-msubsup,
+mjx-container mjx-munder,
 mjx-container mjx-mover {
     font-size: 0.9em !important;
     vertical-align: middle !important;
 }
 
-/* Line height for paragraphs and divs */
+/* Fix line height in paragraphs with math */
 p, li, div {
     line-height: 1.3em;
 }
-
-
