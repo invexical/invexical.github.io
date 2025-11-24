@@ -36,17 +36,11 @@ nav a {
     color: #ccc;
     text-decoration: none;
     margin-left: 20px;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 nav a:hover {
     color: white;
-}
-/* Increase spacing for <br> inside section divs */
-.section br {
-    content: "";
-    display: block;
-    margin-bottom: 0.8em; /* adjust this value to control spacing */
 }
 
 /* ===== HERO SECTION ===== */
@@ -125,7 +119,7 @@ ul li a:hover {
     text-decoration: none;
     color: #19A4FF;
     font-weight: 600;
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 .back-link:hover {
@@ -158,6 +152,12 @@ a:hover {
     color: #4db8ff;
 }
 
+/* Increase spacing for <br> inside section */
+.section br {
+    display: block;
+    margin-bottom: 0.8em; /* adjust spacing */
+}
+
 /* ===== OPTIONS / MATH ===== */
 .options {
     font-size: 1.4rem;
@@ -166,27 +166,23 @@ a:hover {
 }
 
 /* ===== DIFFICULTY / IDEAL TIME ===== */
-/* ===== IDEAL TIME FIX ===== */
-/* ===== IDEAL TIME FIX: KEEP LABEL LEFT, LIST ALIGNED ===== */
 .ideal-time {
     display: flex;
     align-items: flex-start;
-    gap: 12px; /* space between label and list */
+    gap: 12px;
 }
 
 .ideal-time b {
     display: inline-block;
-    width: 140px; /* fixed width for label */
+    width: 140px;
     font-weight: 700;
 }
 
 .ideal-list {
     margin: 0;
-    padding-left: 30px; /* indent the list without moving the label */
+    padding-left: 30px;
     line-height: 1.4;
 }
-
-
 
 /* ===== DIFFICULTY CONTAINER ===== */
 .difficulty-container {
@@ -233,26 +229,18 @@ a:hover {
 }
 
 /* ===== MATHJAX FIXES ===== */
-/* Preserve LaTeX font (STIX/Latin Modern) */
-/* MathJax: Classic LaTeX look */
-/* =======================
-   GRANDMA-SAFE MATHJAX FIX
-   ======================= */
-
-/* Use Computer Modern everywhere inside MathJax */
+/* LaTeX look & alignment */
 mjx-container, 
 mjx-container * {
     font-family: "Computer Modern", "CMU Serif", serif !important;
 }
 
-/* Inline math: nudge upward to align with Balthazar text */
 mjx-container:not([display]) {
     font-size: 1em !important;
-    vertical-align: -0.12em !important; /* adjust this by ±0.03em if needed */
+    vertical-align: -0.12em !important; /* inline math baseline tweak */
     line-height: 1.1 !important;
 }
 
-/* Display math: centered & slightly bigger */
 mjx-container[display] {
     font-size: 1.1em !important;
     margin: 0.6em 0 !important;
@@ -260,12 +248,9 @@ mjx-container[display] {
     vertical-align: baseline !important;
 }
 
-/* Fractions, subscripts, exponents look normal */
 mjx-container mjx-mfrac,
 mjx-container mjx-msubsup,
 mjx-container mjx-munder,
 mjx-container mjx-mover {
     font-size: 0.97em !important;
 }
-
-
