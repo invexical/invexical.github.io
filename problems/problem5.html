@@ -3,48 +3,40 @@
 <head>
     <title>AMC 10A 2025 Problem 5</title>
     <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
 
-    <!-- MathJax configuration -->
     <script>
-      window.MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          displayMath: [['$$', '$$'], ['\\[', '\\]']]
-        },
-        options: {
-          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-        }
-      };
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
     </script>
-
-    <!-- MathJax library -->
-    <script id="MathJax-script" async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <h1>Problem 5</h1>
-    <p>Category: Algebra</p>
-    <p>
-       Consider the sequence of positive integers
-
+<h1>Problem 5</h1>
+<div class="section"><b>Category:</b> Algebra</div>
+<p>Consider the sequence of positive integers
 $$1,2,1,2,3,2,1,2,3,4,3,2,1,2,3,4,5,4,3,2,1,2,3,4,5,6,5,4,3,2,1,2,\dots$$
+What is the 2025th term?</p>
+<div class="options">
+$$\textbf{(A) } 5 \qquad \textbf{(B) } 15 \qquad \textbf{(C) } 16 \qquad \textbf{(D) } 44 \qquad \textbf{(E) } 45$$
+</div>
+<div class="section">
+<b>Difficulty:</b> 27/100 — Sequence decomposition is key; small computation mistakes are easy.<br>
+<b>Core Concepts:</b> Divide sequence into manageable blocks; pattern recognition.<br>
+<b>Techniques:</b> Use triangular number sums; incremental block sizes.<br>
+<b>Error-prone Steps:</b> Miscounting position or overcounting.<br>
+<div class="ideal-time">
+    <b>Ideal Time:</b>
+    <div class="ideal-list">
+        Experienced: ≤ 35 sec<br>
+        Intermediate: ≤ 1 min<br>
+        Beginner: ≤ 2-3 min
+    </div>
+</div>
 
-What is the 2025th term in this sequence?
-
-$$\textbf{(A) } 5 \qquad\textbf{(B) } 15 \qquad\textbf{(C) } 16 \qquad\textbf{(D) } 44 \qquad\textbf{(E) } 45$$
-
-
-    </p>
-    <p><b>Difficulty:</b> 27/100 — The problem is daunting to the causal contestant, and is initially hard to approach. Once a contestant finds the necessary observation, it is still quite easy to make a silly mistake. Participants may still be reocvering from the stark difficulty curve beginning at problem 4.</p>
-    <p><b>Core Concepts:</b>The contestant must know how to properly divide a sequence into manageable bits. A little computation ability is required to extract the final answer.</p>
-    <p><b>Non-obvious Transitions:</b> An inexperienced contestant may dive straight into the problem and get stuck; it requires insight to realize that the sequence can be divided into different parts. This problem differs heavily from traditional sequence problems on the AMC.</p>
-    <p><b>Techniques:</b> Know how to take in a problem one at a time, dividing it into manageable chunks. The formula for either $1+3+5+\cdots+(2n-1)$ or $2+4+6+\cdots+(2n)$ is almost completely required, unless the contestant makes an assumption. </p>
-    <p><b>Error-prone Steps:</b> Sillying the final computation and incorrectly believing that there was some overcount. </p>
-    <p><b>Ideal Time:</b>
-    Experienced contestants may take up to $35$ seconds to complete the problem.
-    Intermediate contestants may take up to $1$ minute to complete the problem.
-    Beginner contestants may take up to $2-3$ minutes to solve the problem.</p>
-    <a href="../amc10a-2025.html">← Back to AMC 10A 2025</a>
+</div>
+<a href="../amc10a-2025.html">← Back to AMC 10A 2025</a>
 </body>
 </html>
