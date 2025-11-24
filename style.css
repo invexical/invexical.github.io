@@ -151,6 +151,10 @@ a:hover {
     font-weight: 700;
     color: #4db8ff;
 }
+.section b + * {
+    display: block;
+    margin-left: 190px; /* slightly more than the <b> width for clean alignment */
+}
 
 /* Increase spacing for <br> inside section */
 .section br {
