@@ -136,19 +136,6 @@ a:hover {
 }
 
 /* ===== SECTION STYLING ===== */
-.section-row {
-    display: grid;
-    grid-template-columns: 180px 1fr; /* <b> column + content column */
-    column-gap: 12px;
-}
-
-.section-row b {
-    grid-column: 1;
-}
-
-.section-row b + * {
-    grid-column: 2;
-}
 .section {
     background: #161616;
     padding: 20px 25px;
