@@ -1,4 +1,30 @@
 /* ===== GLOBAL RESET ===== */
+/* Width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #0d0d0d; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #333; 
+    border-radius: 5px;
+    border: 2px solid #0d0d0d; /* Creates padding effect */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #4db8ff; /* Turns blue when you grab it */
+}
+::selection {
+    background: rgba(32, 201, 151, 0.3); /* Teal tint */
+    color: #fff;
+    text-shadow: 0 0 8px rgba(32, 201, 151, 0.5);
+}
 * {
     margin: 0;
     padding: 0;
@@ -7,12 +33,14 @@
 }
 
 body {
-    background: #0d0d0d;
+    background-color: #0d0d0d;
+    /* Adds a very subtle blue gradient light at the top center */
+    background-image: radial-gradient(circle at 50% 0%, #1a2a3a 0%, #0d0d0d 60%);
+    background-attachment: fixed; /* Keeps the glow at the top when scrolling */
     color: #eee;
     line-height: 1.75;
     padding: 40px;
 }
-
 /* ===== NAVIGATION BAR ===== */
 nav {
     width: 100%;
@@ -143,12 +171,18 @@ a:hover {
 
 /* ===== SECTION STYLING ===== */
 .section {
-    background: #161616;
-    padding: 20px 25px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    box-shadow: 0 0 18px rgba(0,0,0,0.35);
-    border: 1px solid #222;
+    /* Keep your padding/margin */
+    background: rgba(22, 22, 22, 0.6); /* Lower opacity for transparency */
+    backdrop-filter: blur(12px);       /* The "Frosted Glass" effect */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.section:hover {
+    transform: translateY(-4px); /* Lifts up */
+    border-color: rgba(77, 184, 255, 0.3); /* Border turns blueish */
+    box-shadow: 0 12px 40px rgba(0, 116, 255, 0.15); /* Soft Blue Glow */
 }
 
 .info-row {
@@ -174,9 +208,13 @@ a:hover {
 
 /* ===== OPTIONS / MATH ===== */
 .options {
-    font-size: 1.1rem;
-    margin: 20px 0;
+    font-size: 1.2rem;
+    margin: 30px 0;
     text-align: center;
+    padding: 20px;
+    background: radial-gradient(circle at center, rgba(25, 164, 255, 0.05) 0%, transparent 70%);
+    border-radius: 20px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
 /* ===== DIFFICULTY / IDEAL TIME ===== */
