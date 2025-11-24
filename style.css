@@ -43,13 +43,21 @@ body {
 }
 /* ===== NAVIGATION BAR ===== */
 nav {
-    width: 100%;
-    padding: 20px 40px;
-    background: #0c0c0c;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Keep your existing nav styles (width, padding, etc.) */
+    position: sticky; /* Makes the nav stay at the top */
+    top: 0;
+    z-index: 1000;
+    background: rgba(12, 12, 12, 0.95); /* Slightly darker/opaque for sticky effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Subtle shadow when sticky */
+    
+    /* Remove the old 'border-bottom: 1px solid rgba(255, 255, 255, 0.1);' */
+    border-bottom: 1px solid transparent;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+
+    /* Create the gradient border effect */
+    border-image: linear-gradient(90deg, #19A4FF, #20C997) 1;
+    border-image-slice: 1;
+    border-width: 1px;
 }
 
 nav h2 {
@@ -128,11 +136,11 @@ ul li a:hover {
 
 /* ===== PROBLEM PAGE STYLING ===== */
 .problem-container {
-    max-width: 800px;
+    max-width: 960px; /* INCREASED FROM 800px */
     margin: 40px auto;
     padding: 30px;
     background: #141414;
-    border-radius: 14px;
+    border-radius: 18px; /* INCREASED ROUNDNESS */
     border: 1px solid #222;
 }
 
@@ -163,20 +171,42 @@ ul li a:hover {
 a {
     color: #4db8ff;
     font-size: 1.1rem;
+    text-decoration: none; /* Remove default underline */
+    position: relative; /* Needed for the pseudo-element */
 }
 
 a:hover {
     color: #82d1ff;
 }
 
+/* The Animated Underline */
+a::after {
+    content: '';
+    position: absolute;
+    width: 0; /* Starts hidden */
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: linear-gradient(90deg, #19A4FF, #20C997); /* Gradient color */
+    transition: width 0.3s ease-out; /* Animation speed */
+}
+
+a:hover::after {
+    width: 100%; /* Slides in completely on hover */
+}
+
+/* ===== SECTION STYLING ===== */
+/* ===== PROBLEM PAGE STYLING ===== */
+
 /* ===== SECTION STYLING ===== */
 .section {
-    /* Keep your padding/margin */
-    background: rgba(22, 22, 22, 0.6); /* Lower opacity for transparency */
-    backdrop-filter: blur(12px);       /* The "Frosted Glass" effect */
+    background: rgba(22, 22, 22, 0.6);
+    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border */
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 20px 25px;
+    border-radius: 18px; /* INCREASED ROUNDNESS */
+    margin-bottom: 25px;
+    /* ... rest of existing rules ... */
 }
 
 .section:hover {
@@ -200,6 +230,16 @@ a:hover {
     color: #4db8ff;
 }
 
+blockquote {
+    margin: 20px 0;
+    padding: 15px 25px;
+    border-left: 5px solid #20C997; /* Strong teal accent line */
+    background: rgba(32, 201, 151, 0.05); /* Very subtle background color */
+    font-style: italic;
+    color: #cfcfcf;
+    border-radius: 4px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
 /* Optional: Ensure the text takes up the rest of the space */
 .info-row span {
     display: block;
