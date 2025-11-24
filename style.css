@@ -60,8 +60,14 @@ nav a:hover {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ===== PROBLEM LIST ===== */
@@ -151,10 +157,6 @@ a:hover {
     font-weight: 700;
     color: #4db8ff;
 }
-.section b + * {
-    display: block;
-    margin-left: 190px; /* slightly more than the <b> width for clean alignment */
-}
 
 /* Increase spacing for <br> inside section */
 .section br {
@@ -164,7 +166,6 @@ a:hover {
 
 /* ===== OPTIONS / MATH ===== */
 .options {
-    font-size: 1.4rem;
     font-size: 1.1rem;
     margin: 20px 0;
     text-align: center;
@@ -235,7 +236,7 @@ a:hover {
 
 /* ===== MATHJAX FIXES ===== */
 /* LaTeX look & alignment */
-mjx-container, 
+mjx-container,
 mjx-container * {
     font-family: "Computer Modern", "CMU Serif", serif !important;
 }
