@@ -151,17 +151,25 @@ a:hover {
     border: 1px solid #222;
 }
 
+.info-row {
+    display: flex;            /* Enables side-by-side layout */
+    align-items: baseline;    /* Aligns text relative to the first line of text */
+    margin-bottom: 15px;      /* Replaces your old <br> spacing */
+}
+
+/* Update your existing .section b rule to this */
 .section b {
     display: inline-block;
     width: 180px;
+    flex-shrink: 0;           /* CRITICAL: Prevents the label from getting squished */
     font-weight: 700;
     color: #4db8ff;
 }
 
-/* Increase spacing for <br> inside section */
-.section br {
+/* Optional: Ensure the text takes up the rest of the space */
+.info-row span {
     display: block;
-    margin-bottom: 0.8em; /* adjust spacing */
+    flex: 1;                  /* Takes up all remaining width */
 }
 
 /* ===== OPTIONS / MATH ===== */
