@@ -216,27 +216,27 @@ a:hover {
 
 /* ===== MATHJAX FIXES ===== */
 /* Preserve LaTeX font (STIX/Latin Modern) */
-mjx-container, mjx-math {
+mjx-container {
     font-family: "STIXGeneral", "Latin Modern Math", "TeX Gyre Termes Math", "TeX Math", serif !important;
     font-size: 1em !important;
     line-height: 1.2em !important;
-    vertical-align: middle !important;
+    vertical-align: middle !important;   /* centers inline math */
+    display: inline-block !important;     /* helps align baseline */
 }
-
-/* Display math slightly larger and centered */
 mjx-container.display {
-    font-size: 1.1em !important;
+    font-size: 1.05em !important;        /* slightly bigger than text */
     display: block !important;
-    margin: 0.5em 0 !important;
+    margin: 0.5em 0 !important;          /* spacing above/below */
     text-align: center;
+    vertical-align: baseline !important; /* fixes baseline shift for display */
 }
 
-/* Slightly smaller for multiple-choice options */
+/* Multiple-choice options slightly smaller */
 .options mjx-container {
     font-size: 0.95em !important;
 }
 
-/* Fractions, subscripts, superscripts inline */
+/* Fractions, subscripts, superscripts */
 mjx-container mjx-mfrac,
 mjx-container mjx-msubsup,
 mjx-container mjx-munder,
@@ -246,6 +246,4 @@ mjx-container mjx-mover {
 }
 
 /* Fix line height in paragraphs with math */
-p, li, div {
-    line-height: 1.3em;
-}
+
