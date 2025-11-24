@@ -171,6 +171,8 @@ a:hover {
     display: flex;             /* flexbox for label + list */
     align-items: flex-start;   /* top-align items */
     gap: 12px;                 /* spacing between label and list */
+    margin-left: 20px;         /* shift everything slightly right */
+
 }
 
 .ideal-time b {
