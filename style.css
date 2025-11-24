@@ -232,23 +232,37 @@ a:hover {
 
 /* Make all MathJax content smaller and better for inline display */
 /* MathJax fixes for inline alignment and sizing */
+/* === MathJax General Fixes === */
+
+/* Normal font for math */
+mjx-container, mjx-math {
+    font-family: 'Arial', 'Helvetica', sans-serif !important;  /* Modern, clean font */
+    font-size: 1em !important;        /* Base size same as text */
+    line-height: 1.2em !important;    /* Prevent extra vertical spacing */
+    vertical-align: middle !important; /* Center math vertically with text */
+}
+
+/* Force inline display for all math (even display math) */
 mjx-container {
-    font-size: 1em !important;       /* Normal text size */
-    line-height: 1.2em !important;   /* Prevent oversized vertical spacing */
-    vertical-align: middle !important; /* Align math vertically with text */
+    display: inline !important;
 }
 
-mjx-math {
-    display: inline !important;      /* Force inline rendering */
-    vertical-align: middle !important; /* Align math with text */
-}
-
+/* Slightly smaller font for multiple-choice options */
 .options mjx-container {
-    font-size: 0.9em !important;     /* Slightly smaller for multiple-choice options */
+    font-size: 0.9em !important;
 }
 
+/* Extra spacing fix for paragraphs and divs containing math */
 p, li, div {
-    line-height: 1.3em;              /* Better spacing for paragraphs with math */
+    line-height: 1.3em;
 }
 
+/* Optional: make fractions, sums, and integrals smaller in inline math */
+mjx-container mjx-mfrac, 
+mjx-container mjx-msubsup, 
+mjx-container mjx-munder, 
+mjx-container mjx-mover {
+    font-size: 0.9em !important;
+    vertical-align: middle !important;
+}
 
