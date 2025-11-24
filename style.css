@@ -144,13 +144,23 @@ a:hover {
     margin-bottom: 25px;
     box-shadow: 0 0 18px rgba(0,0,0,0.35);
     border: 1px solid #222;
+
+    /* Use CSS grid for label + text alignment */
+    display: grid;
+    grid-template-columns: 180px 1fr; /* label + content */
+    column-gap: 12px;
+    align-items: start;
 }
 
 .section b {
-    display: inline-block;
-    width: 180px;
     font-weight: 700;
     color: #4db8ff;
+}
+
+/* Make the content wrap properly without jumping */
+.section div, 
+.section p {
+    margin: 0; /* remove default margin */
 }
 
 
