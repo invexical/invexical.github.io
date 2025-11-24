@@ -218,25 +218,24 @@ a:hover {
 /* Preserve LaTeX font (STIX/Latin Modern) */
 mjx-container {
     font-family: "STIXGeneral", "Latin Modern Math", "TeX Gyre Termes Math", "TeX Math", serif !important;
-    font-size: 1em !important;
-    line-height: 1.2em !important;
-    vertical-align: middle !important;   /* centers inline math */
-    display: inline-block !important;     /* helps align baseline */
-}
-mjx-container.display {
-    font-size: 1.05em !important;        /* slightly bigger than text */
-    display: block !important;
-    margin: 0.5em 0 !important;          /* spacing above/below */
-    text-align: center;
-    vertical-align: baseline !important; /* fixes baseline shift for display */
+    font-size: 1em !important;          
+    line-height: 1.2em !important;      
+    vertical-align: -0.05em !important; /* slight upward shift to align with text */
+    display: inline-block !important;
 }
 
-/* Multiple-choice options slightly smaller */
+mjx-container.display {
+    font-size: 1.05em !important;       
+    display: block !important;
+    margin: 0.5em 0 !important;         
+    text-align: center;
+    vertical-align: baseline !important; 
+}
+
 .options mjx-container {
     font-size: 0.95em !important;
 }
 
-/* Fractions, subscripts, superscripts */
 mjx-container mjx-mfrac,
 mjx-container mjx-msubsup,
 mjx-container mjx-munder,
