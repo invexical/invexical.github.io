@@ -231,14 +231,16 @@ a:hover {
 }
 
 /* Make all MathJax content smaller and better for inline display */
+/* MathJax fixes for inline alignment and sizing */
 mjx-container {
     font-size: 1em !important;       /* Normal text size */
     line-height: 1.2em !important;   /* Prevent oversized vertical spacing */
+    vertical-align: middle !important; /* Align math vertically with text */
 }
 
 mjx-math {
-    display: inline !important;      /* Forces inline rendering where possible */
-    vertical-align: middle;          /* Align nicely with surrounding text */
+    display: inline !important;      /* Force inline rendering */
+    vertical-align: middle !important; /* Align math with text */
 }
 
 .options mjx-container {
@@ -246,6 +248,7 @@ mjx-math {
 }
 
 p, li, div {
-    line-height: 1.3em;              /* Optional: better spacing for paragraphs with math */
+    line-height: 1.3em;              /* Better spacing for paragraphs with math */
 }
+
 
