@@ -3,44 +3,38 @@
 <head>
     <title>AMC 10A 2025 Problem 6</title>
     <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
 
-    <!-- MathJax configuration -->
     <script>
-      window.MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          displayMath: [['$$', '$$'], ['\\[', '\\]']]
-        },
-        options: {
-          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-        }
-      };
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
     </script>
-
-    <!-- MathJax library -->
-    <script id="MathJax-script" async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <h1>Problem 6</h1>
-    <p>Category: Geometry</p>
-    <p>
-       In an equilateral triangle each interior angle is trisected by a pair of rays. The intersection of the interiors of the middle 20°-angle at each vertex is the interior of a convex hexagon. What is the degree measure of the smallest angle of this hexagon?
+<h1>Problem 6</h1>
+<div class="section"><b>Category:</b> Geometry</div>
+<p>In an equilateral triangle each interior angle is trisected by a pair of rays. The intersection of the interiors of the middle 20°-angle at each vertex is the interior of a convex hexagon. What is the degree measure of the smallest angle of this hexagon?</p>
+<div class="options">
+$$\textbf{(A) } 80 \qquad \textbf{(B) } 90 \qquad \textbf{(C) } 100 \qquad \textbf{(D) } 110 \qquad \textbf{(E) } 120$$
+</div>
+<div class="section">
+<b>Difficulty:</b> 20/100 — Drawing precise diagram helps; then computation is easy.<br>
+<b>Core Concepts:</b> Angle chasing in triangles.<br>
+<b>Techniques:</b> Focus on one triangle at a time; use angle sum and vertical angles.<br>
+<b>Error-prone Steps:</b> Assuming hexagon is equiangular (leads to 120°).<br>
+<div class="ideal-time">
+    <b>Ideal Time:</b>
+    <div class="ideal-list">
+        Experienced: ≤ 25 sec<br>
+        Intermediate: ≤ 1 min<br>
+        Beginner: ≤ 2 min
+    </div>
+</div>
 
-$$\textbf{(A) } 80 \qquad\textbf{(B) } 90 \qquad\textbf{(C) } 100 \qquad\textbf{(D) } 110 \qquad\textbf{(E) } 120$$
-
-
-    </p>
-    <p><b>Difficulty:</b> 20/100 — Being a slight step down from the previous problem, drawing a precise diagram can be critical in this problem. The problem is quite easy to figure out from here, if you are looking at the right part of the diagram.</p>
-    <p><b>Core Concepts:</b>Angle chasing ability is needed in order to tackle this problem, particularly knowing which traingle to look at to extract the desired answer.</p>
-    <p><b>Non-obvious Transitions:</b> A contestant may seem intimidated by the presence of trisectors of a triangle on problem 6, but soon enough it is easy to see that the problem isn't too hard to compute.</p>
-    <p><b>Techniques:</b> Focusing on one triangle at a time is necessary in order to get the angle that you want. Knowing how to apply the triangle angle sum theorem and vertical angles is also necessary, however, these are quite well-known and trivial.</p>
-    <p><b>Error-prone Steps:</b> The most common mistake on this problem was to bravely assume that it was equiangular, leading to the incorrect answer of $120$. </p>
-    <p><b>Ideal Time:</b>
-    Experienced contestants may take up to $25$ seconds to complete the problem.
-    Intermediate contestants may take up to $1$ minute to complete the problem.
-    Beginner contestants may take up to $2$ minutes to solve the problem.</p>
-    <a href="../amc10a-2025.html">← Back to AMC 10A 2025</a>
+</div>
+<a href="../amc10a-2025.html">← Back to AMC 10A 2025</a>
 </body>
 </html>
