@@ -136,21 +136,32 @@ a:hover {
 }
 
 /* ===== SECTION STYLING ===== */
-.section {
-    background: #161616;
-    padding: 20px 25px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    box-shadow: 0 0 18px rgba(0,0,0,0.35);
-    border: 1px solid #222;
-}
-
+/* ===== SECTION LABEL + WRAP FIX ===== */
 .section b {
     display: inline-block;
-    width: 180px;
+    width: 180px;      /* fixed label width */
     font-weight: 700;
     color: #4db8ff;
+    vertical-align: top;
 }
+
+/* Make text after <b> wrap correctly */
+.section b + * {
+    display: inline;
+}
+
+.section p, .section br {
+    display: block;
+    margin: 0.6em 0; /* spacing between lines */
+}
+
+/* Optional: force wrapped lines to align */
+.section b + span, 
+.section b + text {
+    display: inline-block;
+    max-width: calc(100% - 180px); /* wrap within remaining width */
+}
+
 
 /* Increase spacing for <br> inside section */
 .section br {
