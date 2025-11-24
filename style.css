@@ -167,26 +167,25 @@ a:hover {
 
 /* ===== DIFFICULTY / IDEAL TIME ===== */
 /* ===== IDEAL TIME FIX ===== */
+/* ===== IDEAL TIME FIX: KEEP LABEL LEFT, LIST ALIGNED ===== */
 .ideal-time {
-    display: flex;             /* flexbox for label + list */
-    align-items: flex-start;   /* top-align items */
-    gap: 12px;                 /* spacing between label and list */
-    margin-left: 20px;         /* shift everything slightly right */
-
+    display: flex;
+    align-items: flex-start;
+    gap: 12px; /* space between label and list */
 }
 
 .ideal-time b {
     display: inline-block;
-    width: 140px;              /* adjust to fit your longest label */
+    width: 140px; /* fixed width for label */
     font-weight: 700;
-    line-height: 1.4;          /* match the list line height */
 }
 
 .ideal-list {
     margin: 0;
-    padding: 0;
-    line-height: 1.4;          /* match the label's line height */
+    padding-left: 30px; /* indent the list without moving the label */
+    line-height: 1.4;
 }
+
 
 
 /* ===== DIFFICULTY CONTAINER ===== */
