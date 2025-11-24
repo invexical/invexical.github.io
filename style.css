@@ -136,8 +136,6 @@ a:hover {
 }
 
 /* ===== SECTION STYLING ===== */
-/* ===== SECTION LABEL + WRAP FIX ===== */
-/* ===== SECTION LABEL + WRAP FIX ===== */
 .section {
     background: #161616;
     padding: 20px 25px;
@@ -149,40 +147,10 @@ a:hover {
 
 .section b {
     display: inline-block;
-    width: 180px;      /* fixed label width */
+    width: 180px;
     font-weight: 700;
     color: #4db8ff;
-    vertical-align: top;
 }
-
-/* Wrap text after label without breaking alignment */
-.section b + span,
-.section b + * {
-    display: inline-block;
-    max-width: calc(100% - 180px); /* remaining width for wrapped text */
-}
-
-/* ===== IDEAL TIME FIX ===== */
-.ideal-time {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px; /* space between label and list */
-}
-
-.ideal-time b {
-    display: inline-block;
-    width: 140px; /* fixed width for label */
-    font-weight: 700;
-}
-
-.ideal-list {
-    margin: 0;
-    padding-left: 0; /* list already indented by flex gap */
-    line-height: 1.4;
-}
-
-
-
 
 /* Increase spacing for <br> inside section */
 .section br {
@@ -192,13 +160,13 @@ a:hover {
 
 /* ===== OPTIONS / MATH ===== */
 .options {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     margin: 20px 0;
     text-align: center;
 }
 
 /* ===== DIFFICULTY / IDEAL TIME ===== */
-/*.ideal-time {
+.ideal-time {
     display: flex;
     align-items: flex-start;
     gap: 12px;
@@ -214,7 +182,7 @@ a:hover {
     margin: 0;
     padding-left: 30px;
     line-height: 1.4;
-}*/
+}
 
 /* ===== DIFFICULTY CONTAINER ===== */
 .difficulty-container {
