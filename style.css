@@ -220,5 +220,14 @@ a:hover {
     color: #cfcfcf;
     line-height: 1.5;
 }
+.ideal-time {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px; /* space between label and list */
+}
+
+.ideal-list {
+    line-height: 1.4;
+}
 
 
