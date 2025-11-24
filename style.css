@@ -235,5 +235,47 @@ a:hover {
 /* === MathJax General Fixes === */
 
 /* Normal font for math */
+/* === Page font === */
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* === MathJax fixes === */
+mjx-container {
+    font-size: 1em !important;        /* Base size for math */
+    line-height: 1.2em !important;    /* Tighten vertical spacing */
+}
+
+/* Inline math alignment */
+mjx-container, mjx-math {
+    vertical-align: middle !important; /* Center math with text */
+}
+
+/* Display math slightly larger, but not huge, and centered */
+mjx-container.display {
+    font-size: 1.1em !important;
+    display: block !important;       /* Keep block display for $$...$$ */
+    margin: 0.5em 0 !important;      /* Small spacing above/below */
+    text-align: center;
+}
+
+/* Slightly smaller font for multiple-choice options */
+.options mjx-container {
+    font-size: 0.95em !important;
+}
+
+/* Adjust fractions, subscripts, superscripts in inline math */
+mjx-container mjx-mfrac, 
+mjx-container mjx-msubsup, 
+mjx-container mjx-munder, 
+mjx-container mjx-mover {
+    font-size: 0.9em !important;
+    vertical-align: middle !important;
+}
+
+/* Line height for paragraphs and divs */
+p, li, div {
+    line-height: 1.3em;
+}
 
 
