@@ -425,192 +425,172 @@ mjx-container mjx-mover {
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding-bottom: 5px;
 }
+/* ===== DASHBOARD LAYOUT ===== */
+.hero-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
 
-/* ===== DASHBOARD CONTAINER ===== */
 .dashboard-container {
     display: flex;
-    gap: 30px;
-    background: rgba(20, 20, 20, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
-    margin: 30px 0;
+    gap: 40px;
+    margin-bottom: 60px;
     align-items: flex-start;
 }
 
-/* Sidebar (Stats & Categories) */
+/* Sidebar Styling */
 .dashboard-sidebar {
-    width: 200px;
+    width: 220px;
     flex-shrink: 0;
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
-    padding-right: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .dashboard-sidebar h3 {
-    margin-bottom: 20px;
+    font-size: 0.9rem;
     color: #4db8ff;
     text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    margin-top: 20px; /* Spacing for second header */
 }
+.dashboard-sidebar h3:first-child { margin-top: 0; }
 
-.stat-box {
-    margin-bottom: 25px;
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #fff;
+    display: block;
+    line-height: 1;
 }
 
 .stat-label {
-    display: block;
     color: #888;
     font-size: 0.85rem;
 }
 
-.stat-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #eee;
-}
-
-/* Category Pills */
-.category-tags {
+/* Legend Styling */
+.legend-list {
     display: flex;
     flex-direction: column;
+    gap: 8px;
+}
+
+.legend-item {
+    font-size: 0.85rem;
+    color: #ccc;
+    display: flex;
+    align-items: center;
     gap: 10px;
 }
 
-.cat-pill {
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    background: rgba(255, 255, 255, 0.05);
-    color: #ccc;
-    border: 1px solid transparent;
-    transition: 0.3s;
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
 }
 
-.cat-pill.algebra { border-color: rgba(25, 164, 255, 0.4); color: #82d1ff; }
-.cat-pill.geometry { border-color: rgba(32, 201, 151, 0.4); color: #72efc8; }
-.cat-pill.combo { border-color: rgba(255, 107, 107, 0.4); color: #ffadad; }
-
-/* ===== THE HEATMAP GRID ===== */
+/* ===== GRID STYLING ===== */
 .dashboard-grid {
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5x5 Grid */
-    gap: 12px;
+    grid-template-columns: repeat(5, 1fr); /* 5 Columns */
+    gap: 15px;
 }
 
 .grid-item {
-    aspect-ratio: 1 / 1; /* Makes them perfect squares */
+    aspect-ratio: 1 / 1; /* Perfect Square */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
+    border-radius: 16px;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: white;
-    background: #222;
-    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background: #1a1a1a; /* Fallback */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
-    border: 1px solid transparent;
+    overflow: hidden;
 }
 
-/* Hover Effects */
 .grid-item:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.5);
     z-index: 2;
 }
 
-/* Tooltip that shows Difficulty Score on hover */
-.grid-item::before {
-    content: "Diff: " attr(style); /* Hacks the CSS var to show text */
-    content: "Diff: " var(--score); /* Modern way */
-    /* If var() inside content isn't supported in your browser, use: */
-    /* content: attr(data-score); (and change HTML to data-score="...") */
-    
-    position: absolute;
-    bottom: 110%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #000;
-    padding: 4px 8px;
-    font-size: 0.75rem;
-    border-radius: 4px;
-    opacity: 0;
-    transition: 0.2s;
-    pointer-events: none;
-    white-space: nowrap;
-    border: 1px solid #333;
+/* The Problem Number (01, 02...) */
+.p-num {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 5px;
 }
 
-/* Hack to clean up the tooltip text (removes quotes from style var) */
-/* Actually, simpler approach: just assume the user hovers to see details */
-.grid-item:hover::before {
-    opacity: 1;
+/* The Difficulty Badge (The small number) */
+.diff-badge {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 2px 10px;
+    background: rgba(0, 0, 0, 0.4); /* Dark pill background */
+    border-radius: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* ===== DIFFICULTY COLOR MAP ===== */
+/* Each class sets the background color and glow */
 
-/* ===== DIFFICULTY COLORS ===== */
+/* 0-10: Very Easy (Cyan) */
+.d-0, .dot.d-0 { background: rgba(0, 212, 255, 0.15); border-color: rgba(0, 212, 255, 0.3); }
+.dot.d-0 { background: #00d4ff; }
+.d-0:hover { background: rgba(0, 212, 255, 0.8); }
 
-/* Easy (0-25) - Teal/Green */
-.diff-easy {
-    background: rgba(32, 201, 151, 0.15);
-    border-color: rgba(32, 201, 151, 0.4);
-    color: #20C997;
-}
-.diff-easy:hover {
-    background: rgba(32, 201, 151, 0.8);
-    color: #000;
-    box-shadow: 0 0 15px rgba(32, 201, 151, 0.4);
-}
+/* 11-20: Easy (Teal) */
+.d-11, .dot.d-11 { background: rgba(32, 201, 151, 0.15); border-color: rgba(32, 201, 151, 0.3); }
+.dot.d-11 { background: #20C997; }
+.d-11:hover { background: rgba(32, 201, 151, 0.8); }
 
-/* Medium (26-50) - Yellow/Orange */
-.diff-med {
-    background: rgba(255, 193, 7, 0.15);
-    border-color: rgba(255, 193, 7, 0.4);
-    color: #ffca2c;
-}
-.diff-med:hover {
-    background: rgba(255, 193, 7, 0.9);
-    color: #000;
-    box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
-}
+/* 21-35: Easy-Med (Lime Green) */
+.d-21, .dot.d-21 { background: rgba(163, 230, 53, 0.15); border-color: rgba(163, 230, 53, 0.3); }
+.dot.d-21 { background: #a3e635; }
+.d-21:hover { background: rgba(163, 230, 53, 0.8); }
 
-/* Hard (51+) - Red/Pink */
-.diff-hard {
-    background: rgba(255, 77, 77, 0.15);
-    border-color: rgba(255, 77, 77, 0.4);
-    color: #ff6b6b;
-}
-.diff-hard:hover {
-    background: rgba(255, 77, 77, 0.9);
-    color: #fff;
-    box-shadow: 0 0 15px rgba(255, 77, 77, 0.4);
-}
+/* 36-50: Medium (Yellow) */
+.d-36, .dot.d-36 { background: rgba(250, 204, 21, 0.15); border-color: rgba(250, 204, 21, 0.3); }
+.dot.d-36 { background: #facc15; }
+.d-36:hover { background: rgba(250, 204, 21, 0.9); }
 
-/* TBD (Not added yet) - Gray */
-.diff-tbd {
-    background: #1a1a1a;
-    color: #444;
-    border: 1px dashed #333;
-    cursor: not-allowed;
-}
+/* 51-65: Med-Hard (Orange) */
+.d-51, .dot.d-51 { background: rgba(251, 146, 60, 0.15); border-color: rgba(251, 146, 60, 0.3); }
+.dot.d-51 { background: #fb923c; }
+.d-51:hover { background: rgba(251, 146, 60, 0.9); }
 
-/* Responsive adjustment */
-@media (max-width: 768px) {
-    .dashboard-container {
-        flex-direction: column;
-    }
-    .dashboard-sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        padding-bottom: 20px;
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+/* 66-80: Hard (Red-Orange) */
+.d-66, .dot.d-66 { background: rgba(248, 113, 113, 0.15); border-color: rgba(248, 113, 113, 0.3); }
+.dot.d-66 { background: #f87171; }
+.d-66:hover { background: rgba(248, 113, 113, 0.9); }
+
+/* 81-90: Very Hard (Red) */
+.d-81, .dot.d-81 { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); }
+.dot.d-81 { background: #ef4444; }
+.d-81:hover { background: rgba(239, 68, 68, 0.9); }
+
+/* 91-100: Extreme (Purple) */
+.d-91, .dot.d-91 { background: rgba(217, 70, 239, 0.15); border-color: rgba(217, 70, 239, 0.3); }
+.dot.d-91 { background: #d946ef; }
+.d-91:hover { background: rgba(217, 70, 239, 0.9); }
+
+/* TBD / Placeholder */
+.d-tbd { background: rgba(255, 255, 255, 0.02); opacity: 0.5; border-style: dashed; cursor: default; }
+
+/* Mobile Response */
+@media (max-width: 800px) {
+    .dashboard-container { flex-direction: column; }
+    .dashboard-sidebar { width: 100%; display: flex; justify-content: space-between; align-items: flex-start; }
+    .legend-list { display: grid; grid-template-columns: 1fr 1fr; }
 }
