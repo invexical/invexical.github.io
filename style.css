@@ -346,3 +346,82 @@ mjx-container mjx-munder,
 mjx-container mjx-mover {
     font-size: 0.97em !important;
 }
+/* ===== HOVER EXAMPLE POPUPS ===== */
+
+/* 1. Make the label the reference point for positioning */
+.difficulty-row .label {
+    position: relative; 
+    cursor: help; /* Changes cursor to a question mark */
+    text-decoration: underline dotted #4db8ff; /* Subtle hint that it's interactive */
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+}
+
+.difficulty-row .label:hover {
+    color: #4db8ff; /* Light up the label on hover */
+}
+
+/* 2. The Hidden Popover Card */
+.example-popover {
+    visibility: hidden;
+    opacity: 0;
+    
+    /* Position styling */
+    position: absolute;
+    bottom: 140%;       /* Moves it above the text */
+    left: 50%;          /* Centers it horizontally */
+    transform: translateX(-50%) translateY(10px); /* Start slightly lower for animation */
+    
+    /* Box Styling */
+    width: 320px;       /* Width of the popup */
+    background: rgba(15, 15, 15, 0.95); /* Dark background */
+    border: 1px solid rgba(77, 184, 255, 0.3); /* Blue border */
+    backdrop-filter: blur(10px); /* Glass blur */
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    z-index: 9999;      /* Ensure it sits on top of everything */
+    
+    /* Text Styling inside the card */
+    color: #eee;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: left;
+    font-weight: 400;
+    
+    /* Animation settings */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: none; /* Prevents mouse flickering */
+}
+
+/* 3. The Arrow pointing down (Optional cosmetic) */
+.example-popover::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: rgba(77, 184, 255, 0.3) transparent transparent transparent;
+}
+
+/* 4. Show the card on hover */
+.difficulty-row .label:hover .example-popover {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0); /* Float up into place */
+}
+
+/* 5. Highlight the Source Title */
+.popover-title {
+    display: block;
+    color: #20C997;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 5px;
+}
