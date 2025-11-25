@@ -4,7 +4,13 @@
     <title>invexic's Competition Difficulty Guide</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
-
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6R5V8M58EN"></script>
@@ -18,53 +24,100 @@
 <body>
     <h1>invexic's Competition Difficulty Guide</h1>
     <div class="difficulty-container">
-    <h2>AMC10 Difficulty Scale (0–100)</h2>
+    <h2>AMC 10 Difficulty Scale (0–100)</h2>
 
     <div class="difficulty-row">
         <span class="range">0–10</span>
-        <span class="label">Very Easy</span>
+        <span class="label">
+            Very Easy
+            <div class="example-popover">
+                <span class="popover-title">Example: AMC 10A 2025 #1</span>
+Andy and Betsy both live in Mathville. Andy leaves Mathville on his bicycle at $1:30$, traveling due north at a steady $8$ miles per hour. Betsy leaves on her bicycle from the same point at $2:30$, traveling due east at a steady $12$ miles per hour. At what time will they be exactly the same distance from their common starting point?
+            </div>
+        </span>
         <span class="desc">Immediate, 1-step, minimal reasoning.</span>
     </div>
 
     <div class="difficulty-row">
         <span class="range">11–20</span>
-        <span class="label">Easy</span>
+        <span class="label">
+            Easy
+            <div class="example-popover">
+                <span class="popover-title">Example: AMC 10A 2025 #7</span>
+                When $x^3+x^2+ax+b$ is divided by $x-1$, remainder is 4. Divided by $x-2$, remainder is 6. What is $b-a$?
+            </div>
+        </span>
         <span class="desc">Straightforward; early AMC problems. They are often conceptual.</span>
     </div>
 
     <div class="difficulty-row">
         <span class="range">21–35</span>
-        <span class="label">Easy–Medium</span>
+        <span class="label">
+            Easy–Medium
+            <div class="example-popover">
+                <span class="popover-title">Example: AMC 10A 2025 #4</span>
+A team of students is going to compete against a team of teachers in a trivia contest. The total number of students and teachers is $15$. Ash, a cousin of one of the students, wants to join the contest. If Ash plays with the students, the average age on that team will increase from $12$ to $14$. If Ash plays with the teachers, the average age on that team will decrease from $55$ to $52$. How old is Ash?
+            </div>
+        </span>
         <span class="desc">Some structure required; mild trick or observation required.</span>
     </div>
 
     <div class="difficulty-row">
         <span class="range">36–50</span>
-        <span class="label">Medium</span>
+        <span class="label">
+            Medium
+            <div class="example-popover">
+                <span class="popover-title">Example: AMC 10A 2025 #9</span>
+Let $f(x) = 100x^3 - 300x^2 + 200x$. For how many real numbers $a$ does the graph of $y = f(x - a)$ pass through the point $(1, 25)$?            </div>
+        </span>
         <span class="desc">Multi-step problem-solving, but still approachable.</span>
     </div>
 
     <div class="difficulty-row">
         <span class="range">51–65</span>
-        <span class="label">Medium–Hard</span>
+        <span class="label">
+            Medium–Hard
+            <div class="example-popover">
+                <span class="popover-title">Example: AMC 10A 2025 #</span>
+add in later
+            </div>
+        </span>
         <span class="desc">Non-standard approaches; more involved. Requires more advanced concepts.</span>
     </div>
 
     <div class="difficulty-row">
         <span class="range">66–80</span>
-        <span class="label">Hard</span>
+        <span class="label">
+            Hard
+            <div class="example-popover">
+                <span class="popover-title">Example: AMC 10A 2025 #</span>
+add in later
+            </div>
+        </span>
         <span class="desc">Later AMC problems; tricky even for advanced contestants.</span>
     </div>
 
     <div class="difficulty-row">
         <span class="range">81–90</span>
-        <span class="label">Very Hard</span>
+        <span class="label">
+            Very Hard
+            <div class="example-popover">
+                <span class="popover-title">Example: AMC 10A 2025 #</span>
+add in later
+            </div>
+        </span>
         <span class="desc">Top-end AMC difficulty; requires ingenuity or multiple observations.</span>
     </div>
 
     <div class="difficulty-row">
         <span class="range">91–100</span>
-        <span class="label">Extremely Hard</span>
+        <span class="label">
+            Extremely Hard
+            <div class="example-popover">
+                <span class="popover-title">Example: AMC 10A 2025 #</span>
+add in later
+            </div>
+        </span>
         <span class="desc">AIME-level problem-solving or difficult bashes.</span>
     </div>
 </div>
