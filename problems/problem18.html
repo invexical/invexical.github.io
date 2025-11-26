@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AMC 10A 2025 Problem 18</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/computer-modern@4.0.0/css/variable.css" rel="stylesheet">
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6R5V8M58EN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6R5V8M58EN');
+</script>
+<body>
+<h1>Problem 18</h1>
+<div class="section">
+    <div class="info-row">
+        <b>Category:</b> <span>Algebra</span>
+    </div>
+</div>
+<p>The $\textit{harmonic\ mean}$ of a collection of numbers is the reciprocal of the arithmetic mean of the reciprocals of the numbers in the collection. For example, the harmonic mean of 4, 4, and 5 is
+
+$$\frac{1}{\frac{1}{3}(\frac{1}{4}+\frac{1}{4}+\frac{1}{5})}=\frac{30}{7}$$
+
+What is the harmonic mean of all the real roots of the 4050th degree polynomial
+
+$$\prod_{k=1}^{2025} (kx^2-4x-3) = (x^2-4x-3)(2x^2-4x-3)(3x^2-4x-3)\dots (2025x^2-4x-3) ?$$
+
+</p>
+<div class="options">
+$\textbf{(A) } -\frac{5}{3} \qquad\textbf{(B) } -\frac{3}{2} \qquad\textbf{(C) } -\frac{6}{5} \qquad\textbf{(D) } -\frac{5}{6} \qquad\textbf{(E) } -\frac{2}{3}$</div>
+<div class="section">
+    <div class="info-row">
+        <b>Difficulty:</b> <span>61/100 — Although easy for experienced competitors, it applies Vieta's formulas in a nontraditional way, making it hard to approach for beginners.</span>
+    </div>
+    <div class="info-row">
+        <b>Core Concepts:</b> <span>Vieta's formulas</span>
+    </div>
+    <div class="info-row">
+        <b>Challenges:</b> <span>Using what you know about the roots to determine a value for the sum of reciprocals. Figuring out a way to apply Vieta's formulas to the harmonic mean.</span>
+    </div>
+    <div class="info-row">
+        <b>Techniques:</b> <span>Treat each factor separately, computing the desired sum in parts.</span>
+    </div>
+    <div class="info-row">
+        <b>Error-prone Steps:</b> <span>Attempting to expand the polynomial and directly use Vieta's formulas on the entire polynomial.</span>
+    </div>
+    <div class="ideal-time">
+        <b>Ideal Time:</b>
+        <div class="ideal-list">
+            Experienced: ≤ 30-60 sec<br>
+            Intermediate: ≤ 1.5-2 min<br>
+            Beginner: ≤ 4-5 min
+        </div>
+    </div>
+</div>
+<a href="../amc10a-2025.html">← Back to AMC 10A 2025</a>
+</body>
+</html>
