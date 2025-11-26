@@ -594,3 +594,20 @@ mjx-container mjx-mover {
     .dashboard-sidebar { width: 100%; display: flex; justify-content: space-between; align-items: flex-start; }
     .legend-list { display: grid; grid-template-columns: 1fr 1fr; }
 }
+.problem-diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05); /* Slight box highlight */
+    border-radius: 12px;
+}
+
+.problem-diagram img, 
+.problem-diagram svg {
+    max-width: 100%;
+    height: auto;
+    /* Inverts colors if you use a standard black-on-white SVG, 
+       but I already colored the SVG code above for dark mode. */
+}
