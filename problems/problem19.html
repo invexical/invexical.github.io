@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AMC 10A 2025 Problem 19</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/computer-modern@4.0.0/css/variable.css" rel="stylesheet">
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6R5V8M58EN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6R5V8M58EN');
+</script>
+<body>
+<h1>Problem 19</h1>
+<div class="section">
+    <div class="info-row">
+        <b>Category:</b> <span>Algebra</span>
+    </div>
+</div>
+<p>An array of numbers is constructed beginning with the numbers $-1\qquad3\qquad1$in the top row. Each adjacent pair of numbers is summed to produce a number in the next row. Each row begins and ends with $-1$ and $1$, respectively.
+
+$$\large{-1}\qquad\large{3}\qquad\large{1}\]\[\large{-1}\qquad\large{2}\qquad\large{4}\qquad\large{1}\]\[\large{-1}\qquad\large{1}\qquad\large{6}\qquad\large{5}\qquad\large{1}$$
+  
+  If the process continues, one of the rows will sum to $12,288$. In that row, what is the third number from the left?
+
+</p>
+<div class="options">
+$\textbf{(A) } -29 \qquad\textbf{(B) } -21 \qquad\textbf{(C) } -14 \qquad\textbf{(D) } -8 \qquad\textbf{(E) } -3$
+</div>
+<div class="section">
+    <div class="info-row">
+        <b>Difficulty:</b> <span>48/100 — May encourage brute forcing, but overall quite feasible to solve.</span>
+    </div>
+    <div class="info-row">
+        <b>Core Concepts:</b> <span>arithmetic & geometric sequences, Pascal's triangle</span>
+    </div>
+    <div class="info-row">
+        <b>Challenges:</b> <span>Deriving the row sum formula; calculating the third term without resorting to brute force.</span>
+    </div>
+    <div class="info-row">
+        <b>Techniques:</b> <span>Pattern recognition of the geometrically increasing row sums; inductive reasoning.</span>
+    </div>
+    <div class="info-row">
+        <b>Error-prone Steps:</b> <span>Off-by-one error when finding the desired row.</span>
+    </div>
+    <div class="ideal-time">
+        <b>Ideal Time:</b>
+        <div class="ideal-list">
+            Experienced: ≤ 1.5-2 min<br>
+            Intermediate: ≤ 3-4 min<br>
+            Beginner: ≤ 8 min
+        </div>
+    </div>
+</div>
+<a href="../amc10a-2025.html">← Back to AMC 10A 2025</a>
+</body>
+</html>
