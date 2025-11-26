@@ -601,6 +601,14 @@ mjx-container mjx-mover {
     margin: 30px 0;
     padding: 20px;
     background: rgba(255, 255, 255, 0.05); /* Slight box highlight */
+    /* FIX 1: Solid, contrasting background color */
+    background-color: #141414; /* Slightly lighter dark gray than the body */
+    
+    /* FIX 2: Highlighted Border */
+    border: 1px solid rgba(77, 184, 255, 0.2); /* Subtle blue line */
+
+    /* FIX 3: Soft Glow (Optional) */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Deep shadow */
     border-radius: 12px;
 }
 
