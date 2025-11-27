@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Problem Trainer | invexic's Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="trainer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
+    <!-- Lucide Icons for that stylish look -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- MathJax -->
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <!-- EXISTING NAV (Kept consistent) -->
+    <nav>
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px;">
+            <h2>invexic's Trainer</h2>
+            <div>
+                <a href="index.html">Home</a>
+                <a href="#">Trainer</a>
+                <a href="#">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN TRAINER LAYOUT -->
+    <div class="trainer-wrapper">
+        
+        <!-- SIDEBAR: FILTERS -->
+        <div class="trainer-sidebar">
+            <div class="filter-card">
+                <div class="filter-header">
+                    <i data-lucide="filter"></i> Filters
+                </div>
+                
+                <div class="filter-group">
+                    <label>Category</label>
+                    <div class="tag-cloud" id="categoryFilters">
+                        <button class="filter-tag active" data-val="All">All</button>
+                        <button class="filter-tag" data-val="Algebra">Algebra</button>
+                        <button class="filter-tag" data-val="Geometry">Geometry</button>
+                        <button class="filter-tag" data-val="Combinatorics">Combo</button>
+                        <button class="filter-tag" data-val="Number Theory">Number Theory</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Sort By</label>
+                    <select id="sortSelect">
+                        <option value="difficulty-desc">Difficulty (Hardest)</option>
+                        <option value="difficulty-asc">Difficulty (Easiest)</option>
+                        <option value="time">Ideal Time (Shortest)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT: PROBLEM LIST -->
+        <div class="trainer-main">
+            <div id="problemGrid" class="problem-grid">
+                <!-- Problems will be injected here by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAILED VIEW OVERLAY (Hidden by default) -->
+    <div id="detailOverlay" class="detail-overlay hidden">
+        <div class="detail-container">
+            <button id="closeDetail" class="back-btn">← Back to Problems</button>
+            
+            <div id="detailContent">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="trainer.js"></script>
+</body>
+</html>
