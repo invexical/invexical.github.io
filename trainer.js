@@ -1,10 +1,3 @@
-/**
- * Trainer.js - Data file for the Problem Trainer Dashboard.
- * * This file contains an array of problem objects, each representing a single competitive
- * * math problem with metadata like difficulty, time costs, categories, and tags.
- */
-
-// Define the problem data structure
 const problems = [
     {
         id: "AMC10A_2025_P1",
@@ -390,7 +383,7 @@ const closeBtn = document.getElementById('closeDetail');
 // --- ANSWER CHECKING LOGIC (New) ---
 function handleAnswerClick(event) {
     const clickedOption = event.currentTarget;
-    
+
     // If an answer has already been selected, do nothing
     if (document.getElementById('optionsGrid').classList.contains('answered')) {
         return;
@@ -398,7 +391,7 @@ function handleAnswerClick(event) {
 
     const problemId = clickedOption.dataset.problemId;
     const selectedIndex = parseInt(clickedOption.dataset.index);
-    
+
     // Find the corresponding problem object
     const problem = problems.find(p => p.id === problemId);
 
@@ -412,7 +405,7 @@ function handleAnswerClick(event) {
     // 1. Update the UI for ALL options
     document.querySelectorAll('.opt-box').forEach((opt, i) => {
         opt.classList.add('disabled'); // Disable all after first click
-        
+
         if (i === problem.answerIndex) {
             // The correct answer is always marked correct
             opt.classList.add('correct');
@@ -423,7 +416,7 @@ function handleAnswerClick(event) {
             opt.innerHTML += `<span class="feedback-icon"><i data-lucide="x-circle"></i></span>`;
         }
     });
-    
+
     // 2. Mark the whole grid as 'answered' to prevent future clicks
     document.getElementById('optionsGrid').classList.add('answered');
 
@@ -434,7 +427,7 @@ function handleAnswerClick(event) {
 function init() {
     renderGrid();
     lucide.createIcons();
-    
+
     // Event Listeners
     categoryBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -456,27 +449,32 @@ function init() {
 }
 
 // --- RENDER GRID ---
+// --- RENDER GRID (UPDATED FOR LIST VIEW) ---
 function renderGrid() {
     gridEl.innerHTML = '';
-    
+
     let filtered = problems.filter(p => currentCategory === 'All' || p.category.includes(currentCategory)); // Use includes for combined categories
-    
+    // Filter
+    let filtered = problems.filter(p => currentCategory === 'All' || p.category.includes(currentCategory));
+
     // Sort
     filtered.sort((a, b) => {
-        if (currentSort === 'difficulty-desc') return b.difficulty - a.difficulty;
-        if (currentSort === 'difficulty-asc') return a.difficulty - b.difficulty;
-        if (currentSort === 'time') return a.idealTime.experienced - b.idealTime.experienced;
-    });
+@@ -470,135 +472,45 @@
 
     // Build HTML
     filtered.forEach(p => {
         const card = document.createElement('div');
         card.className = 'problem-card';
         card.onclick = () => openDetail(p);
-        
+        // Create the row element
+        const row = document.createElement('div');
+        row.className = 'problem-row';
+        row.onclick = () => openDetail(p);
+
         // **NEW** Difficulty Color Logic using the map
+        // Get color based on your chart
         let diffColor = getDifficultyColor(p.difficulty);
-        
+
         // FIX 2 & 3: Use p.problemNumber and p.contest
         card.innerHTML = `
             <div class="card-header">
@@ -526,6 +524,14 @@ function openDetail(p) {
                     <span>•</span>
                     <span style="color: ${diffColor}">${p.difficulty} Difficulty</span>
                 </div>
+        // Determine Status Color (Placeholder logic)
+        // You can check localStorage or a 'solved' property here later
+        let statusClass = 'status-circle'; 
+        
+        // Construct the row HTML
+        row.innerHTML = `
+            <div class="col-status">
+                <div class="${statusClass}"></div>
             </div>
             <div class="big-score" style="color: ${diffColor}; font-size: 2rem; opacity: 0.5">#${p.problemNumber}</div>
         </div>
@@ -533,10 +539,16 @@ function openDetail(p) {
         <div class="detail-body">
             <div class="question-box">
                 ${p.solution}
+            
+            <div class="col-source">
+                ${p.contest}
             </div>
 
             <div id="optionsGrid" class="options-grid">
                 ${optionsHtml}
+            
+            <div class="col-title">
+                Problem ${p.problemNumber}: ${p.category}
             </div>
 
             <div class="analysis-dashboard">
@@ -580,6 +592,11 @@ function openDetail(p) {
                         <div class="text-content">${p.techniques}</div>
                     </div>
                 </div>
+            
+            <div class="col-difficulty">
+                <span class="difficulty-badge" style="background-color: ${diffColor};">
+                    ${p.difficulty}
+                </span>
             </div>
         </div>
     `;
@@ -594,6 +611,9 @@ function openDetail(p) {
     // Re-attach click listeners
     document.querySelectorAll('.opt-box').forEach(opt => {
         opt.addEventListener('click', handleAnswerClick);
+        `;
+        
+        gridEl.appendChild(row);
     });
 }
 function closeDetail() {
