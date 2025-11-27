@@ -22,7 +22,7 @@ const problems = [
         nonObviousTransitions: "N/A",
         techniques: "Distance-rate-time setup. Algebraic substitution.",
         errorProneSteps: "Failing to account for the one hour delay.",
-        solution: "Andy and Betsy both live in Mathville. Andy leaves Mathville on his bicycle at $1{:}30$ traveling due north at a steady $8$ miles per hour. Betsy leaves at $2{:}30$, traveling due east at a steady $12$ miles per hour. At what time will they be exactly the same distance from their starting point?"
+        solution: "Andy and Betsy both live in Mathville. Andy leaves Mathville on his bicycle at $1{:}30$ traveling due north at a steady $8$ miles per hour. Betsy leaves at $2{:}30$, traveling due east at a steady $12$ miles per hour. At what time will they be exactly the same distance from their starting point?",
         options: [
             "2:45 PM",
             "3:00 PM",
@@ -47,7 +47,7 @@ const problems = [
         nonObviousTransitions: "N/A",
         techniques: "Set up a linear equation for the second mixture's weight.",
         errorProneSteps: "Finding the number of pounds of the second mixture and thinking that is the answer.",
-        solution: "A box contains $10$ pounds of a nut mix that is $50\%$ peanuts, $20\%$ cashews, and $30\%$ almonds. A second nut mix containing $20\%$ peanuts, $40\%$ cashews, and $40\%$ almonds is added to the box resulting in a new nut mix that is $40\%$ peanuts. How many pounds of cashews are now in the box?"
+        solution: "A box contains $10$ pounds of a nut mix that is $50\%$ peanuts, $20\%$ cashews, and $30\%$ almonds. A second nut mix containing $20\%$ peanuts, $40\%$ cashews, and $40\%$ almonds is added to the box resulting in a new nut mix that is $40\%$ peanuts. How many pounds of cashews are now in the box?",
         options: [
             "3.5",
             "4",
@@ -72,7 +72,7 @@ const problems = [
         nonObviousTransitions: "Realizing the need for two cases based on which side is repeated.",
         techniques: "Solve inequalities for both cases, avoid double-counting equilateral triangle.",
         errorProneSteps: "Forgetting or double-counting equilateral case.",
-        solution: "How many isosceles triangles are there with positive area whose side lengths are all positive integers and whose longest side has length $2025$?"
+        solution: "How many isosceles triangles are there with positive area whose side lengths are all positive integers and whose longest side has length $2025$?",
         options: [
             "2025",
             "2026",
@@ -97,7 +97,7 @@ const problems = [
         nonObviousTransitions: "N/A",
         techniques: "Use sums and averages, set up system with three unknowns.",
         errorProneSteps: "Setting up equations incorrectly (for example, forgetting that Ash adds one person to the team).",
-        solution: "A team of students is going to compete against a team of teachers in a trivia contest. The total number of students and teachers is $15$. Ash wants to join. If Ash plays with the students, the average age increases from $12$ to $14$. If Ash plays with the teachers, the average age decreases from $55$ to $52$. How old is Ash?"
+        solution: "A team of students is going to compete against a team of teachers in a trivia contest. The total number of students and teachers is $15$. Ash wants to join. If Ash plays with the students, the average age increases from $12$ to $14$. If Ash plays with the teachers, the average age decreases from $55$ to $52$. How old is Ash?",
         options: [
             "28",
             "29",
@@ -123,7 +123,7 @@ const problems = [
         nonObviousTransitions: "Decomposing the sequence into blocks of increasing size (e.g., $1, 2, 1$; $2, 3, 2, 1, 2, 3, 4, 3, 2, 1$)",
         techniques: "Use triangular number sums; incremental block sizes.",
         errorProneSteps: "Miscounting position, remembering the index begins at $1$.",
-        solution: "Consider the sequence of positive integers $$1,2,1,2,3,2,1,2,3,4,3,2,1,2,3,4,5,4,3,2,1,2,3,4,5,6,5,4,3,2,1,2,\dots$$ What is the 2025th term?"
+        solution: "Consider the sequence of positive integers $$1,2,1,2,3,2,1,2,3,4,3,2,1,2,3,4,5,4,3,2,1,2,3,4,5,6,5,4,3,2,1,2,\dots$$ What is the 2025th term?",
         options: [
             "5",
             "15",
@@ -148,7 +148,7 @@ const problems = [
         nonObviousTransitions: "Recognizing that the hexagon is formed by the angles of an isosceles triangle.",
         techniques: "Focus on one triangle at a time; use angle sum and vertical angles.",
         errorProneSteps: "Assuming hexagon is equiangular (leads to 120°).",
-        solution: "In an equilateral triangle each interior angle is trisected by a pair of rays. The intersection of the interiors of the middle 20°-angle at each vertex is the interior of a convex hexagon. What is the degree measure of the smallest angle of this hexagon?"
+        solution: "In an equilateral triangle each interior angle is trisected by a pair of rays. The intersection of the interiors of the middle 20°-angle at each vertex is the interior of a convex hexagon. What is the degree measure of the smallest angle of this hexagon?",
         options: [
             "80",
             "90",
@@ -173,7 +173,7 @@ const problems = [
         nonObviousTransitions: "N/A",
         techniques: "Plugging and chugging once the theorem is directly applied.",
         errorProneSteps: "Mixing up linear expressions, arithmetic errors, extracting the incorrect result.",
-        solution: "Suppose $a$ and $b$ are real numbers. When the polynomial $x^3+x^2+ax+b$ is divided by $x-1$, the remainder is $4$. When divided by $x-2$, the remainder is $6$. What is $b-a$?"
+        solution: "Suppose $a$ and $b$ are real numbers. When the polynomial $x^3+x^2+ax+b$ is divided by $x-1$, the remainder is $4$. When divided by $x-2$, the remainder is $6$. What is $b-a$?",
         options: [
             "14",
             "15",
@@ -198,7 +198,7 @@ const problems = [
         nonObviousTransitions: "Recognizing the implications between the statements (e.g., Statement 2 implies Statement 1).",
         techniques: "Test each scenario by number of true statements.",
         errorProneSteps: "Extracting the incorrect result, or failing to understand the problem.",
-        solution: "Agnes writes the following four statements on a blank piece of paper.<ul><li>$\bullet$ At least one of these statements is true.</li><li>$\bullet$ At least two of these statements are true.</li><li>$\bullet$ At least two of these statements are false.</li><li>$\bullet$ At least one of these statements is false.</li></ul>Each statement is either true or false. How many false statements did Agnes write on the paper?"
+        solution: "Agnes writes the following four statements on a blank piece of paper.<ul><li>$\bullet$ At least one of these statements is true.</li><li>$\bullet$ At least two of these statements are true.</li><li>$\bullet$ At least two of these statements are false.</li><li>$\bullet$ At least one of these statements is false.</li></ul>Each statement is either true or false. How many false statements did Agnes write on the paper?",
         options: [
             "0",
             "1",
@@ -223,7 +223,7 @@ const problems = [
         nonObviousTransitions: "Transforming $y=f(x-a)$ passing through $(1, 25)$ into $f(1-a)=25$, which means finding the number of roots for $f(x)=25$ where $x = 1-a$.",
         techniques: "Calculate maxima and minima to count intersections.",
         errorProneSteps: "Attempting exact roots unnecessarily, applying calculus, lazily assuming there are three intersection points because it is a cubic.",
-        solution: "Let $f(x)=100x^3-300x^2+200x$. For how many real numbers $a$ does the graph of $y=f(x-a)$ pass through the point $(1,25)$?"
+        solution: "Let $f(x)=100x^3-300x^2+200x$. For how many real numbers $a$ does the graph of $y=f(x-a)$ pass through the point $(1,25)$?",
         options: [
             "1",
             "2",
