@@ -326,101 +326,109 @@ function renderGrid() {
 }
 
 // --- OPEN DETAIL VIEW ---
+// --- OPEN DETAIL VIEW ---
 function openDetail(p) {
-    // FIXED: Dynamic generation of options HTML
-    let optionsHtml = '';
-    if (p.options && Array.isArray(p.options) && p.options.length > 0) {
-        optionsHtml = p.options.map((opt, i) => 
-            `<div class="opt-box"><span class="opt-label">${String.fromCharCode(65+i)}</span> ${opt}</div>`
-        ).join('');
-    } else {
-        optionsHtml = '<p class="text-gray-500 italic p-3">Multiple choice options are not available for this problem yet.</p>';
-    }
-    
-    // Use p.tags for concepts
-    const conceptsHtml = p.tags.map(c => `<span class="tag blue">${c}</span>`).join('');
+    // FIXED: Dynamic generation of options HTML
+    let optionsHtml = '';
+    if (p.options && Array.isArray(p.options) && p.options.length > 0) {
+        // ADDED: data-index for tracking, and the correct class
+        optionsHtml = p.options.map((opt, i) => 
+            `<div class="opt-box" data-index="${i}" data-problem-id="${p.id}">
+                <span class="opt-label">${String.fromCharCode(65+i)}</span> ${opt}
+            </div>`
+        ).join('');
+    } else {
+        optionsHtml = '<p class="text-gray-500 italic p-3">Multiple choice options are not available for this problem yet.</p>';
+    }
+    
+    // Use p.tags for concepts
+    const conceptsHtml = p.tags.map(c => `<span class="tag blue">${c}</span>`).join('');
 
-    contentEl.innerHTML = `
-        <div class="detail-header">
-            <div>
-                <h1>Problem ${p.problemNumber}: ${p.category}</h1> 
-                <div class="meta-row">
-                    <span>${p.contest} Problem ${p.problemNumber}</span>
-                    <span class="bullet">•</span>
-                    <span style="color: #20C997">${p.difficulty}/100 Difficulty</span>
-                </div>
-            </div>
-            <div class="big-score">${p.difficulty}</div>
-        </div>
+    contentEl.innerHTML = `
+        <div class="detail-header">
+            <div>
+                <h1>Problem ${p.problemNumber}: ${p.category}</h1> 
+                <div class="meta-row">
+                    <span>${p.contest} Problem ${p.problemNumber}</span>
+                    <span class="bullet">•</span>
+                    <span style="color: #20C997">${p.difficulty}/100 Difficulty</span>
+                </div>
+            </div>
+            <div class="big-score">${p.difficulty}</div>
+        </div>
 
-        <div class="question-box">
-            ${p.solution} 
-        </div>
+        <div class="question-box">
+            ${p.solution} 
+        </div>
 
-        <div class="options-grid">
-            ${optionsHtml}
-        </div>
+        <div id="optionsGrid" class="options-grid">
+            ${optionsHtml}
+        </div>
 
-        <div class="analysis-grid">
-            <div class="analysis-col">
-                <div class="info-box">
-                    <h4><i data-lucide="clock"></i> Ideal Time</h4>
-                    <div class="time-row">
-                        <span>Experienced</span>
-                        <b>${p.idealTime.experienced} seconds</b>
-                    </div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: 20%"></div></div>
-                    
-                    <div class="time-row" style="margin-top:10px">
-                        <span>Intermediate</span>
-                        <b>${p.idealTime.intermediate} seconds</b>
-                    </div>
-                    <div class="progress-bg"><div class="progress-fill blue" style="width: 50%"></div></div>
-                    
-                    <div class="time-row" style="margin-top:10px">
-                        <span>Beginner</span>
-                        <b>${p.idealTime.beginner} seconds</b>
-                    </div>
-                    <div class="progress-bg"><div class="progress-fill orange" style="width: 70%"></div></div>
+        <div class="analysis-grid">
+            <div class="analysis-col">
+                <div class="info-box">
+                    <h4><i data-lucide="clock"></i> Ideal Time</h4>
+                    <div class="time-row">
+                        <span>Experienced</span>
+                        <b>${p.idealTime.experienced} seconds</b>
+                    </div>
+                    <div class="progress-bg"><div class="progress-fill" style="width: 20%"></div></div>
+                    
+                    <div class="time-row" style="margin-top:10px">
+                        <span>Intermediate</span>
+                        <b>${p.idealTime.intermediate} seconds</b>
+                    </div>
+                    <div class="progress-bg"><div class="progress-fill blue" style="width: 50%"></div></div>
+                    
+                    <div class="time-row" style="margin-top:10px">
+                        <span>Beginner</span>
+                        <b>${p.idealTime.beginner} seconds</b>
+                    </div>
+                    <div class="progress-bg"><div class="progress-fill orange" style="width: 70%"></div></div>
 
-                </div>
+                </div>
 
-                <div class="info-box">
-                    <h4><i data-lucide="book-open"></i> Concepts (Tags)</h4>
-                    <div class="tags-wrap">${conceptsHtml}</div>
-                </div>
-            </div>
+                <div class="info-box">
+                    <h4><i data-lucide="book-open"></i> Concepts (Tags)</h4>
+                    <div class="tags-wrap">${conceptsHtml}</div>
+                </div>
+            </div>
 
-            <div class="analysis-col">
-                <div class="info-box">
-                    <h4><i data-lucide="lightbulb"></i> Core Ideas</h4>
-                    <p>${p.coreIdeas || 'No core ideas provided.'}</p>
-                </div>
-                <div class="info-box trap-box">
-                    <h4><i data-lucide="alert-triangle"></i> The Common Trap</h4>
-                    <p>${p.errorProneSteps || 'No common traps documented.'}</p>
-                </div>
-                <div class="info-box">
-                    <h4><i data-lucide="send"></i> Technique</h4>
-                    <p>${p.techniques}</p>
-                </div>
-            </div>
-        </div>
+            <div class="analysis-col">
+                <div class="info-box">
+                    <h4><i data-lucide="lightbulb"></i> Core Ideas</h4>
+                    <p>${p.coreIdeas || 'No core ideas provided.'}</p>
+                </div>
+                <div class="info-box trap-box">
+                    <h4><i data-lucide="alert-triangle"></i> The Common Trap</h4>
+                    <p>${p.errorProneSteps || 'No common traps documented.'}</p>
+                </div>
+                <div class="info-box">
+                    <h4><i data-lucide="send"></i> Technique</h4>
+                    <p>${p.techniques}</p>
+                </div>
+            </div>
+        </div>
 
-        <div class="commentary-section">
-            <h3>Problem Statement (Full)</h3>
-            <p>${p.solution}</p>
-        </div>
-    `;
+        <div class="commentary-section">
+            <h3>Problem Statement (Full)</h3>
+            <p>${p.solution}</p>
+        </div>
+    `;
 
-    overlayEl.classList.remove('hidden');
-    lucide.createIcons(); // Re-render icons for the new content
-    // Check if MathJax is available before trying to render
-    if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
-        MathJax.typesetPromise(); // Render Math
-    }
+    overlayEl.classList.remove('hidden');
+    lucide.createIcons(); // Re-render icons for the new content
+    // Check if MathJax is available before trying to render
+    if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+        MathJax.typesetPromise(); // Render Math
+    }
+
+    // NEW: Attach the click listener to all options
+    document.querySelectorAll('.opt-box').forEach(opt => {
+        opt.addEventListener('click', handleAnswerClick);
+    });
 }
-
 
 function closeDetail() {
     overlayEl.classList.add('hidden');
