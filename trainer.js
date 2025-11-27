@@ -345,6 +345,13 @@ const problems = [
 // --- STATE ---
 let currentCategory = 'All';
 let currentSort = 'difficulty-desc';
+let minDifficulty = 0; // NEW
+let maxDifficulty = 100; // NEW
+const minRangeInput = document.getElementById('minRange');
+const maxRangeInput = document.getElementById('maxRange');
+const minValDisplay = document.getElementById('minValDisplay');
+const maxValDisplay = document.getElementById('maxValDisplay');
+const sliderTrack = document.getElementById('sliderTrack');
 
 // --- DIFFICULTY COLOR MAPPING ---
 const difficultyColors = [
@@ -404,18 +411,13 @@ function handleAnswerClick(event) {
 
 // --- INIT ---
 function init() {
+    // Initialize slider visual
+    fillSlider(); 
     renderGrid();
     
-    // Event Listeners
-    categoryBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            categoryBtns.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            currentCategory = e.target.dataset.val;
-            renderGrid();
-        });
-    });
-
+    // Existing Listeners...
+    categoryBtns.forEach(btn => { /* ... existing code ... */ });
+    
     if(sortSelect) {
         sortSelect.addEventListener('change', (e) => {
             currentSort = e.target.value;
@@ -424,6 +426,51 @@ function init() {
     }
 
     closeBtn.addEventListener('click', closeDetail);
+
+    // --- NEW: Slider Listeners ---
+    minRangeInput.addEventListener('input', () => {
+        handleSliderLogic();
+        renderGrid();
+    });
+    maxRangeInput.addEventListener('input', () => {
+        handleSliderLogic();
+        renderGrid();
+    });
+}
+function handleSliderLogic() {
+    let minVal = parseInt(minRangeInput.value);
+    let maxVal = parseInt(maxRangeInput.value);
+
+    // Prevent crossing (Min cannot be greater than Max)
+    // We create a gap of 5 to prevent them from sticking perfectly together
+    if (maxVal - minVal < 5) {
+        if (event.target === minRangeInput) {
+            minRangeInput.value = maxVal - 5;
+        } else {
+            maxRangeInput.value = minVal + 5;
+        }
+    }
+
+    // Update State
+    minDifficulty = parseInt(minRangeInput.value);
+    maxDifficulty = parseInt(maxRangeInput.value);
+
+    // Update Text Display
+    minValDisplay.textContent = minDifficulty;
+    maxValDisplay.textContent = maxDifficulty;
+
+    // Update visual track color
+    fillSlider();
+}
+
+function fillSlider() {
+    const range = 100; // Max value of slider
+    const percent1 = (minRangeInput.value / range) * 100;
+    const percent2 = (maxRangeInput.value / range) * 100;
+    
+    // This creates a gradient: Grey -> Blue -> Grey
+    // effectively highlighting only the selected area
+    sliderTrack.style.background = `linear-gradient(to right, #444 ${percent1}%, #00BFFF ${percent1}%, #00BFFF ${percent2}%, #444 ${percent2}%)`;
 }
 
 // --- RENDER GRID (LIST VIEW) ---
@@ -431,7 +478,14 @@ function renderGrid() {
     gridEl.innerHTML = '';
 
     // 1. Filter
-    let filtered = problems.filter(p => currentCategory === 'All' || p.category.includes(currentCategory));
+    let filtered = problems.filter(p => {
+        // Category Check
+        const catMatch = currentCategory === 'All' || p.category.includes(currentCategory);
+        // Difficulty Range Check (NEW)
+        const diffMatch = p.difficulty >= minDifficulty && p.difficulty <= maxDifficulty;
+        
+        return catMatch && diffMatch;
+    });
 
     // 2. Sort
     filtered.sort((a, b) => {
@@ -441,31 +495,21 @@ function renderGrid() {
         return 0;
     });
 
-    // 3. Build HTML
+    // 3. Build HTML (No changes needed here from previous version)
     filtered.forEach(p => {
+        // ... (Keep your existing card/row creation code) ...
+        // ... Use the code from the previous fix ...
         const row = document.createElement('div');
-        row.className = 'problem-row'; // Using the row class for list view
+        row.className = 'problem-row';
         row.onclick = () => openDetail(p);
-
         let diffColor = getDifficultyColor(p.difficulty);
-        
-        // Placeholder status (can be updated with local storage logic later)
         let statusClass = 'status-circle'; 
-
         row.innerHTML = `
-            <div class="col-status">
-                <div class="${statusClass}"></div>
-            </div>
-            <div class="col-source">
-                ${p.contest}
-            </div>
-            <div class="col-title">
-                Problem ${p.problemNumber}: ${p.category}
-            </div>
+            <div class="col-status"><div class="${statusClass}"></div></div>
+            <div class="col-source">${p.contest}</div>
+            <div class="col-title">Problem ${p.problemNumber}: ${p.category}</div>
             <div class="col-difficulty">
-                <span class="difficulty-badge" style="background-color: ${diffColor};">
-                    ${p.difficulty}
-                </span>
+                <span class="difficulty-badge" style="background-color: ${diffColor};">${p.difficulty}</span>
             </div>
         `;
         gridEl.appendChild(row);
@@ -473,7 +517,6 @@ function renderGrid() {
     
     lucide.createIcons();
 }
-
 // --- OPEN DETAIL VIEW ---
 function openDetail(p) {
     // 1. Generate Options HTML
