@@ -318,18 +318,22 @@ function renderGrid() {
 
 // --- OPEN DETAIL VIEW ---
 function openDetail(p) {
-    // NOTE: Data is missing 'options', 'historicalNote', and 'commentary'. Using placeholder/available data.
+    // FIXED: Dynamic generation of options HTML
+    let optionsHtml = '';
+    if (p.options && Array.isArray(p.options) && p.options.length > 0) {
+        optionsHtml = p.options.map((opt, i) => 
+            `<div class="opt-box"><span class="opt-label">${String.fromCharCode(65+i)}</span> ${opt}</div>`
+        ).join('');
+    } else {
+        optionsHtml = '<p class="text-gray-500 italic p-3">Multiple choice options are not available for this problem yet.</p>';
+    }
     
-    // Placeholder for missing data
-    const optionsHtml = "<p>No multiple-choice options available for this problem.</p>";
-    
-    // FIX 4: Use p.tags instead of p.concepts
+    // Use p.tags for concepts
     const conceptsHtml = p.tags.map(c => `<span class="tag blue">${c}</span>`).join('');
 
     contentEl.innerHTML = `
         <div class="detail-header">
             <div>
-                <!-- FIX 5: Use p.problemNumber and p.contest -->
                 <h1>Problem ${p.problemNumber}: ${p.category}</h1> 
                 <div class="meta-row">
                     <span>${p.contest} Problem ${p.problemNumber}</span>
@@ -341,7 +345,6 @@ function openDetail(p) {
         </div>
 
         <div class="question-box">
-            <!-- FIX 6: Use p.solution for the problem snippet -->
             ${p.solution} 
         </div>
 
@@ -384,7 +387,6 @@ function openDetail(p) {
                     <h4><i data-lucide="lightbulb"></i> Core Ideas</h4>
                     <p>${p.coreIdeas || 'No core ideas provided.'}</p>
                 </div>
-                <!-- FIX 7: Use p.errorProneSteps instead of p.trap -->
                 <div class="info-box trap-box">
                     <h4><i data-lucide="alert-triangle"></i> The Common Trap</h4>
                     <p>${p.errorProneSteps || 'No common traps documented.'}</p>
@@ -409,7 +411,6 @@ function openDetail(p) {
         MathJax.typesetPromise(); // Render Math
     }
 }
-
 
 
 function closeDetail() {
