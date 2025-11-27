@@ -118,10 +118,10 @@ const problems = [
         category: "Algebra",
         tags: ["Sequences", "Arithmetic Progression", "Triangular Numbers"],
         coreIdeas: "Finding the endpoints of each 'valley.' Recognizing the sequence can be decomposed is hard to observe for a beginner.",
-        nonObviousTransitions: "Decomposing the sequence into blocks of increasing size (e.g., $1, 2, 1$; $2, 3, 2, 1, 2, 3, 4, 3, 2, 1$)",
+        nonObviousTransitions: "Decomposing the sequence into blocks of increasing size (e.g., $1, 2, 1$; $2, 3, 2, 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 5, 4, 3, 2, 1, 2,\dots$)",
         techniques: "Use triangular number sums; incremental block sizes.",
         errorProneSteps: "Miscounting position, remembering the index begins at $1$.",
-        solution: "Consider the sequence of positive integers $$1,2,1,2,3,2,1,2,3,4,3,2,1,2,3,4,5,4,3,2,1,2,3,4,5,6,5,4,3,2,1,2,\dots$$ What is the 2025th term?",
+        solution: "Consider the sequence of positive integers $$1,2,1,2,3,2,1,2,3,4,3,2,1,2,3,4,5,4,3,2,1,2,3,4,5,6,5,4,3,2,1,2,\\dots$$ What is the 2025th term?",
         options: [
             "5",
             "15",
@@ -199,7 +199,7 @@ const problems = [
         nonObviousTransitions: "Recognizing the implications between the statements (e.g., Statement 2 implies Statement 1).",
         techniques: "Test each scenario by number of true statements.",
         errorProneSteps: "Extracting the incorrect result, or failing to understand the problem.",
-        solution: "Agnes writes the following four statements on a blank piece of paper.<ul><li>$\bullet$ At least one of these statements is true.</li><li>$\bullet$ At least two of these statements are true.</li><li>$\bullet$ At least two of these statements are false.</li><li>$\bullet$ At least one of these statements is false.</li></ul>Each statement is either true or false. How many false statements did Agnes write on the paper?",
+        solution: "Agnes writes the following four statements on a blank piece of paper.<ul><li>$\\bullet$ At least one of these statements is true.</li><li>$\\bullet$ At least two of these statements are true.</li><li>$\\bullet$ At least two of these statements are false.</li><li>$\\bullet$ At least one of these statements is false.</li></ul>Each statement is either true or false. How many false statements did Agnes write on the paper?",
         options: [
             "0",
             "1",
@@ -251,7 +251,6 @@ const problems = [
         coreIdeas: "Using the Pythagorean theorem to relate the radius of the larger semicircle ($R$) and the height of the chord ($r$, which is the radius of the smaller semicircle).",
         nonObviousTransitions: "Recognize that the radius of the smaller semicircle, $r$, is the distance from the center to the chord $\\overline{CD}$.",
         techniques: "Set up the area as $A_{large} - A_{small}$ and simplify the resulting expression using the geometric relationship $R^2 - r^2 = 8^2$.",
-        errorProneSteps: "Failing to divide the area by two (semicircle vs. circle). Adding the areas of the semicircles instead of subtracting.",
         solution: "A semicircle has diameter $\\overline{AB}$ and chord $\\overline{CD}$ of length $16$ parallel to $\\overline{AB}$. A smaller semicircle with diameter on $\\overline{AB}$ and tangent to $\\overline{CD}$ is cut from the larger semicircle, as shown below. What is the area of the resulting figure, shown shaded?",
         options: [
             "$16\\pi$",
@@ -448,52 +447,60 @@ function init() {
     closeBtn.addEventListener('click', closeDetail);
 }
 
-// --- RENDER GRID ---
-// --- RENDER GRID (UPDATED FOR LIST VIEW) ---
+// --- RENDER GRID (CLEANED UP FOR LIST VIEW) ---
 function renderGrid() {
     gridEl.innerHTML = '';
 
-    let filtered = problems.filter(p => currentCategory === 'All' || p.category.includes(currentCategory)); // Use includes for combined categories
     // Filter
     let filtered = problems.filter(p => currentCategory === 'All' || p.category.includes(currentCategory));
 
     // Sort
     filtered.sort((a, b) => {
-@@ -470,135 +472,45 @@
+        if (currentSort === 'difficulty-desc') return b.difficulty - a.difficulty;
+        if (currentSort === 'difficulty-asc') return a.difficulty - b.difficulty;
+        if (currentSort === 'time') return a.idealTime.experienced - b.idealTime.experienced;
+    });
 
-    // Build HTML
+    // Build HTML (Using the list row structure)
     filtered.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'problem-card';
-        card.onclick = () => openDetail(p);
         // Create the row element
         const row = document.createElement('div');
         row.className = 'problem-row';
-        row.onclick = () => openDetail(p);
+        row.onclick = () => openDetail(p); // Event handler attached!
 
-        // **NEW** Difficulty Color Logic using the map
         // Get color based on your chart
         let diffColor = getDifficultyColor(p.difficulty);
 
-        // FIX 2 & 3: Use p.problemNumber and p.contest
-        card.innerHTML = `
-            <div class="card-header">
-                <span class="p-number" style="color:${diffColor}">#${p.problemNumber}</span>
-                <span class="p-meta">${p.contest}</span>
+        // Determine Status Color (Placeholder logic)
+        let statusClass = 'status-circle'; 
+        
+        // Construct the row HTML
+        row.innerHTML = `
+            <div class="col-status">
+                <div class="${statusClass}"></div>
             </div>
-            <h3 class="p-title">Problem ${p.problemNumber}: ${p.category}</h3> <div class="card-footer">
-                <span class="tag">${p.category}</span>
-                <div class="diff-bar-container">
-                    <div class="diff-bar-fill" style="width: ${p.difficulty}%; background: ${diffColor};"></div>
-                    <span style="color:${diffColor}">${p.difficulty}</span>
-                </div>
+            
+            <div class="col-source">
+                ${p.contest}
+            </div>
+            
+            <div class="col-title">
+                Problem ${p.problemNumber}: ${p.category}
+            </div>
+            
+            <div class="col-difficulty">
+                <span class="difficulty-badge" style="background-color: ${diffColor};">
+                    ${p.difficulty}
+                </span>
             </div>
         `;
-        gridEl.appendChild(card);
+        
+        gridEl.appendChild(row);
     });
 }
 
-// --- OPEN DETAIL VIEW ---
+
+// --- OPEN DETAIL VIEW (CLEANED UP) ---
 function openDetail(p) {
     // 1. Generate Options HTML
     let optionsHtml = '';
@@ -511,10 +518,10 @@ function openDetail(p) {
     // 2. Generate Concepts HTML
     const conceptsHtml = p.tags.map(c => `<span class="concept-tag">${c}</span>`).join('');
 
-    // **NEW** Difficulty Color for detail header
+    // **Difficulty Color for detail header**
     let diffColor = getDifficultyColor(p.difficulty);
 
-    // 3. Inject Content with NEW Structure
+    // 3. Inject Content with Structure
     contentEl.innerHTML = `
         <div class="detail-header-section">
             <div class="detail-title">
@@ -524,14 +531,6 @@ function openDetail(p) {
                     <span>•</span>
                     <span style="color: ${diffColor}">${p.difficulty} Difficulty</span>
                 </div>
-        // Determine Status Color (Placeholder logic)
-        // You can check localStorage or a 'solved' property here later
-        let statusClass = 'status-circle'; 
-        
-        // Construct the row HTML
-        row.innerHTML = `
-            <div class="col-status">
-                <div class="${statusClass}"></div>
             </div>
             <div class="big-score" style="color: ${diffColor}; font-size: 2rem; opacity: 0.5">#${p.problemNumber}</div>
         </div>
@@ -539,16 +538,10 @@ function openDetail(p) {
         <div class="detail-body">
             <div class="question-box">
                 ${p.solution}
-            
-            <div class="col-source">
-                ${p.contest}
             </div>
 
             <div id="optionsGrid" class="options-grid">
                 ${optionsHtml}
-            
-            <div class="col-title">
-                Problem ${p.problemNumber}: ${p.category}
             </div>
 
             <div class="analysis-dashboard">
@@ -592,30 +585,25 @@ function openDetail(p) {
                         <div class="text-content">${p.techniques}</div>
                     </div>
                 </div>
-            
-            <div class="col-difficulty">
-                <span class="difficulty-badge" style="background-color: ${diffColor};">
-                    ${p.difficulty}
-                </span>
             </div>
         </div>
     `;
 
+    // 4. Show the overlay
     overlayEl.classList.remove('hidden');
-    lucide.createIcons();
     
+    // Re-render icons and MathJax
+    lucide.createIcons();
     if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
         MathJax.typesetPromise();
     }
 
-    // Re-attach click listeners
+    // 5. Attach click listeners to the newly created options
     document.querySelectorAll('.opt-box').forEach(opt => {
         opt.addEventListener('click', handleAnswerClick);
-        `;
-        
-        gridEl.appendChild(row);
     });
 }
+
 function closeDetail() {
     overlayEl.classList.add('hidden');
 }
