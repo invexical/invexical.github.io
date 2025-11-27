@@ -372,17 +372,20 @@ function renderGrid() {
 // --- OPEN DETAIL VIEW ---
 function openDetail(p) {
     // FIXED: Dynamic generation of options HTML
-    let optionsHtml = '';
-    if (p.options && Array.isArray(p.options) && p.options.length > 0) {
-        // ADDED: data-index for tracking, and the correct class
-        optionsHtml = p.options.map((opt, i) => 
-            `<div class="opt-box" data-index="${i}" data-problem-id="${p.id}">
-                <span class="opt-label">${String.fromCharCode(65+i)}</span> ${opt}
-            </div>`
-        ).join('');
-    } else {
-        optionsHtml = '<p class="text-gray-500 italic p-3">Multiple choice options are not available for this problem yet.</p>';
-    }
+    // Inside openDetail(p) function...
+
+    let optionsHtml = '';
+    if (p.options && Array.isArray(p.options) && p.options.length > 0) {
+        optionsHtml = p.options.map((opt, i) => 
+            // FIX: Wrapped content in a span so flexbox treats it as one block vs the label
+            `<div class="opt-box" data-index="${i}" data-problem-id="${p.id}">
+                <span class="opt-label">${String.fromCharCode(65+i)}</span> 
+                <span>${opt}</span> 
+            </div>`
+        ).join('');
+    } else {
+        optionsHtml = '<p class="text-gray-500 italic p-3">Multiple choice options are not available.</p>';
+    }
     
     // Use p.tags for concepts
     const conceptsHtml = p.tags.map(c => `<span class="tag blue">${c}</span>`).join('');
