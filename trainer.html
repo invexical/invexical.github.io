@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="trainer.css">
     <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
-    <!-- Lucide Icons for that stylish look -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- MathJax -->
     <script>
@@ -18,30 +18,30 @@
 </head>
 <body>
 
-    <!-- EXISTING NAV (Kept consistent) -->
-    <nav>
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px;">
-            <h2>invexic's Trainer</h2>
-            <div>
-                <a href="index.html">Home</a>
-                <a href="#">Trainer</a>
-                <a href="#">About</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- MAIN TRAINER LAYOUT -->
-    <div class="trainer-wrapper">
+    <div class="page-container">
         
-        <!-- SIDEBAR: FILTERS -->
-        <div class="trainer-sidebar">
-            <div class="filter-card">
-                <div class="filter-header">
-                    <i data-lucide="filter"></i> Filters
+        <!-- SIDEBAR -->
+        <div class="trainer-nav-sidebar">
+            <div class="sidebar-header">
+                <h2>invexic's Guide</h2>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="index.html" class="menu-item">Home</a>
+                <a href="#" class="menu-item active">Trainer</a>
+                <a href="#" class="menu-item">About</a>
+
+                <!-- NEW: User Status Indicator -->
+                <div id="userStatus" style="padding: 10px 20px; font-size: 0.8rem; color: #666;">
+                    <i data-lucide="loader" style="width:12px;"></i> Loading User...
                 </div>
-                
+
+                <div class="menu-divider"></div>
+
+                <div class="dropdown-toggle">
+                    Filters <i data-lucide="filter" style="width: 16px; height: 16px;"></i>
+                </div>
                 <div class="filter-group">
-                    <label>Category</label>
                     <div class="tag-cloud" id="categoryFilters">
                         <button class="filter-tag active" data-val="All">All</button>
                         <button class="filter-tag" data-val="Algebra">Algebra</button>
@@ -51,8 +51,10 @@
                     </div>
                 </div>
 
+                <div class="dropdown-toggle" style="margin-top: 15px;">
+                    Sort By <i data-lucide="arrow-up-down" style="width: 16px; height: 16px;"></i>
+                </div>
                 <div class="filter-group">
-                    <label>Sort By</label>
                     <select id="sortSelect">
                         <option value="difficulty-desc">Difficulty (Hardest)</option>
                         <option value="difficulty-asc">Difficulty (Easiest)</option>
@@ -62,41 +64,36 @@
             </div>
         </div>
 
-        <!-- MAIN CONTENT: PROBLEM LIST -->
+        <!-- MAIN CONTENT -->
         <div class="trainer-main">
             <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-    <select id="sortSelect" style="background: #252526; color: #eee; border: 1px solid #333; padding: 5px; border-radius: 4px;">
-        <option value="difficulty-desc">Difficulty (Hardest)</option>
-        <option value="difficulty-asc">Difficulty (Easiest)</option>
-        <option value="time">Ideal Time (Shortest)</option>
-    </select>
-</div>
+                <!-- Extra header controls can go here -->
+            </div>
 
-<div class="problem-list-container">
-    <div class="list-header">
-        <div class="col-status">Status</div>
-        <div class="col-source">Source</div>
-        <div class="col-title">Problem Name</div>
-        <div class="col-difficulty" style="justify-content: flex-end; padding-right: 10px;">Difficulty</div>
-    </div>
+            <div class="problem-list-container">
+                <div class="list-header">
+                    <div class="col-status">Status</div>
+                    <div class="col-source">Source</div>
+                    <div class="col-title">Problem Name</div>
+                    <div class="col-difficulty" style="justify-content: flex-end; padding-right: 10px;">Difficulty</div>
+                </div>
 
-    <div id="problemGrid">
-        </div>
-</div>
-        </div>
-    </div>
-
-    <!-- DETAILED VIEW OVERLAY (Hidden by default) -->
-    <div id="detailOverlay" class="detail-overlay hidden">
-        <div class="detail-container">
-            <button id="closeDetail" class="back-btn">← Back to Problems</button>
-            
-            <div id="detailContent">
-                <!-- Content injected by JS -->
+                <div id="problemGrid">
+                    <!-- JS will inject rows here -->
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="trainer.js"></script>
+    <!-- DETAIL OVERLAY -->
+    <div id="detailOverlay" class="detail-overlay hidden">
+        <div class="detail-container">
+            <button id="closeDetail" class="back-btn">← Back to Problems</button>
+            <div id="detailContent"></div>
+        </div>
+    </div>
+
+    <!-- IMPORTANT: type="module" allows us to import Firebase -->
+    <script type="module" src="trainer.js"></script>
 </body>
 </html>
