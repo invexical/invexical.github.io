@@ -1,7 +1,7 @@
 /**
  * Trainer.js - Data file for the Problem Trainer Dashboard.
  * * This file contains an array of problem objects, each representing a single competitive
- * math problem with metadata like difficulty, time costs, categories, and tags.
+ * * math problem with metadata like difficulty, time costs, categories, and tags.
  */
 
 // Define the problem data structure
@@ -353,56 +353,82 @@ const problems = [
 let currentCategory = 'All';
 let currentSort = 'difficulty-desc';
 
+// --- DIFFICULTY COLOR MAPPING (Based on user-provided chart) ---
+// Order: Light Blue, Cyan, Lime Green, Yellow, Orange, Peach, Red, Pink
+// Corresponding hex codes (Approximated based on chart colors):
+const difficultyColors = [
+    { max: 10, color: '#00BFFF' }, // Light Blue: 0-10 Very Easy
+    { max: 20, color: '#00FFFF' }, // Cyan: 11-20 Easy
+    { max: 35, color: '#7CFC00' }, // Lime Green: 21-35 Easy-Med
+    { max: 50, color: '#FFD700' }, // Yellow: 36-50 Medium
+    { max: 65, color: '#FF8C00' }, // Orange: 51-65 Med-Hard
+    { max: 80, color: '#FF6347' }, // Peach (Tomato/Coral approx): 66-80 Hard
+    { max: 90, color: '#FF0000' }, // Red: 81-90 V. Hard
+    { max: 100, color: '#FF00FF' } // Pink (Magenta/Fuchsia approx): 91+ Extreme
+];
+
+function getDifficultyColor(difficulty) {
+    for (const range of difficultyColors) {
+        if (difficulty <= range.max) {
+            return range.color;
+        }
+    }
+    return '#333'; // Default dark gray if somehow out of range
+}
+// --- END DIFFICULTY COLOR MAPPING ---
+
+
 // --- DOM ELEMENTS ---
 const gridEl = document.getElementById('problemGrid');
 const overlayEl = document.getElementById('detailOverlay');
 const contentEl = document.getElementById('detailContent');
+// The category buttons are now nested inside the sidebar (class .filter-tag)
 const categoryBtns = document.querySelectorAll('.filter-tag');
 const sortSelect = document.getElementById('sortSelect');
 const closeBtn = document.getElementById('closeDetail');
 
 // --- ANSWER CHECKING LOGIC (New) ---
 function handleAnswerClick(event) {
-    const clickedOption = event.currentTarget;
-    
-    // If an answer has already been selected, do nothing
-    if (document.getElementById('optionsGrid').classList.contains('answered')) {
-        return;
-    }
+    const clickedOption = event.currentTarget;
+    
+    // If an answer has already been selected, do nothing
+    if (document.getElementById('optionsGrid').classList.contains('answered')) {
+        return;
+    }
 
-    const problemId = clickedOption.dataset.problemId;
-    const selectedIndex = parseInt(clickedOption.dataset.index);
-    
-    // Find the corresponding problem object
-    const problem = problems.find(p => p.id === problemId);
+    const problemId = clickedOption.dataset.problemId;
+    const selectedIndex = parseInt(clickedOption.dataset.index);
+    
+    // Find the corresponding problem object
+    const problem = problems.find(p => p.id === problemId);
 
-    if (!problem) {
-        console.error("Problem not found for ID:", problemId);
-        return;
-    }
+    if (!problem) {
+        console.error("Problem not found for ID:", problemId);
+        return;
+    }
 
-    const isCorrect = selectedIndex === problem.answerIndex;
+    const isCorrect = selectedIndex === problem.answerIndex;
 
-    // 1. Update the UI for ALL options
-    document.querySelectorAll('.opt-box').forEach((opt, i) => {
-        opt.classList.add('disabled'); // Disable all after first click
-        
-        if (i === problem.answerIndex) {
-            // The correct answer is always marked correct
-            opt.classList.add('correct');
-            opt.innerHTML += `<span class="feedback-icon"><i data-lucide="check-circle"></i></span>`;
-        } else if (i === selectedIndex && !isCorrect) {
-            // The user's incorrect choice is marked incorrect
-            opt.classList.add('incorrect');
-            opt.innerHTML += `<span class="feedback-icon"><i data-lucide="x-circle"></i></span>`;
-        }
-    });
-    
-    // 2. Mark the whole grid as 'answered' to prevent future clicks
-    document.getElementById('optionsGrid').classList.add('answered');
+    // 1. Update the UI for ALL options
+    document.querySelectorAll('.opt-box').forEach((opt, i) => {
+        opt.classList.add('disabled'); // Disable all after first click
+        
+        if (i === problem.answerIndex) {
+            // The correct answer is always marked correct
+            opt.classList.add('correct');
+            opt.innerHTML += `<span class="feedback-icon"><i data-lucide="check-circle"></i></span>`;
+        } else if (i === selectedIndex && !isCorrect) {
+            // The user's incorrect choice is marked incorrect
+            opt.classList.add('incorrect');
+            opt.innerHTML += `<span class="feedback-icon"><i data-lucide="x-circle"></i></span>`;
+        }
+    });
+    
+    // 2. Mark the whole grid as 'answered' to prevent future clicks
+    document.getElementById('optionsGrid').classList.add('answered');
 
-    // Re-render Lucide icons for the new checkmarks/X's
-    lucide.createIcons();
+    // Re-render Lucide icons for the new checkmarks/X's
+    lucide.createIcons();
 }
 // --- INIT ---
 function init() {
@@ -433,8 +459,7 @@ function init() {
 function renderGrid() {
     gridEl.innerHTML = '';
     
-    // FIX 1: Change PROBLEMS to problems (lowercase)
-    let filtered = problems.filter(p => currentCategory === 'All' || p.category === currentCategory);
+    let filtered = problems.filter(p => currentCategory === 'All' || p.category.includes(currentCategory)); // Use includes for combined categories
     
     // Sort
     filtered.sort((a, b) => {
@@ -449,19 +474,16 @@ function renderGrid() {
         card.className = 'problem-card';
         card.onclick = () => openDetail(p);
         
-        // Difficulty Color Logic
-        let diffColor = '#20C997'; // Green/Teal
-        if(p.difficulty > 50) diffColor = '#facc15'; // Yellow
-        if(p.difficulty > 75) diffColor = '#ef4444'; // Red
+        // **NEW** Difficulty Color Logic using the map
+        let diffColor = getDifficultyColor(p.difficulty);
         
         // FIX 2 & 3: Use p.problemNumber and p.contest
         card.innerHTML = `
             <div class="card-header">
-                <span class="p-number">#${p.problemNumber}</span>
+                <span class="p-number" style="color:${diffColor}">#${p.problemNumber}</span>
                 <span class="p-meta">${p.contest}</span>
             </div>
-            <h3 class="p-title">Problem ${p.problemNumber}: ${p.category}</h3> <!-- Added a generic title since data doesn't have one -->
-            <div class="card-footer">
+            <h3 class="p-title">Problem ${p.problemNumber}: ${p.category}</h3> <div class="card-footer">
                 <span class="tag">${p.category}</span>
                 <div class="diff-bar-container">
                     <div class="diff-bar-fill" style="width: ${p.difficulty}%; background: ${diffColor};"></div>
@@ -473,7 +495,6 @@ function renderGrid() {
     });
 }
 
-// --- OPEN DETAIL VIEW ---
 // --- OPEN DETAIL VIEW ---
 function openDetail(p) {
     // 1. Generate Options HTML
@@ -492,6 +513,9 @@ function openDetail(p) {
     // 2. Generate Concepts HTML
     const conceptsHtml = p.tags.map(c => `<span class="concept-tag">${c}</span>`).join('');
 
+    // **NEW** Difficulty Color for detail header
+    let diffColor = getDifficultyColor(p.difficulty);
+
     // 3. Inject Content with NEW Structure
     contentEl.innerHTML = `
         <div class="detail-header-section">
@@ -500,10 +524,10 @@ function openDetail(p) {
                 <div class="detail-meta">
                     <span>${p.contest}</span>
                     <span>•</span>
-                    <span style="color: ${p.difficulty > 50 ? '#ef4444' : '#20C997'}">${p.difficulty} Difficulty</span>
+                    <span style="color: ${diffColor}">${p.difficulty} Difficulty</span>
                 </div>
             </div>
-            <div class="big-score" style="color: #333; font-size: 2rem; opacity: 0.5">#${p.problemNumber}</div>
+            <div class="big-score" style="color: ${diffColor}; font-size: 2rem; opacity: 0.5">#${p.problemNumber}</div>
         </div>
 
         <div class="detail-body">
@@ -530,7 +554,7 @@ function openDetail(p) {
                         </div>
                         <div class="time-stat">
                             <div class="time-stat-row"><span>Beginner</span> <span>${p.idealTime.beginner}s</span></div>
-                            <div class="progress-track"><div class="progress-bar" style="width: 80%; background: #facc15"></div></div>
+                            <div class="progress-track"><div class="progress-bar" style="width: 80%; background: #FFD700"></div></div>
                         </div>
                     </div>
 
