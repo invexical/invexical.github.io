@@ -456,12 +456,10 @@ function init() {
 }
 
 // --- RENDER GRID ---
-// --- RENDER GRID (UPDATED FOR LIST VIEW) ---
 function renderGrid() {
     gridEl.innerHTML = '';
     
-    // Filter
-    let filtered = problems.filter(p => currentCategory === 'All' || p.category.includes(currentCategory));
+    let filtered = problems.filter(p => currentCategory === 'All' || p.category.includes(currentCategory)); // Use includes for combined categories
     
     // Sort
     filtered.sort((a, b) => {
@@ -472,40 +470,130 @@ function renderGrid() {
 
     // Build HTML
     filtered.forEach(p => {
-        // Create the row element
-        const row = document.createElement('div');
-        row.className = 'problem-row';
-        row.onclick = () => openDetail(p);
+        const card = document.createElement('div');
+        card.className = 'problem-card';
+        card.onclick = () => openDetail(p);
         
-        // Get color based on your chart
+        // **NEW** Difficulty Color Logic using the map
         let diffColor = getDifficultyColor(p.difficulty);
         
-        // Determine Status Color (Placeholder logic)
-        // You can check localStorage or a 'solved' property here later
-        let statusClass = 'status-circle'; 
-        
-        // Construct the row HTML
-        row.innerHTML = `
-            <div class="col-status">
-                <div class="${statusClass}"></div>
+        // FIX 2 & 3: Use p.problemNumber and p.contest
+        card.innerHTML = `
+            <div class="card-header">
+                <span class="p-number" style="color:${diffColor}">#${p.problemNumber}</span>
+                <span class="p-meta">${p.contest}</span>
             </div>
-            
-            <div class="col-source">
-                ${p.contest}
-            </div>
-            
-            <div class="col-title">
-                Problem ${p.problemNumber}: ${p.category}
-            </div>
-            
-            <div class="col-difficulty">
-                <span class="difficulty-badge" style="background-color: ${diffColor};">
-                    ${p.difficulty}
-                </span>
+            <h3 class="p-title">Problem ${p.problemNumber}: ${p.category}</h3> <div class="card-footer">
+                <span class="tag">${p.category}</span>
+                <div class="diff-bar-container">
+                    <div class="diff-bar-fill" style="width: ${p.difficulty}%; background: ${diffColor};"></div>
+                    <span style="color:${diffColor}">${p.difficulty}</span>
+                </div>
             </div>
         `;
-        
-        gridEl.appendChild(row);
+        gridEl.appendChild(card);
+    });
+}
+
+// --- OPEN DETAIL VIEW ---
+function openDetail(p) {
+    // 1. Generate Options HTML
+    let optionsHtml = '';
+    if (p.options && Array.isArray(p.options) && p.options.length > 0) {
+        optionsHtml = p.options.map((opt, i) => 
+            `<div class="opt-box" data-index="${i}" data-problem-id="${p.id}">
+                <span class="opt-label">${String.fromCharCode(65+i)}</span>
+                <span>${opt}</span>
+            </div>`
+        ).join('');
+    } else {
+        optionsHtml = '<div class="opt-box disabled" style="grid-column: 1/-1;">No options available</div>';
+    }
+    
+    // 2. Generate Concepts HTML
+    const conceptsHtml = p.tags.map(c => `<span class="concept-tag">${c}</span>`).join('');
+
+    // **NEW** Difficulty Color for detail header
+    let diffColor = getDifficultyColor(p.difficulty);
+
+    // 3. Inject Content with NEW Structure
+    contentEl.innerHTML = `
+        <div class="detail-header-section">
+            <div class="detail-title">
+                <h1>Problem ${p.problemNumber}</h1>
+                <div class="detail-meta">
+                    <span>${p.contest}</span>
+                    <span>•</span>
+                    <span style="color: ${diffColor}">${p.difficulty} Difficulty</span>
+                </div>
+            </div>
+            <div class="big-score" style="color: ${diffColor}; font-size: 2rem; opacity: 0.5">#${p.problemNumber}</div>
+        </div>
+
+        <div class="detail-body">
+            <div class="question-box">
+                ${p.solution}
+            </div>
+
+            <div id="optionsGrid" class="options-grid">
+                ${optionsHtml}
+            </div>
+
+            <div class="analysis-dashboard">
+                <div class="analysis-col">
+                    <div class="info-card">
+                        <h4><i data-lucide="clock"></i> Ideal Time</h4>
+                        
+                        <div class="time-stat">
+                            <div class="time-stat-row"><span>Experienced</span> <span>${p.idealTime.experienced}s</span></div>
+                            <div class="progress-track"><div class="progress-bar" style="width: 20%; background: #20C997"></div></div>
+                        </div>
+                        <div class="time-stat">
+                            <div class="time-stat-row"><span>Intermediate</span> <span>${p.idealTime.intermediate}s</span></div>
+                            <div class="progress-track"><div class="progress-bar" style="width: 50%; background: #19A4FF"></div></div>
+                        </div>
+                        <div class="time-stat">
+                            <div class="time-stat-row"><span>Beginner</span> <span>${p.idealTime.beginner}s</span></div>
+                            <div class="progress-track"><div class="progress-bar" style="width: 80%; background: #FFD700"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h4><i data-lucide="book-open"></i> Concepts</h4>
+                        <div>${conceptsHtml}</div>
+                    </div>
+                </div>
+
+                <div class="analysis-col">
+                    <div class="info-card">
+                        <h4><i data-lucide="lightbulb"></i> Core Idea</h4>
+                        <div class="text-content">${p.coreIdeas}</div>
+                    </div>
+                    
+                    <div class="info-card trap-card">
+                        <h4><i data-lucide="alert-triangle"></i> Common Trap</h4>
+                        <div class="text-content">${p.errorProneSteps}</div>
+                    </div>
+
+                    <div class="info-card">
+                        <h4><i data-lucide="code"></i> Technique</h4>
+                        <div class="text-content">${p.techniques}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    overlayEl.classList.remove('hidden');
+    lucide.createIcons();
+    
+    if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+    }
+
+    // Re-attach click listeners
+    document.querySelectorAll('.opt-box').forEach(opt => {
+        opt.addEventListener('click', handleAnswerClick);
     });
 }
 function closeDetail() {
