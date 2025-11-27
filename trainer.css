@@ -483,3 +483,15 @@ mjx-container[display="true"]::-webkit-scrollbar-thumb:hover {
     pointer-events: auto;
     z-index: 10;
 }
+.status-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #444; /* Default Unsolved */
+    transition: all 0.3s ease;
+}
+
+.status-circle.solved {
+    background-color: #20C997; /* Green for solved */
+    box-shadow: 0 0 5px #20C997;
+}
