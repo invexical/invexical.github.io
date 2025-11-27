@@ -422,3 +422,64 @@ mjx-container[display="true"]::-webkit-scrollbar-thumb:hover {
     font-family: monospace;
     font-weight: bold;
 }
+/* --- Dual Slider Styling --- */
+.range-wrapper {
+    position: relative;
+    width: 100%;
+    height: 30px; /* ample height for thumbs */
+    margin-top: 10px;
+}
+
+/* The background line */
+.slider-track {
+    width: 100%;
+    height: 5px;
+    background-color: #444; /* Dark track background */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 5px;
+    z-index: 0;
+}
+
+/* The actual inputs */
+.range-wrapper input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    pointer-events: none; /* Allows clicking through the track area */
+    z-index: 1;
+    margin: 0;
+}
+
+/* --- The Thumbs (Handles) --- */
+/* Webkit (Chrome, Safari, Edge) */
+.range-wrapper input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: #00BFFF; /* Match your "Light Blue" theme */
+    cursor: pointer;
+    pointer-events: auto; /* Re-enable clicking on the thumb itself */
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    margin-top: -7px; /* minor alignment fix */
+    position: relative;
+    z-index: 10;
+}
+
+/* Firefox */
+.range-wrapper input[type="range"]::-moz-range-thumb {
+    height: 18px;
+    width: 18px;
+    border: none;
+    border-radius: 50%;
+    background: #00BFFF;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 10;
+}
