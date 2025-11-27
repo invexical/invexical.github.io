@@ -346,151 +346,132 @@ const problems = [
 let currentCategory = 'All';
 let currentSort = 'difficulty-desc';
 
-// --- DIFFICULTY COLOR MAPPING (Based on user-provided chart) ---
-// Order: Light Blue, Cyan, Lime Green, Yellow, Orange, Peach, Red, Pink
-// Corresponding hex codes (Approximated based on chart colors):
+// --- DIFFICULTY COLOR MAPPING ---
 const difficultyColors = [
-    { max: 10, color: '#00BFFF' }, // Light Blue: 0-10 Very Easy
-    { max: 20, color: '#00FFFF' }, // Cyan: 11-20 Easy
-    { max: 35, color: '#7CFC00' }, // Lime Green: 21-35 Easy-Med
-    { max: 50, color: '#FFD700' }, // Yellow: 36-50 Medium
-    { max: 65, color: '#FF8C00' }, // Orange: 51-65 Med-Hard
-    { max: 80, color: '#FF6347' }, // Peach (Tomato/Coral approx): 66-80 Hard
-    { max: 90, color: '#FF0000' }, // Red: 81-90 V. Hard
-    { max: 100, color: '#FF00FF' } // Pink (Magenta/Fuchsia approx): 91+ Extreme
+    { max: 10, color: '#00BFFF' }, 
+    { max: 20, color: '#00FFFF' }, 
+    { max: 35, color: '#7CFC00' }, 
+    { max: 50, color: '#FFD700' }, 
+    { max: 65, color: '#FF8C00' }, 
+    { max: 80, color: '#FF6347' }, 
+    { max: 90, color: '#FF0000' }, 
+    { max: 100, color: '#FF00FF' } 
 ];
 
 function getDifficultyColor(difficulty) {
     for (const range of difficultyColors) {
-        if (difficulty <= range.max) {
-            return range.color;
-        }
+        if (difficulty <= range.max) return range.color;
     }
-    return '#333'; // Default dark gray if somehow out of range
+    return '#333';
 }
-// --- END DIFFICULTY COLOR MAPPING ---
-
 
 // --- DOM ELEMENTS ---
 const gridEl = document.getElementById('problemGrid');
 const overlayEl = document.getElementById('detailOverlay');
 const contentEl = document.getElementById('detailContent');
-// The category buttons are now nested inside the sidebar (class .filter-tag)
 const categoryBtns = document.querySelectorAll('.filter-tag');
-const sortSelect = document.getElementById('sortSelect');
+// Note: You have two elements with ID 'sortSelect' in HTML. 
+// This grabs the first one (sidebar). See HTML fix below.
+const sortSelect = document.getElementById('sortSelect'); 
 const closeBtn = document.getElementById('closeDetail');
 
-// --- ANSWER CHECKING LOGIC (New) ---
+// --- ANSWER CHECKING LOGIC ---
 function handleAnswerClick(event) {
     const clickedOption = event.currentTarget;
-
-    // If an answer has already been selected, do nothing
-    if (document.getElementById('optionsGrid').classList.contains('answered')) {
-        return;
-    }
+    if (document.getElementById('optionsGrid').classList.contains('answered')) return;
 
     const problemId = clickedOption.dataset.problemId;
     const selectedIndex = parseInt(clickedOption.dataset.index);
-
-    // Find the corresponding problem object
     const problem = problems.find(p => p.id === problemId);
 
-    if (!problem) {
-        console.error("Problem not found for ID:", problemId);
-        return;
-    }
+    if (!problem) return;
 
     const isCorrect = selectedIndex === problem.answerIndex;
 
-    // 1. Update the UI for ALL options
     document.querySelectorAll('.opt-box').forEach((opt, i) => {
-        opt.classList.add('disabled'); // Disable all after first click
-
+        opt.classList.add('disabled');
         if (i === problem.answerIndex) {
-            // The correct answer is always marked correct
             opt.classList.add('correct');
             opt.innerHTML += `<span class="feedback-icon"><i data-lucide="check-circle"></i></span>`;
         } else if (i === selectedIndex && !isCorrect) {
-            // The user's incorrect choice is marked incorrect
             opt.classList.add('incorrect');
             opt.innerHTML += `<span class="feedback-icon"><i data-lucide="x-circle"></i></span>`;
         }
     });
-
-    // 2. Mark the whole grid as 'answered' to prevent future clicks
     document.getElementById('optionsGrid').classList.add('answered');
-
-    // Re-render Lucide icons for the new checkmarks/X's
     lucide.createIcons();
 }
+
 // --- INIT ---
 function init() {
     renderGrid();
-    lucide.createIcons();
-
+    
     // Event Listeners
     categoryBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            // Remove active class from all
             categoryBtns.forEach(b => b.classList.remove('active'));
-            // Add to clicked
             e.target.classList.add('active');
             currentCategory = e.target.dataset.val;
             renderGrid();
         });
     });
 
-    sortSelect.addEventListener('change', (e) => {
-        currentSort = e.target.value;
-        renderGrid();
-    });
+    if(sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            renderGrid();
+        });
+    }
 
     closeBtn.addEventListener('click', closeDetail);
 }
 
-// --- RENDER GRID ---
-// --- RENDER GRID (UPDATED FOR LIST VIEW) ---
+// --- RENDER GRID (LIST VIEW) ---
 function renderGrid() {
     gridEl.innerHTML = '';
 
-    let filtered = problems.filter(p => currentCategory === 'All' || p.category.includes(currentCategory)); // Use includes for combined categories
-    // Filter
+    // 1. Filter
     let filtered = problems.filter(p => currentCategory === 'All' || p.category.includes(currentCategory));
 
-    // Sort
+    // 2. Sort
     filtered.sort((a, b) => {
-@@ -470,135 +472,45 @@
+        if (currentSort === 'difficulty-desc') return b.difficulty - a.difficulty;
+        if (currentSort === 'difficulty-asc') return a.difficulty - b.difficulty;
+        if (currentSort === 'time') return a.idealTime.experienced - b.idealTime.experienced;
+        return 0;
+    });
 
-    // Build HTML
+    // 3. Build HTML
     filtered.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'problem-card';
-        card.onclick = () => openDetail(p);
-        // Create the row element
         const row = document.createElement('div');
-        row.className = 'problem-row';
+        row.className = 'problem-row'; // Using the row class for list view
         row.onclick = () => openDetail(p);
 
-        // **NEW** Difficulty Color Logic using the map
-        // Get color based on your chart
         let diffColor = getDifficultyColor(p.difficulty);
+        
+        // Placeholder status (can be updated with local storage logic later)
+        let statusClass = 'status-circle'; 
 
-        // FIX 2 & 3: Use p.problemNumber and p.contest
-        card.innerHTML = `
-            <div class="card-header">
-                <span class="p-number" style="color:${diffColor}">#${p.problemNumber}</span>
-                <span class="p-meta">${p.contest}</span>
+        row.innerHTML = `
+            <div class="col-status">
+                <div class="${statusClass}"></div>
             </div>
-            <h3 class="p-title">Problem ${p.problemNumber}: ${p.category}</h3> <div class="card-footer">
-                <span class="tag">${p.category}</span>
-                <div class="diff-bar-container">
-                    <div class="diff-bar-fill" style="width: ${p.difficulty}%; background: ${diffColor};"></div>
-                    <span style="color:${diffColor}">${p.difficulty}</span>
-                </div>
+            <div class="col-source">
+                ${p.contest}
+            </div>
+            <div class="col-title">
+                Problem ${p.problemNumber}: ${p.category}
+            </div>
+            <div class="col-difficulty">
+                <span class="difficulty-badge" style="background-color: ${diffColor};">
+                    ${p.difficulty}
+                </span>
             </div>
         `;
-        gridEl.appendChild(card);
+        gridEl.appendChild(row);
     });
+    
+    lucide.createIcons();
 }
 
 // --- OPEN DETAIL VIEW ---
@@ -510,11 +491,9 @@ function openDetail(p) {
     
     // 2. Generate Concepts HTML
     const conceptsHtml = p.tags.map(c => `<span class="concept-tag">${c}</span>`).join('');
+    const diffColor = getDifficultyColor(p.difficulty);
 
-    // **NEW** Difficulty Color for detail header
-    let diffColor = getDifficultyColor(p.difficulty);
-
-    // 3. Inject Content with NEW Structure
+    // 3. Inject Content
     contentEl.innerHTML = `
         <div class="detail-header-section">
             <div class="detail-title">
@@ -524,14 +503,6 @@ function openDetail(p) {
                     <span>•</span>
                     <span style="color: ${diffColor}">${p.difficulty} Difficulty</span>
                 </div>
-        // Determine Status Color (Placeholder logic)
-        // You can check localStorage or a 'solved' property here later
-        let statusClass = 'status-circle'; 
-        
-        // Construct the row HTML
-        row.innerHTML = `
-            <div class="col-status">
-                <div class="${statusClass}"></div>
             </div>
             <div class="big-score" style="color: ${diffColor}; font-size: 2rem; opacity: 0.5">#${p.problemNumber}</div>
         </div>
@@ -539,16 +510,10 @@ function openDetail(p) {
         <div class="detail-body">
             <div class="question-box">
                 ${p.solution}
-            
-            <div class="col-source">
-                ${p.contest}
             </div>
 
             <div id="optionsGrid" class="options-grid">
                 ${optionsHtml}
-            
-            <div class="col-title">
-                Problem ${p.problemNumber}: ${p.category}
             </div>
 
             <div class="analysis-dashboard">
@@ -572,7 +537,7 @@ function openDetail(p) {
 
                     <div class="info-card">
                         <h4><i data-lucide="book-open"></i> Concepts</h4>
-                        <div>${conceptsHtml}</div>
+                        <div style="display:flex; flex-wrap:wrap; gap:5px;">${conceptsHtml}</div>
                     </div>
                 </div>
 
@@ -592,11 +557,6 @@ function openDetail(p) {
                         <div class="text-content">${p.techniques}</div>
                     </div>
                 </div>
-            
-            <div class="col-difficulty">
-                <span class="difficulty-badge" style="background-color: ${diffColor};">
-                    ${p.difficulty}
-                </span>
             </div>
         </div>
     `;
@@ -604,18 +564,17 @@ function openDetail(p) {
     overlayEl.classList.remove('hidden');
     lucide.createIcons();
     
+    // Re-render MathJax
     if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
         MathJax.typesetPromise();
     }
 
-    // Re-attach click listeners
+    // Re-attach click listeners for options
     document.querySelectorAll('.opt-box').forEach(opt => {
         opt.addEventListener('click', handleAnswerClick);
-        `;
-        
-        gridEl.appendChild(row);
     });
 }
+
 function closeDetail() {
     overlayEl.classList.add('hidden');
 }
