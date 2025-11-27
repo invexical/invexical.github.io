@@ -274,3 +274,27 @@ select:focus { border-color: #19A4FF; }
 
 .opt-box.correct .feedback-icon { color: #20C997; }
 .opt-box.incorrect .feedback-icon { color: #ef4444; }
+.opt-box > span {
+    display: inline; /* Keep the label span inline */
+}
+
+/* MathJax output elements (mjx-container) should be inline-block */
+.opt-box mjx-container {
+    display: inline-block !important; 
+    white-space: normal; /* Allow the content to wrap normally */
+}
+
+/* Also ensure the options grid itself has explicit column definitions */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Ensure 5 columns are explicitly set */
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 600px) {
+    /* Make options stack on smaller screens if needed (optional) */
+    .options-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
