@@ -11,6 +11,7 @@ const problems = [
         contest: "AMC 10A 2025",
         problemNumber: 1,
         difficulty: 6, // Scale 0-100
+        answerIndex: 4,
         idealTime: { // Time in seconds
             beginner: 90, 
             intermediate: 40,
@@ -24,11 +25,11 @@ const problems = [
         errorProneSteps: "Failing to account for the one hour delay.",
         solution: "Andy and Betsy both live in Mathville. Andy leaves Mathville on his bicycle at $1{:}30$ traveling due north at a steady $8$ miles per hour. Betsy leaves at $2{:}30$, traveling due east at a steady $12$ miles per hour. At what time will they be exactly the same distance from their starting point?",
         options: [
-            "2:45 PM",
-            "3:00 PM",
-            "3:15 PM",
             "3:30 PM",
-            "3:45 PM"
+            "3:45 PM",
+            "4:00 PM",
+            "4:15 PM",
+            "4:30 PM"
         ]
     },
     {
@@ -36,6 +37,7 @@ const problems = [
         contest: "AMC 10A 2025",
         problemNumber: 2,
         difficulty: 9,
+        answerIndex: 1,
         idealTime: { 
             beginner: 60, 
             intermediate: 30,
@@ -61,6 +63,7 @@ const problems = [
         contest: "AMC 10A 2025",
         problemNumber: 3,
         difficulty: 14,
+        answerIndex: 3,
         idealTime: { 
             beginner: 90, 
             intermediate: 45,
@@ -86,6 +89,7 @@ const problems = [
         contest: "AMC 10A 2025",
         problemNumber: 4,
         difficulty: 26,
+        answerIndex: 1,
         idealTime: { 
             beginner: 180, 
             intermediate: 120,
@@ -112,6 +116,7 @@ const problems = [
         contest: "AMC 10A 2025",
         problemNumber: 5,
         difficulty: 30,
+        answerIndex: 4,
         idealTime: { 
             beginner: 180, 
             intermediate: 60,
@@ -137,6 +142,7 @@ const problems = [
         contest: "AMC 10A 2025",
         problemNumber: 6,
         difficulty: 28,
+        answerIndex: 2,
         idealTime: { 
             beginner: 120, 
             intermediate: 60,
@@ -162,6 +168,7 @@ const problems = [
         contest: "AMC 10A 2025",
         problemNumber: 7,
         difficulty: 18,
+        answerIndex: 4,
         idealTime: { 
             beginner: 90, 
             intermediate: 40,
@@ -187,6 +194,7 @@ const problems = [
         contest: "AMC 10A 2025",
         problemNumber: 8,
         difficulty: 13,
+        answerIndex: 1,
         idealTime: { 
             beginner: 120, 
             intermediate: 60,
@@ -212,6 +220,7 @@ const problems = [
         contest: "AMC 10A 2025",
         problemNumber: 9,
         difficulty: 45,
+        answerIndex: 2,
         idealTime: { 
             beginner: 600, 
             intermediate: 240,
