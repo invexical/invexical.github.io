@@ -274,27 +274,36 @@ select:focus { border-color: #19A4FF; }
 
 .opt-box.correct .feedback-icon { color: #20C997; }
 .opt-box.incorrect .feedback-icon { color: #ef4444; }
-.opt-box > span {
-    display: inline; /* Keep the label span inline */
-}
-
-/* MathJax output elements (mjx-container) should be inline-block */
-.opt-box mjx-container {
-    display: inline-block !important; 
-    white-space: normal; /* Allow the content to wrap normally */
-}
-
-/* Also ensure the options grid itself has explicit column definitions */
 .options-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Ensure 5 columns are explicitly set */
-    gap: 10px;
-    margin-bottom: 40px;
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 10px !important;
+}
+
+/* 2. Target the option box container */
+.opt-box {
+    /* Ensure the box itself behaves like a grid item */
+    display: flex !important;
+    align-items: center;
+    justify-content: center; /* Center the entire content horizontally */
+    text-align: center; 
+}
+
+/* 3. Force MathJax output to behave inline */
+/* This is the key. MathJax injects <mjx-container> which defaults to block. */
+.opt-box mjx-container, 
+.opt-box .opt-label {
+    display: inline !important; 
+    margin: 0 !important; /* Remove any unexpected margins */
+}
+
+/* If the problem is the width of the content, we must allow it to flow */
+.opt-box > span {
+    display: inline;
 }
 
 @media (max-width: 600px) {
-    /* Make options stack on smaller screens if needed (optional) */
     .options-grid {
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr) !important;
     }
 }
