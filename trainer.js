@@ -212,8 +212,8 @@ function init() {
 function renderGrid() {
     gridEl.innerHTML = '';
     
-    // Filter
-    let filtered = PROBLEMS.filter(p => currentCategory === 'All' || p.category === currentCategory);
+    // FIX 1: Change PROBLEMS to problems (lowercase)
+    let filtered = problems.filter(p => currentCategory === 'All' || p.category === currentCategory);
     
     // Sort
     filtered.sort((a, b) => {
@@ -232,13 +232,14 @@ function renderGrid() {
         let diffColor = '#20C997'; // Green/Teal
         if(p.difficulty > 50) diffColor = '#facc15'; // Yellow
         if(p.difficulty > 75) diffColor = '#ef4444'; // Red
-
+        
+        // FIX 2 & 3: Use p.problemNumber and p.contest
         card.innerHTML = `
             <div class="card-header">
-                <span class="p-number">#${p.number}</span>
-                <span class="p-meta">${p.year} ${p.contest}</span>
+                <span class="p-number">#${p.problemNumber}</span>
+                <span class="p-meta">${p.contest}</span>
             </div>
-            <h3 class="p-title">${p.title}</h3>
+            <h3 class="p-title">Problem ${p.problemNumber}: ${p.category}</h3> <!-- Added a generic title since data doesn't have one -->
             <div class="card-footer">
                 <span class="tag">${p.category}</span>
                 <div class="diff-bar-container">
@@ -253,20 +254,21 @@ function renderGrid() {
 
 // --- OPEN DETAIL VIEW ---
 function openDetail(p) {
-    // Generate Options HTML
-    const optionsHtml = p.options.map((opt, i) => 
-        `<div class="opt-box"><span class="opt-label">${String.fromCharCode(65+i)}</span> ${opt}</div>`
-    ).join('');
-
-    // Generate Concepts HTML
-    const conceptsHtml = p.concepts.map(c => `<span class="tag blue">${c}</span>`).join('');
+    // NOTE: Data is missing 'options', 'historicalNote', and 'commentary'. Using placeholder/available data.
+    
+    // Placeholder for missing data
+    const optionsHtml = "<p>No multiple-choice options available for this problem.</p>";
+    
+    // FIX 4: Use p.tags instead of p.concepts
+    const conceptsHtml = p.tags.map(c => `<span class="tag blue">${c}</span>`).join('');
 
     contentEl.innerHTML = `
         <div class="detail-header">
             <div>
-                <h1>${p.title}</h1>
+                <!-- FIX 5: Use p.problemNumber and p.contest -->
+                <h1>Problem ${p.problemNumber}: ${p.category}</h1> 
                 <div class="meta-row">
-                    <span>${p.year} ${p.contest} Problem ${p.number}</span>
+                    <span>${p.contest} Problem ${p.problemNumber}</span>
                     <span class="bullet">•</span>
                     <span style="color: #20C997">${p.difficulty}/100 Difficulty</span>
                 </div>
@@ -275,7 +277,8 @@ function openDetail(p) {
         </div>
 
         <div class="question-box">
-            ${p.questionSnippet}
+            <!-- FIX 6: Use p.solution for the problem snippet -->
+            ${p.solution} 
         </div>
 
         <div class="options-grid">
@@ -288,49 +291,62 @@ function openDetail(p) {
                     <h4><i data-lucide="clock"></i> Ideal Time</h4>
                     <div class="time-row">
                         <span>Experienced</span>
-                        <b>${p.idealTime.experienced} min</b>
+                        <b>${p.idealTime.experienced} seconds</b>
                     </div>
                     <div class="progress-bg"><div class="progress-fill" style="width: 20%"></div></div>
                     
                     <div class="time-row" style="margin-top:10px">
                         <span>Intermediate</span>
-                        <b>${p.idealTime.intermediate} min</b>
+                        <b>${p.idealTime.intermediate} seconds</b>
                     </div>
                     <div class="progress-bg"><div class="progress-fill blue" style="width: 50%"></div></div>
+                    
+                    <div class="time-row" style="margin-top:10px">
+                        <span>Beginner</span>
+                        <b>${p.idealTime.beginner} seconds</b>
+                    </div>
+                    <div class="progress-bg"><div class="progress-fill orange" style="width: 70%"></div></div>
+
                 </div>
 
                 <div class="info-box">
-                    <h4><i data-lucide="book-open"></i> Concepts</h4>
+                    <h4><i data-lucide="book-open"></i> Concepts (Tags)</h4>
                     <div class="tags-wrap">${conceptsHtml}</div>
                 </div>
             </div>
 
             <div class="analysis-col">
                 <div class="info-box">
-                     <h4><i data-lucide="history"></i> Historical Context</h4>
-                     <p>${p.historicalNote}</p>
+                    <h4><i data-lucide="lightbulb"></i> Core Ideas</h4>
+                    <p>${p.coreIdeas || 'No core ideas provided.'}</p>
                 </div>
+                <!-- FIX 7: Use p.errorProneSteps instead of p.trap -->
                 <div class="info-box trap-box">
-                     <h4><i data-lucide="alert-triangle"></i> The Trap</h4>
-                     <p>${p.trap}</p>
+                    <h4><i data-lucide="alert-triangle"></i> The Common Trap</h4>
+                    <p>${p.errorProneSteps || 'No common traps documented.'}</p>
                 </div>
                 <div class="info-box">
-                     <h4><i data-lucide="lightbulb"></i> Technique</h4>
-                     <p>${p.techniques}</p>
+                    <h4><i data-lucide="send"></i> Technique</h4>
+                    <p>${p.techniques}</p>
                 </div>
             </div>
         </div>
 
         <div class="commentary-section">
-            <h3>Author's Commentary</h3>
-            <p>${p.commentary}</p>
+            <h3>Problem Statement (Full)</h3>
+            <p>${p.solution}</p>
         </div>
     `;
 
     overlayEl.classList.remove('hidden');
     lucide.createIcons(); // Re-render icons for the new content
-    MathJax.typesetPromise(); // Render Math
+    // Check if MathJax is available before trying to render
+    if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+        MathJax.typesetPromise(); // Render Math
+    }
 }
+
+
 
 function closeDetail() {
     overlayEl.classList.add('hidden');
