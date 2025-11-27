@@ -256,6 +256,49 @@ const categoryBtns = document.querySelectorAll('.filter-tag');
 const sortSelect = document.getElementById('sortSelect');
 const closeBtn = document.getElementById('closeDetail');
 
+// --- ANSWER CHECKING LOGIC (New) ---
+function handleAnswerClick(event) {
+    const clickedOption = event.currentTarget;
+    
+    // If an answer has already been selected, do nothing
+    if (document.getElementById('optionsGrid').classList.contains('answered')) {
+        return;
+    }
+
+    const problemId = clickedOption.dataset.problemId;
+    const selectedIndex = parseInt(clickedOption.dataset.index);
+    
+    // Find the corresponding problem object
+    const problem = problems.find(p => p.id === problemId);
+
+    if (!problem) {
+        console.error("Problem not found for ID:", problemId);
+        return;
+    }
+
+    const isCorrect = selectedIndex === problem.answerIndex;
+
+    // 1. Update the UI for ALL options
+    document.querySelectorAll('.opt-box').forEach((opt, i) => {
+        opt.classList.add('disabled'); // Disable all after first click
+        
+        if (i === problem.answerIndex) {
+            // The correct answer is always marked correct
+            opt.classList.add('correct');
+            opt.innerHTML += `<span class="feedback-icon"><i data-lucide="check-circle"></i></span>`;
+        } else if (i === selectedIndex && !isCorrect) {
+            // The user's incorrect choice is marked incorrect
+            opt.classList.add('incorrect');
+            opt.innerHTML += `<span class="feedback-icon"><i data-lucide="x-circle"></i></span>`;
+        }
+    });
+    
+    // 2. Mark the whole grid as 'answered' to prevent future clicks
+    document.getElementById('optionsGrid').classList.add('answered');
+
+    // Re-render Lucide icons for the new checkmarks/X's
+    lucide.createIcons();
+}
 // --- INIT ---
 function init() {
     renderGrid();
