@@ -5,9 +5,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="trainer.css">
     <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
-    <!-- Lucide Icons for that stylish look -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- MathJax -->
     <script>
         window.MathJax = {
             tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
@@ -18,30 +16,24 @@
 </head>
 <body>
 
-    <!-- EXISTING NAV (Kept consistent) -->
-    <nav>
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px;">
-            <h2>invexic's Trainer</h2>
-            <div>
-                <a href="index.html">Home</a>
-                <a href="#">Trainer</a>
-                <a href="#">About</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- MAIN TRAINER LAYOUT -->
-    <div class="trainer-wrapper">
+    <div class="page-container">
         
-        <!-- SIDEBAR: FILTERS -->
-        <div class="trainer-sidebar">
-            <div class="filter-card">
-                <div class="filter-header">
-                    <i data-lucide="filter"></i> Filters
+        <aside class="trainer-nav-sidebar">
+            <div class="sidebar-header">
+                <h2>invexic's Guide</h2>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="index.html" class="menu-item">Home</a>
+                <a href="#" class="menu-item active">Trainer</a>
+                <a href="#" class="menu-item">About</a>
+
+                <div class="menu-divider"></div>
+
+                <div class="dropdown-toggle">
+                    Problem Filters <i data-lucide="chevron-down" style="width: 16px; height: 16px;"></i>
                 </div>
-                
                 <div class="filter-group">
-                    <label>Category</label>
                     <div class="tag-cloud" id="categoryFilters">
                         <button class="filter-tag active" data-val="All">All</button>
                         <button class="filter-tag" data-val="Algebra">Algebra</button>
@@ -51,33 +43,61 @@
                     </div>
                 </div>
 
+                <div class="dropdown-toggle" style="margin-top: 15px;">
+                    Sorting <i data-lucide="chevron-down" style="width: 16px; height: 16px;"></i>
+                </div>
                 <div class="filter-group">
-                    <label>Sort By</label>
                     <select id="sortSelect">
                         <option value="difficulty-desc">Difficulty (Hardest)</option>
                         <option value="difficulty-asc">Difficulty (Easiest)</option>
                         <option value="time">Ideal Time (Shortest)</option>
                     </select>
                 </div>
-            </div>
-        </div>
 
-        <!-- MAIN CONTENT: PROBLEM LIST -->
-        <div class="trainer-main">
-            <div id="problemGrid" class="problem-grid">
-                <!-- Problems will be injected here by JS -->
+                <div class="menu-divider" style="margin-top: auto;"></div>
+
+                <a href="#" class="menu-item"><i data-lucide="contact" style="width: 16px; height: 16px;"></i> Contact Us</a>
+                <a href="#" class="menu-item"><i data-lucide="settings" style="width: 16px; height: 16px;"></i> Settings</a>
             </div>
-        </div>
+        </aside>
+
+        <main class="content-main">
+            
+            <div class="content-header-bar">
+                <div class="header-nav">
+                    <a href="#" class="nav-link"><i data-lucide="chevron-left" style="width: 16px; height: 16px;"></i> Prev</a>
+                </div>
+                <div class="header-path">
+                    <a href="#">Home</a> <span>/</span> 
+                    <a href="#">Trainer</a> <span>/</span> 
+                    <span>Practice Problems</span>
+                </div>
+                <div class="header-nav">
+                    <a href="#" class="nav-link">Next <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i></a>
+                </div>
+            </div>
+
+            <div class="trainer-main-area">
+                <div class="main-title-section">
+                    <h1>Problem Trainer Dashboard</h1>
+                    <span class="status-badge"><i data-lucide="code" style="width: 16px; height: 16px;"></i> Practicing</span>
+                </div>
+                <p class="description-text">
+                    Practice competitive math problems with detailed analysis and timing goals.
+                </p>
+
+                <div id="problemGrid" class="problem-grid">
+                    </div>
+            </div>
+        </main>
     </div>
 
-    <!-- DETAILED VIEW OVERLAY (Hidden by default) -->
     <div id="detailOverlay" class="detail-overlay hidden">
         <div class="detail-container">
             <button id="closeDetail" class="back-btn">← Back to Problems</button>
             
             <div id="detailContent">
-                <!-- Content injected by JS -->
-            </div>
+                </div>
         </div>
     </div>
 
