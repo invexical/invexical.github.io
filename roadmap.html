@@ -278,16 +278,12 @@
         import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
         import { getFirestore, doc, setDoc, getDoc, updateDoc, arrayUnion } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 
-        // --- CONFIG ---
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = __app_id || 'default-app';
-
+        // --- GLOBAL VARIABLES ---
+        let app, auth, db;
         let currentUser = null;
         let solvedProblems = new Set();
         let currentXP = 0;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app';
 
         // --- PROBLEM DATA (Updated with AMC 10A 2025 Set) ---
         const problems = [
@@ -495,66 +491,7 @@
             { id: "combo", title: "Combinatorics & Logic", problems: ["AMC10A_2025_P8", "AMC10A_2025_P12"] }
         ];
 
-        // --- AUTH & INIT ---
-        const initAuth = async () => {
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                await signInWithCustomToken(auth, __initial_auth_token);
-            } else {
-                await signInAnonymously(auth);
-            }
-        };
-
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                currentUser = user;
-                document.getElementById('loginText').innerText = "User " + user.uid.substring(0,4);
-                await loadProgress();
-            }
-            renderApp();
-        });
-
-        initAuth();
-
-        // --- FIRESTORE LOGIC ---
-        async function loadProgress() {
-            if(!currentUser) return;
-            const userRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'profile', 'data');
-            try {
-                const snap = await getDoc(userRef);
-                if (snap.exists()) {
-                    const data = snap.data();
-                    solvedProblems = new Set(data.solved || []);
-                    currentXP = data.xp || 0;
-                    document.getElementById('userXp').innerText = `${currentXP} XP`;
-                    document.getElementById('solvedCount').innerText = solvedProblems.size;
-                } else {
-                    await setDoc(userRef, { solved: [], xp: 0 });
-                }
-            } catch (e) { console.error("Load error:", e); }
-        }
-
-        async function saveProgress(problemId, difficulty) {
-            if(!currentUser || solvedProblems.has(problemId)) return;
-            
-            solvedProblems.add(problemId);
-            const xpGain = Math.max(10, difficulty);
-            currentXP += xpGain;
-
-            // UI Update
-            document.getElementById('userXp').innerText = `${currentXP} XP`;
-            document.getElementById('solvedCount').innerText = solvedProblems.size;
-            renderApp();
-
-            const userRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'profile', 'data');
-            try {
-                await updateDoc(userRef, {
-                    solved: arrayUnion(problemId),
-                    xp: currentXP
-                });
-            } catch (e) { console.error("Save error:", e); }
-        }
-
-        // --- RENDERING ---
+        // --- RENDERING LOGIC ---
         function renderApp() {
             renderGuide();
             lucide.createIcons();
@@ -575,6 +512,8 @@
 
         function renderGuide() {
             const container = document.getElementById('guideContent');
+            if (!container) return; // Guard clause
+            
             container.innerHTML = curriculum.map(section => {
                 const sectionProbs = section.problems.map(pid => problems.find(p => p.id === pid)).filter(Boolean);
                 
@@ -612,14 +551,13 @@
             }).join('');
         }
 
-        // --- GLOBAL WINDOW FUNCTIONS ---
+        // --- WINDOW FUNCTIONS (Assigned immediately so HTML works) ---
         window.switchView = (viewName) => {
-            // Placeholder if you add more views later
+            // Placeholder
         };
 
         window.scrollToTopic = (id) => {
             document.querySelectorAll('.guide-nav-item').forEach(el => el.classList.remove('active'));
-            // logic to highlight clicked item would go here
             document.getElementById(`topic-${id}`)?.scrollIntoView({ behavior: 'smooth' });
         };
 
@@ -671,7 +609,7 @@
             
             document.getElementById('detailOverlay').classList.remove('hidden');
             lucide.createIcons();
-            if(MathJax.typesetPromise) MathJax.typesetPromise();
+            if(window.MathJax) MathJax.typesetPromise();
         };
 
         window.checkAnswer = (pid, idx, el) => {
@@ -694,6 +632,83 @@
         window.closeDetail = () => {
             document.getElementById('detailOverlay').classList.add('hidden');
         };
+
+        // --- FIRESTORE LOGIC ---
+        async function loadProgress() {
+            if(!currentUser || !db) return;
+            const userRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'profile', 'data');
+            try {
+                const snap = await getDoc(userRef);
+                if (snap.exists()) {
+                    const data = snap.data();
+                    solvedProblems = new Set(data.solved || []);
+                    currentXP = data.xp || 0;
+                    document.getElementById('userXp').innerText = `${currentXP} XP`;
+                    document.getElementById('solvedCount').innerText = solvedProblems.size;
+                } else {
+                    await setDoc(userRef, { solved: [], xp: 0 });
+                }
+            } catch (e) { console.error("Load error:", e); }
+        }
+
+        async function saveProgress(problemId, difficulty) {
+            solvedProblems.add(problemId);
+            const xpGain = Math.max(10, difficulty);
+            currentXP += xpGain;
+
+            // UI Update (Optimistic)
+            document.getElementById('userXp').innerText = `${currentXP} XP`;
+            document.getElementById('solvedCount').innerText = solvedProblems.size;
+            renderApp();
+
+            // Cloud Save (if connected)
+            if(!currentUser || !db) return;
+            const userRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'profile', 'data');
+            try {
+                await updateDoc(userRef, {
+                    solved: arrayUnion(problemId),
+                    xp: currentXP
+                });
+            } catch (e) { console.error("Save error:", e); }
+        }
+
+        // --- INITIALIZATION (Try Connect, but Render ANYWAY) ---
+        const initFirebase = async () => {
+            // 1. Initial Render (So screen isn't blank)
+            renderApp();
+
+            // 2. Try Connection
+            if (typeof __firebase_config !== 'undefined') {
+                try {
+                    const firebaseConfig = JSON.parse(__firebase_config);
+                    app = initializeApp(firebaseConfig);
+                    auth = getAuth(app);
+                    db = getFirestore(app);
+
+                    onAuthStateChanged(auth, async (user) => {
+                        if (user) {
+                            currentUser = user;
+                            document.getElementById('loginText').innerText = "User " + user.uid.substring(0,4);
+                            await loadProgress();
+                        }
+                        renderApp(); // Re-render with user data
+                    });
+
+                    // Init Auth
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch (e) {
+                    console.log("Offline mode active: ", e);
+                }
+            } else {
+                console.log("No config. Offline mode active.");
+            }
+        };
+
+        initFirebase();
 
     </script>
 </body>
