@@ -347,6 +347,7 @@ let currentCategory = 'All';
 let currentSort = 'difficulty-desc';
 let minDifficulty = 0; // NEW
 let maxDifficulty = 100; // NEW
+let solvedProblems = JSON.parse(localStorage.getItem('invexic_solved')) || [];
 const minRangeInput = document.getElementById('minRange');
 const maxRangeInput = document.getElementById('maxRange');
 const minValDisplay = document.getElementById('minValDisplay');
@@ -385,6 +386,8 @@ const closeBtn = document.getElementById('closeDetail');
 // --- ANSWER CHECKING LOGIC ---
 function handleAnswerClick(event) {
     const clickedOption = event.currentTarget;
+    
+    // Prevent clicking if already answered
     if (document.getElementById('optionsGrid').classList.contains('answered')) return;
 
     const problemId = clickedOption.dataset.problemId;
@@ -395,20 +398,36 @@ function handleAnswerClick(event) {
 
     const isCorrect = selectedIndex === problem.answerIndex;
 
+    // Update UI
     document.querySelectorAll('.opt-box').forEach((opt, i) => {
         opt.classList.add('disabled');
+        
+        // Correct Answer Styling
         if (i === problem.answerIndex) {
             opt.classList.add('correct');
+            // FIX: Removed the duplicate lines here
             opt.innerHTML += `<span class="feedback-icon"><i data-lucide="check-circle"></i></span>`;
-        } else if (i === selectedIndex && !isCorrect) {
+            
+            // --- SAVING LOGIC ---
+            // Only save if the user actually clicked the CORRECT answer
+            if (isCorrect) { 
+                if (!solvedProblems.includes(problemId)) {
+                    solvedProblems.push(problemId);
+                    localStorage.setItem('invexic_solved', JSON.stringify(solvedProblems));
+                    renderGrid(); 
+                }
+            }
+        } 
+        // User's Wrong Choice Styling
+        else if (i === selectedIndex && !isCorrect) {
             opt.classList.add('incorrect');
             opt.innerHTML += `<span class="feedback-icon"><i data-lucide="x-circle"></i></span>`;
         }
     });
+
     document.getElementById('optionsGrid').classList.add('answered');
     lucide.createIcons();
 }
-
 // --- INIT ---
 function init() {
     // Initialize slider visual
@@ -416,7 +435,23 @@ function init() {
     renderGrid();
     
     // Existing Listeners...
-    categoryBtns.forEach(btn => { /* ... existing code ... */ });
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            // 1. Remove 'active' class from all buttons
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            
+            // 2. Add 'active' class to the clicked button
+            // Use currentTarget to ensure we get the button, not the text inside
+            const btn = e.currentTarget; 
+            btn.classList.add('active');
+            
+            // 3. Update State
+            currentCategory = btn.dataset.val;
+            
+            // 4. Re-render
+            renderGrid();
+        });
+    });
     
     if(sortSelect) {
         sortSelect.addEventListener('change', (e) => {
@@ -474,16 +509,14 @@ function fillSlider() {
 }
 
 // --- RENDER GRID (LIST VIEW) ---
+// --- RENDER GRID (LIST VIEW) ---
 function renderGrid() {
     gridEl.innerHTML = '';
 
     // 1. Filter
     let filtered = problems.filter(p => {
-        // Category Check
         const catMatch = currentCategory === 'All' || p.category.includes(currentCategory);
-        // Difficulty Range Check (NEW)
         const diffMatch = p.difficulty >= minDifficulty && p.difficulty <= maxDifficulty;
-        
         return catMatch && diffMatch;
     });
 
@@ -495,21 +528,33 @@ function renderGrid() {
         return 0;
     });
 
-    // 3. Build HTML (No changes needed here from previous version)
+    // 3. Build HTML
     filtered.forEach(p => {
-        // ... (Keep your existing card/row creation code) ...
-        // ... Use the code from the previous fix ...
         const row = document.createElement('div');
         row.className = 'problem-row';
         row.onclick = () => openDetail(p);
+
         let diffColor = getDifficultyColor(p.difficulty);
-        let statusClass = 'status-circle'; 
+        
+        // CHECK IF SOLVED
+        const isSolved = solvedProblems.includes(p.id);
+        const statusClass = isSolved ? 'status-circle solved' : 'status-circle'; 
+
+        // FIX: Removed stray backticks and fixed structure
         row.innerHTML = `
-            <div class="col-status"><div class="${statusClass}"></div></div>
-            <div class="col-source">${p.contest}</div>
-            <div class="col-title">Problem ${p.problemNumber}: ${p.category}</div>
+            <div class="col-status">
+                <div class="${statusClass}"></div>
+            </div>
+            <div class="col-source">
+                ${p.contest}
+            </div>
+            <div class="col-title">
+                Problem ${p.problemNumber}: ${p.category}
+            </div>
             <div class="col-difficulty">
-                <span class="difficulty-badge" style="background-color: ${diffColor};">${p.difficulty}</span>
+                <span class="difficulty-badge" style="background-color: ${diffColor};">
+                    ${p.difficulty}
+                </span>
             </div>
         `;
         gridEl.appendChild(row);
