@@ -64,9 +64,25 @@
 
         <!-- MAIN CONTENT: PROBLEM LIST -->
         <div class="trainer-main">
-            <div id="problemGrid" class="problem-grid">
-                <!-- Problems will be injected here by JS -->
-            </div>
+            <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+    <select id="sortSelect" style="background: #252526; color: #eee; border: 1px solid #333; padding: 5px; border-radius: 4px;">
+        <option value="difficulty-desc">Difficulty (Hardest)</option>
+        <option value="difficulty-asc">Difficulty (Easiest)</option>
+        <option value="time">Ideal Time (Shortest)</option>
+    </select>
+</div>
+
+<div class="problem-list-container">
+    <div class="list-header">
+        <div class="col-status">Status</div>
+        <div class="col-source">Source</div>
+        <div class="col-title">Problem Name</div>
+        <div class="col-difficulty" style="justify-content: flex-end; padding-right: 10px;">Difficulty</div>
+    </div>
+
+    <div id="problemGrid">
+        </div>
+</div>
         </div>
     </div>
 
