@@ -229,3 +229,47 @@ select:focus { border-color: #19A4FF; }
 }
 .commentary-section h3 { color: #fff; margin-bottom: 10px; }
 .commentary-section p { color: #ccc; line-height: 1.8; }
+/* --- ANSWER CHECKING STYLES (New) --- */
+.opt-box {
+    /* Existing styles... */
+    cursor: pointer; /* Make them look clickable */
+    position: relative;
+    transition: all 0.2s;
+}
+
+.opt-box:hover:not(.disabled) {
+    border-color: #19A4FF;
+    background: #1a1a1a;
+}
+
+/* State when clicked (Correct) */
+.opt-box.correct {
+    background: rgba(32, 201, 151, 0.3); /* Green tint */
+    border-color: #20C997;
+    color: white;
+}
+
+/* State when clicked (Incorrect) */
+.opt-box.incorrect {
+    background: rgba(239, 68, 68, 0.3); /* Red tint */
+    border-color: #ef4444;
+    color: white;
+}
+
+/* Disable further clicking after an answer is selected */
+.opt-box.disabled {
+    cursor: default;
+}
+
+/* Icon for feedback */
+.feedback-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.opt-box.correct .feedback-icon { color: #20C997; }
+.opt-box.incorrect .feedback-icon { color: #ef4444; }
