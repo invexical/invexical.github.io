@@ -18,11 +18,18 @@ const problems = [
         },
         category: "Algebra",
         tags: ["Rate", "Distance-Rate-Time", "Equation Setup", "Relative Motion"],
-        coreIdeas: "$d=rt$. Accounting for Betsy's 1-hour delay.",
+        coreIdeas: "Accounting for Betsy's 1-hour delay.",
         nonObviousTransitions: "N/A",
         techniques: "Distance-rate-time setup. Algebraic substitution.",
-        errorProneSteps: "Getting the time difference wrong (1 hour).",
+        errorProneSteps: "Failing to account for the one hour delay.",
         solution: "Andy and Betsy both live in Mathville. Andy leaves Mathville on his bicycle at $1{:}30$ traveling due north at a steady $8$ miles per hour. Betsy leaves at $2{:}30$, traveling due east at a steady $12$ miles per hour. At what time will they be exactly the same distance from their starting point?"
+        options: [
+            "2:45 PM",
+            "3:00 PM",
+            "3:15 PM",
+            "3:30 PM",
+            "3:45 PM"
+        ]
     },
     {
         id: "AMC10A_2025_P2",
@@ -36,11 +43,18 @@ const problems = [
         },
         category: "Algebra",
         tags: ["Mixtures", "Weighted Mean", "Percentages", "System of Equations"],
-        coreIdeas: "weighted means, mixtures, system of equations. Knowing how to traverse the information given in the problem.",
+        coreIdeas: "Using weighted means properly. Knowing how to traverse the information given in the problem, and ignoring unimportant info.",
         nonObviousTransitions: "N/A",
         techniques: "Set up a linear equation for the second mixture's weight.",
         errorProneSteps: "Finding the number of pounds of the second mixture and thinking that is the answer.",
         solution: "A box contains $10$ pounds of a nut mix that is $50\%$ peanuts, $20\%$ cashews, and $30\%$ almonds. A second nut mix containing $20\%$ peanuts, $40\%$ cashews, and $40\%$ almonds is added to the box resulting in a new nut mix that is $40\%$ peanuts. How many pounds of cashews are now in the box?"
+        options: [
+            "3.5",
+            "4",
+            "4.5",
+            "5",
+            "6"
+        ]
     },
     {
         id: "AMC10A_2025_P3",
@@ -54,11 +68,18 @@ const problems = [
         },
         category: "Algebra, Geometry, and Combinatorics",
         tags: ["Casework", "Triangle Inequality", "Isosceles Triangle", "Counting"],
-        coreIdeas: "casework, triangle inequality. Realizing that the longest side being $2025$ results in two scenarios.",
+        coreIdeas: "Realizing that the longest side being $2025$ results in two scenarios.",
         nonObviousTransitions: "Realizing the need for two cases based on which side is repeated.",
         techniques: "Solve inequalities for both cases, avoid double-counting equilateral triangle.",
         errorProneSteps: "Forgetting or double-counting equilateral case.",
         solution: "How many isosceles triangles are there with positive area whose side lengths are all positive integers and whose longest side has length $2025$?"
+        options: [
+            "2025",
+            "2026",
+            "3012",
+            "3037",
+            "4050"
+        ]
     },
     {
         id: "AMC10A_2025_P4",
@@ -72,12 +93,20 @@ const problems = [
         },
         category: "Algebra",
         tags: ["Mean", "Average", "System of Equations", "Word Problem"],
-        coreIdeas: "mean, system of equations. Not immediately intuitive.",
+        coreIdeas: "Dealing with the change in means by finding the change in the total sum.",
         nonObviousTransitions: "N/A",
         techniques: "Use sums and averages, set up system with three unknowns.",
         errorProneSteps: "Setting up equations incorrectly (for example, forgetting that Ash adds one person to the team).",
         solution: "A team of students is going to compete against a team of teachers in a trivia contest. The total number of students and teachers is $15$. Ash wants to join. If Ash plays with the students, the average age increases from $12$ to $14$. If Ash plays with the teachers, the average age decreases from $55$ to $52$. How old is Ash?"
+        options: [
+            "28",
+            "29",
+            "30",
+            "31",
+            "32"
+        ]
     },
+
     {
         id: "AMC10A_2025_P5",
         contest: "AMC 10A 2025",
@@ -90,11 +119,18 @@ const problems = [
         },
         category: "Algebra",
         tags: ["Sequences", "Arithmetic Progression", "Triangular Numbers"],
-        coreIdeas: "sequences. Finding the endpoints of each 'valley.' Recognizing the sequence can be decomposed is hard to observe for a beginner.",
+        coreIdeas: "Finding the endpoints of each 'valley.' Recognizing the sequence can be decomposed is hard to observe for a beginner.",
         nonObviousTransitions: "Decomposing the sequence into blocks of increasing size (e.g., $1, 2, 1$; $2, 3, 2, 1, 2, 3, 4, 3, 2, 1$)",
         techniques: "Use triangular number sums; incremental block sizes.",
         errorProneSteps: "Miscounting position, remembering the index begins at $1$.",
         solution: "Consider the sequence of positive integers $$1,2,1,2,3,2,1,2,3,4,3,2,1,2,3,4,5,4,3,2,1,2,3,4,5,6,5,4,3,2,1,2,\dots$$ What is the 2025th term?"
+        options: [
+            "5",
+            "15",
+            "16",
+            "44",
+            "45"
+        ]
     },
     {
         id: "AMC10A_2025_P6",
@@ -108,11 +144,18 @@ const problems = [
         },
         category: "Geometry",
         tags: ["Angle Chasing", "Equilateral Triangle", "Hexagon", "Isosceles Triangle"],
-        coreIdeas: "angle chasing, equilateral triangles. Drawing an accurate diagram.",
+        coreIdeas: "Drawing an accurate diagram and looking at the right triangle.",
         nonObviousTransitions: "Recognizing that the hexagon is formed by the angles of an isosceles triangle.",
         techniques: "Focus on one triangle at a time; use angle sum and vertical angles.",
         errorProneSteps: "Assuming hexagon is equiangular (leads to 120°).",
         solution: "In an equilateral triangle each interior angle is trisected by a pair of rays. The intersection of the interiors of the middle 20°-angle at each vertex is the interior of a convex hexagon. What is the degree measure of the smallest angle of this hexagon?"
+        options: [
+            "80",
+            "90",
+            "100",
+            "110",
+            "120"
+        ]
     },
     {
         id: "AMC10A_2025_P7",
@@ -126,11 +169,18 @@ const problems = [
         },
         category: "Algebra",
         tags: ["Polynomials", "Remainder Theorem", "System of Equations"],
-        coreIdeas: "polynomials, remainder theorem.",
+        coreIdeas: "Applying the remainder theorem.",
         nonObviousTransitions: "N/A",
         techniques: "Plugging and chugging once the theorem is directly applied.",
         errorProneSteps: "Mixing up linear expressions, arithmetic errors, extracting the incorrect result.",
         solution: "Suppose $a$ and $b$ are real numbers. When the polynomial $x^3+x^2+ax+b$ is divided by $x-1$, the remainder is $4$. When divided by $x-2$, the remainder is $6$. What is $b-a$?"
+        options: [
+            "14",
+            "15",
+            "16",
+            "17",
+            "18"
+        ]
     },
     {
         id: "AMC10A_2025_P8",
@@ -144,11 +194,18 @@ const problems = [
         },
         category: "Logic",
         tags: ["Logic Puzzle", "Truth Statements", "Casework"],
-        coreIdeas: "logic. Interpreting what it really means if a statement is true or false. Recognize that the statements can be implied off each other (i.e., statement 2 being true requires statement 1 to be true too.)",
+        coreIdeas: "Interpreting what it really means if a statement is true or false. Recognize that the statements can be implied off each other (i.e., statement 2 being true requires statement 1 to be true too.)",
         nonObviousTransitions: "Recognizing the implications between the statements (e.g., Statement 2 implies Statement 1).",
         techniques: "Test each scenario by number of true statements.",
         errorProneSteps: "Extracting the incorrect result, or failing to understand the problem.",
         solution: "Agnes writes the following four statements on a blank piece of paper.<ul><li>$\bullet$ At least one of these statements is true.</li><li>$\bullet$ At least two of these statements are true.</li><li>$\bullet$ At least two of these statements are false.</li><li>$\bullet$ At least one of these statements is false.</li></ul>Each statement is either true or false. How many false statements did Agnes write on the paper?"
+        options: [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+        ]
     },
     {
         id: "AMC10A_2025_P9",
@@ -162,11 +219,18 @@ const problems = [
         },
         category: "Algebra",
         tags: ["Functions", "Cubic", "Roots", "Transformations", "Optimization"],
-        coreIdeas: "functions, transformations, roots. Recognizing that the condition is equivalent to asking how many $x$ satisfy $f(x)=25$. Interpreting the graph of a cubic. Solving for number of roots without directly finding them.",
+        coreIdeas: "Recognizing that the condition is equivalent to asking how many $x$ satisfy $f(x)=25$. Interpreting the graph of a cubic. Solving for number of roots without directly finding them.",
         nonObviousTransitions: "Transforming $y=f(x-a)$ passing through $(1, 25)$ into $f(1-a)=25$, which means finding the number of roots for $f(x)=25$ where $x = 1-a$.",
         techniques: "Calculate maxima and minima to count intersections.",
         errorProneSteps: "Attempting exact roots unnecessarily, applying calculus, lazily assuming there are three intersection points because it is a cubic.",
         solution: "Let $f(x)=100x^3-300x^2+200x$. For how many real numbers $a$ does the graph of $y=f(x-a)$ pass through the point $(1,25)$?"
+        options: [
+            "1",
+            "2",
+            "3",
+            "4",
+            "more than 4"
+        ]
     }
     // Add P10-P25 data here when available
 ];
