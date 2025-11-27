@@ -240,6 +240,111 @@ const problems = [
             "4",
             "more than 4"
         ]
+    },
+
+    {
+        id: "AMC10A_2025_P10",
+        contest: "AMC 10A 2025",
+        problemNumber: 10,
+        difficulty: 32,
+        answerIndex: 2, // Corresponds to (B) 24\pi
+        idealTime: { 
+            beginner: 150, // 2-3 min
+            intermediate: 90, // 1-2 min
+            experienced: 40
+        },
+        category: "Geometry",
+        tags: ["Area", "Circles", "Semicircle", "Chord", "Pythagorean Theorem"],
+        coreIdeas: "Using the Pythagorean theorem to relate the radius of the larger semicircle ($R$) and the height of the chord ($r$, which is the radius of the smaller semicircle).",
+        nonObviousTransitions: "Recognize that the radius of the smaller semicircle, $r$, is the distance from the center to the chord $\\overline{CD}$.",
+        techniques: "Set up the area as $A_{large} - A_{small}$ and simplify the resulting expression using the geometric relationship $R^2 - r^2 = 8^2$.",
+        errorProneSteps: "Failing to divide the area by two (semicircle vs. circle). Adding the areas of the semicircles instead of subtracting.",
+        solution: "A semicircle has diameter $\\overline{AB}$ and chord $\\overline{CD}$ of length $16$ parallel to $\\overline{AB}$. A smaller semicircle with diameter on $\\overline{AB}$ and tangent to $\\overline{CD}$ is cut from the larger semicircle, as shown below. What is the area of the resulting figure, shown shaded?",
+        options: [
+            "$16\\pi$",
+            "$24\\pi$",
+            "$32\\pi$",
+            "$48\\pi$",
+            "$64\\pi$"
+        ]
+    },
+    {
+        id: "AMC10A_2025_P11",
+        contest: "AMC 10A 2025",
+        problemNumber: 11,
+        difficulty: 23,
+        answerIndex: 4, // Corresponds to (C) 103
+        idealTime: { 
+            beginner: 210, // 3-4 min
+            intermediate: 90, // 1.5 min
+            experienced: 45
+        },
+        category: "Algebra",
+        tags: ["Arithmetic Sequence", "Geometric Sequence", "Number Theory", "Trial and Error"],
+        coreIdeas: "Expressing the terms in both sequences using common difference $d$ and common ratio $r$, and solving the resulting equations for the smallest integer $z$.",
+        nonObviousTransitions: "The key is realizing the terms must be $1, 1+d, 1+2d, 1+3d$ and $1, r, r^2, r^3$. Since all are integers, $r$ must be an integer, and $r^3 = 1+3d$.",
+        techniques: "Systematic trial and error with integer values for the common ratio $r$, checking the condition $r^3-1 = 3d$ where $d$ must be a positive integer.",
+        errorProneSteps: "Finding an incorrect value of $z$ (e.g., the next possible $z$) or incorrectly summing the final values.",
+        solution: "The sequence $1, x, y, z$ is arithmetic. The sequence $1, p, q, z$ is geometric. Both sequences are strictly increasing and contain only integers, and $z$ is as small as possible. What is the value of $x+y+z+p+q$?",
+        options: [
+            "66",
+            "91",
+            "103",
+            "132",
+            "149"
+        ]
+    },
+    {
+        id: "AMC10A_2025_P12",
+        contest: "AMC 10A 2025",
+        problemNumber: 12,
+        difficulty: 35,
+        answerIndex: 3, // Corresponds to (B) 192
+        idealTime: { 
+            beginner: 300, // 5 min
+            intermediate: 150, // 2.5 min
+            experienced: 90 // 1.5 min
+        },
+        category: "Combinatorics",
+        tags: ["Casework", "Constructive Counting", "Parity", "Prime Numbers"],
+        coreIdeas: "The only digit that is both even and prime (from $1$ to $9$) is $2$. This splits the problem into two distinct cases: the passcode contains $2$, or it does not.",
+        nonObviousTransitions: "Correctly defining the three sets of digits: **Set E** (Even & Not Prime: {4, 6, 8}), **Set P** (Odd & Prime: {3, 5, 7}), and **Set N** (Odd & Not Prime: {1, 9}). The digit **2** must be handled separately.",
+        techniques: "Constructive counting using casework (Case 1: $2$ is a digit; Case 2: $2$ is not a digit). Use the multiplication principle for each case.",
+        errorProneSteps: "Failing to account for the position of the special digits. Incorrectly computing the number of options for each case.",
+        solution: "Carlos uses a $4$-digit passcode to unlock his computer. In his passcode, exactly one digit is even, exactly one (possibly different) digit is prime, and no digit is $0$. How many $4$-digit passcodes satisfy these conditions?",
+        options: [
+            "176",
+            "192",
+            "432",
+            "464",
+            "608"
+        ]
+    },
+    {
+        id: "AMC10A_2025_P13",
+        contest: "AMC 10A 2025",
+        problemNumber: 13,
+        difficulty: 36,
+        answerIndex: 3, // Corresponds to (D) 3/4
+        idealTime: { 
+            beginner: 240, // 4 min
+            intermediate: 120, // 2 min
+            experienced: 90 // 1-2 min
+        },
+        category: "Geometry",
+        tags: ["Geometric Series", "Area", "Similarity", "Infinite Sums", "Ratio"],
+        coreIdeas: "The areas of the successively smaller squares form an **infinite geometric series** with a common ratio related to $k$. The shaded area is the sum of the areas of the odd-numbered annuli (differences of square areas).",
+        nonObviousTransitions: "The ratio of the areas of successive squares is $k^2$, not $k$. Expressing the shaded area as a geometric series.",
+        techniques: "Use the formula for the sum of an infinite geometric series: $S = \\frac{a}{1-r}$. Set up the equation for the shaded area being $0.64$ of the total area.",
+        errorProneSteps: "Incorrectly finding the value of the common ratio in the area series (using $k$ instead of $k^2$). Incorrectly summing the shaded/unshaded portions.",
+        solution: "In the figure below, the outside square contains infinitely many squares, each of them with the same center and sides parallel to the outside square. The ratio of the side length of a square to the side length of the next inner square is $k$, where $0 < k < 1$. The spaces between squares are alternately shaded as shown in the figure. The area of the shaded portion of the figure is $64\\%$ of the area of the original square. What is $k$?",
+        options: [
+            "\\frac{3}{5}",
+            "\\frac{16}{25}",
+            "\\frac{2}{3}",
+            "\\frac{3}{4}",
+            "\\frac{4}{5}"
+        ]
     }
     // Add P10-P25 data here when available
 ];
