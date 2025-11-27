@@ -189,19 +189,53 @@ select {
 }
 
 /* Question Styling */
+/* Update your .question-box */
 .question-box {
-    font-family: 'Balthazar', serif; /* Academic feel */
-    font-size: 1.4rem;
+    font-family: 'Balthazar', serif;
+    font-size: 1.25rem; /* Reduced from 1.4rem to prevent visual crowding */
     line-height: 1.6;
     color: #fff;
     margin-bottom: 40px;
     max-width: 100%;
-    overflow-wrap: break-word;
+    /* Ensure container handles overflow gracefully */
+    position: relative;
 }
 
-/* MathJax Overrides */
-mjx-container { font-size: 115% !important; margin: 0 4px !important; }
-mjx-container[display="true"] { overflow-x: auto; max-width: 100%; }
+/* Update your MathJax overrides */
+mjx-container { 
+    font-size: 105% !important; /* Reduced from 115% */
+    margin: 0 2px !important;
+    outline: none;
+}
+
+/* Better Scrolling for Long Equations */
+mjx-container[display="true"] {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    padding-bottom: 12px; /* Adds space so the scrollbar doesn't cover text */
+    
+    /* Custom Scrollbar Styling */
+    scrollbar-width: thin;
+    scrollbar-color: #444 transparent;
+}
+
+/* Webkit Scrollbar Styling (Chrome/Safari/Edge) */
+mjx-container[display="true"]::-webkit-scrollbar {
+    height: 6px; /* Slimmer scrollbar */
+}
+mjx-container[display="true"]::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.02);
+    border-radius: 4px;
+}
+mjx-container[display="true"]::-webkit-scrollbar-thumb {
+    background: #444; /* Dark grey thumb */
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+mjx-container[display="true"]::-webkit-scrollbar-thumb:hover {
+    background: #666; /* Lighter on hover */
+}
 
 /* Options Grid */
 .options-grid {
