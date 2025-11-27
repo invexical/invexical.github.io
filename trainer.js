@@ -371,111 +371,102 @@ function renderGrid() {
 // --- OPEN DETAIL VIEW ---
 // --- OPEN DETAIL VIEW ---
 function openDetail(p) {
-    // FIXED: Dynamic generation of options HTML
-    // Inside openDetail(p) function...
-
+    // 1. Generate Options HTML
     let optionsHtml = '';
     if (p.options && Array.isArray(p.options) && p.options.length > 0) {
         optionsHtml = p.options.map((opt, i) => 
-            // FIX: Wrapped content in a span so flexbox treats it as one block vs the label
             `<div class="opt-box" data-index="${i}" data-problem-id="${p.id}">
-                <span class="opt-label">${String.fromCharCode(65+i)}</span> 
-                <span>${opt}</span> 
+                <span class="opt-label">${String.fromCharCode(65+i)}</span>
+                <span>${opt}</span>
             </div>`
         ).join('');
     } else {
-        optionsHtml = '<p class="text-gray-500 italic p-3">Multiple choice options are not available.</p>';
+        optionsHtml = '<div class="opt-box disabled" style="grid-column: 1/-1;">No options available</div>';
     }
-    
-    // Use p.tags for concepts
-    const conceptsHtml = p.tags.map(c => `<span class="tag blue">${c}</span>`).join('');
+    
+    // 2. Generate Concepts HTML
+    const conceptsHtml = p.tags.map(c => `<span class="concept-tag">${c}</span>`).join('');
 
-    contentEl.innerHTML = `
-        <div class="detail-header">
-            <div>
-                <h1>Problem ${p.problemNumber}: ${p.category}</h1> 
-                <div class="meta-row">
-                    <span>${p.contest} Problem ${p.problemNumber}</span>
-                    <span class="bullet">•</span>
-                    <span style="color: #20C997">${p.difficulty}/100 Difficulty</span>
-                </div>
-            </div>
-            <div class="big-score">${p.difficulty}</div>
-        </div>
+    // 3. Inject Content with NEW Structure
+    contentEl.innerHTML = `
+        <div class="detail-header-section">
+            <div class="detail-title">
+                <h1>Problem ${p.problemNumber}</h1>
+                <div class="detail-meta">
+                    <span>${p.contest}</span>
+                    <span>•</span>
+                    <span style="color: ${p.difficulty > 50 ? '#ef4444' : '#20C997'}">${p.difficulty} Difficulty</span>
+                </div>
+            </div>
+            <div class="big-score" style="color: #333; font-size: 2rem; opacity: 0.5">#${p.problemNumber}</div>
+        </div>
 
-        <div class="question-box">
-            ${p.solution} 
-        </div>
+        <div class="detail-body">
+            <div class="question-box">
+                ${p.solution}
+            </div>
 
-        <div id="optionsGrid" class="options-grid">
-            ${optionsHtml}
-        </div>
+            <div id="optionsGrid" class="options-grid">
+                ${optionsHtml}
+            </div>
 
-        <div class="analysis-grid">
-            <div class="analysis-col">
-                <div class="info-box">
-                    <h4><i data-lucide="clock"></i> Ideal Time</h4>
-                    <div class="time-row">
-                        <span>Experienced</span>
-                        <b>${p.idealTime.experienced} seconds</b>
-                    </div>
-                    <div class="progress-bg"><div class="progress-fill" style="width: 20%"></div></div>
-                    
-                    <div class="time-row" style="margin-top:10px">
-                        <span>Intermediate</span>
-                        <b>${p.idealTime.intermediate} seconds</b>
-                    </div>
-                    <div class="progress-bg"><div class="progress-fill blue" style="width: 50%"></div></div>
-                    
-                    <div class="time-row" style="margin-top:10px">
-                        <span>Beginner</span>
-                        <b>${p.idealTime.beginner} seconds</b>
-                    </div>
-                    <div class="progress-bg"><div class="progress-fill orange" style="width: 70%"></div></div>
+            <div class="analysis-dashboard">
+                <div class="analysis-col">
+                    <div class="info-card">
+                        <h4><i data-lucide="clock"></i> Ideal Time</h4>
+                        
+                        <div class="time-stat">
+                            <div class="time-stat-row"><span>Experienced</span> <span>${p.idealTime.experienced}s</span></div>
+                            <div class="progress-track"><div class="progress-bar" style="width: 20%; background: #20C997"></div></div>
+                        </div>
+                        <div class="time-stat">
+                            <div class="time-stat-row"><span>Intermediate</span> <span>${p.idealTime.intermediate}s</span></div>
+                            <div class="progress-track"><div class="progress-bar" style="width: 50%; background: #19A4FF"></div></div>
+                        </div>
+                        <div class="time-stat">
+                            <div class="time-stat-row"><span>Beginner</span> <span>${p.idealTime.beginner}s</span></div>
+                            <div class="progress-track"><div class="progress-bar" style="width: 80%; background: #facc15"></div></div>
+                        </div>
+                    </div>
 
-                </div>
+                    <div class="info-card">
+                        <h4><i data-lucide="book-open"></i> Concepts</h4>
+                        <div>${conceptsHtml}</div>
+                    </div>
+                </div>
 
-                <div class="info-box">
-                    <h4><i data-lucide="book-open"></i> Concepts (Tags)</h4>
-                    <div class="tags-wrap">${conceptsHtml}</div>
-                </div>
-            </div>
+                <div class="analysis-col">
+                    <div class="info-card">
+                        <h4><i data-lucide="lightbulb"></i> Core Idea</h4>
+                        <div class="text-content">${p.coreIdeas}</div>
+                    </div>
+                    
+                    <div class="info-card trap-card">
+                        <h4><i data-lucide="alert-triangle"></i> Common Trap</h4>
+                        <div class="text-content">${p.errorProneSteps}</div>
+                    </div>
 
-            <div class="analysis-col">
-                <div class="info-box">
-                    <h4><i data-lucide="lightbulb"></i> Core Ideas</h4>
-                    <p>${p.coreIdeas || 'No core ideas provided.'}</p>
-                </div>
-                <div class="info-box trap-box">
-                    <h4><i data-lucide="alert-triangle"></i> The Common Trap</h4>
-                    <p>${p.errorProneSteps || 'No common traps documented.'}</p>
-                </div>
-                <div class="info-box">
-                    <h4><i data-lucide="send"></i> Technique</h4>
-                    <p>${p.techniques}</p>
-                </div>
-            </div>
-        </div>
+                    <div class="info-card">
+                        <h4><i data-lucide="code"></i> Technique</h4>
+                        <div class="text-content">${p.techniques}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 
-        <div class="commentary-section">
-            <h3>Problem Statement (Full)</h3>
-            <p>${p.solution}</p>
-        </div>
-    `;
+    overlayEl.classList.remove('hidden');
+    lucide.createIcons();
+    
+    if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+    }
 
-    overlayEl.classList.remove('hidden');
-    lucide.createIcons(); // Re-render icons for the new content
-    // Check if MathJax is available before trying to render
-    if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
-        MathJax.typesetPromise(); // Render Math
-    }
-
-    // NEW: Attach the click listener to all options
-    document.querySelectorAll('.opt-box').forEach(opt => {
-        opt.addEventListener('click', handleAnswerClick);
-    });
+    // Re-attach click listeners
+    document.querySelectorAll('.opt-box').forEach(opt => {
+        opt.addEventListener('click', handleAnswerClick);
+    });
 }
-
 function closeDetail() {
     overlayEl.classList.add('hidden');
 }
