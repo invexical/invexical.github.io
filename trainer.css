@@ -495,3 +495,28 @@ mjx-container[display="true"]::-webkit-scrollbar-thumb:hover {
     background-color: #20C997; /* Green for solved */
     box-shadow: 0 0 5px #20C997;
 }
+.difficulty-label {
+    display: inline-flex;
+    align-items: center;
+    background: #1a1f2e;
+    padding: 6px 14px;
+    border-radius: 14px;
+    font-weight: 600;
+    gap: 8px;
+    border: 1px solid #2b3245;
+}
+
+.diff-text {
+    color: #9aa4c1;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+}
+
+.diff-value {
+    background: #2663ff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: white;
+    font-weight: 700;
+}
