@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AMC 10B 2025 Problem 2</title>
+    <title>AMC 10B 2025 Problem 3</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fontsource/computer-modern@4.0.0/css/variable.css" rel="stylesheet">
@@ -23,40 +23,47 @@
   gtag('config', 'G-6R5V8M58EN');
 </script>
 <body>
-<h1>Problem 2</h1>
+<h1>Problem 3</h1>
     <a href="../amc10b-2025.html">← Back to AMC 10B 2025</a>
 
 <div class="section">
     <div class="info-row">
-        <b>Category:</b> <span>Algebra, Number Theory</span>
+        <b>Category:</b> <span>Number Theory</span>
     </div>
 </div>
-<p>Jerry wrote down the ones digit of each of the first $2025$ positive squares: $1, 4, 9, 6, 5, 6, \dots$. What is the sum of all the numbers Jerry wrote down?</p>
+<p>	A Pascal-like triangle has $10$ as the top row and $10$ followed by $1$ as the second row. In each subsequent row the first number is $10$, the last number is $1$, and, as in the standard Pascal Triangle, each other number in the row is the sum of the two numbers directly above it. The first four rows are shown below.
+
+$10$
+$10, 1$
+$10, 11, 1$
+$10, 21, 12, 1$
+
+What is the sum of the digits of the sum of the numbers in the $11$th row?</p>
 <div class="options">
-$$\textbf{(A) } 9025 \qquad \textbf{(B) } 9070 \qquad \textbf{(C) } 9090 \qquad \textbf{(D) } 9115 \qquad \textbf{(E) } 9160$$
+$$\textbf{(A) } 11 \qquad \textbf{(B) } 13 \qquad \textbf{(C) } 14 \qquad \textbf{(D) } 16 \qquad \textbf{(E) } 17$$
 </div>
 <div class="section">
     <div class="info-row">
-        <b>Difficulty:</b> <span>19/100 — A somewhat challenging problem for beginners which can become computation heavy.</span>
+        <b>Difficulty:</b> <span>27/100 — Heavily dependent on pattern recognition.</span>
     </div>
     <div class="info-row">
-        <b>Core Concepts:</b> <span> pattern matching, computation</span>
+        <b>Core Concepts:</b> <span> pattern matching, computation, modular arithmetic</span>
     </div>
     <div class="info-row">
-        <b>Challenges:</b> <span>Incorrect arithmetic, excessive computation, not recognizing the pattern repitition.</span>
+        <b>Challenges:</b> <span>Not seeing the pattern, speeding through too fast.</span>
     </div>
     <div class="info-row">
-        <b>Techniques:</b> <span> Work through first terms and scan for repetition. </span>
+        <b>Techniques:</b> <span> Compute early sums and spot a pattern. Taking the remainder when divided by 9 offers a quick solution as well. </span>
     </div>
     <div class="info-row">
-        <b>Error-prone Steps:</b> <span>Computation mistakes.</span>
+        <b>Error-prone Steps:</b> <span>Assuming the same sum as a normal pascal triangle, or computation errors..</span>
     </div>
     <div class="ideal-time">
         <b>Ideal Time:</b>
         <div class="ideal-list">
             Experienced: ≤ 1 min<br>
-            Intermediate: ≤ 2 min<br>
-            Beginner: ≤ 4 min
+            Intermediate: ≤ 1.5 min<br>
+            Beginner: ≤ 5 min
         </div>
     </div>
 </div>
