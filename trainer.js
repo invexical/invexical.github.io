@@ -338,6 +338,188 @@ const problems = [
             "\\frac{3}{4}",
             "\\frac{4}{5}"
         ]
+    },
+        {
+        "id": "AMC10A_2025_P14",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 14,
+        "difficulty": 34,
+        "answerIndex": 1,
+        "idealTime": {
+            "beginner": 300,
+            "intermediate": 180,
+            "experienced": 60
+        },
+        "category": "Combinatorics",
+        "tags": ["Probability", "Circular Permutations", "Casework", "Arrangements"],
+        "coreIdeas": "Casework, constructive counting, arrangements in a circle.",
+        "nonObviousTransitions": "N/A",
+        "techniques": "Multiplying the probability of independent events, simulating the seating of the students and teachers.",
+        "errorProneSteps": "Improperly applying combinations and permutations, incorrectly dealing with circular seatings and symmetry.",
+        "solution": "Six chairs are arranged around a round table. Two students and two teachers randomly select four of the chairs to sit in. What is the probability that the two students will sit in two adjacent chairs and the two teachers will also sit in two adjacent chairs?",
+        "options": [
+            "1/6",
+            "1/5",
+            "2/9",
+            "3/13",
+            "1/4"
+        ]
+    },
+    {
+        "id": "AMC10A_2025_P15",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 15,
+        "difficulty": 40,
+        "answerIndex": 3,
+        "idealTime": {
+            "beginner": 300,
+            "intermediate": 120,
+            "experienced": 120
+        },
+        "category": "Geometry",
+        "tags": ["Area", "Rectangle", "Right Triangle", "Similarity", "Pythagorean Theorem"],
+        "coreIdeas": "Similarity, right triangle.",
+        "nonObviousTransitions": "Identifying the similar triangles (e.g., $\\triangle ABC$ and $\\triangle EDB$).",
+        "techniques": "Utilize properties of similar triangles for an algebraic context (Pythagorean theorem.)",
+        "errorProneSteps": "Incorrectly simplifying the equation received from similar triangles.",
+        "solution": "In the figure below, $ABEF$ is a rectangle, $\\overline{AD} \\perp \\overline{DE}$, $AF=7$, $AB=1$, and $AD=5$.  What is the area of $\\triangle ABC$?",
+        "options": [
+            "3/8",
+            "4/9",
+            "1/8*sqrt(13)",
+            "7/15",
+            "1/8*sqrt(15)"
+        ]
+    },
+    {
+        "id": "AMC10A_2025_P16",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 16,
+        "difficulty": 40,
+        "answerIndex": 3,
+        "idealTime": {
+            "beginner": 300,
+            "intermediate": 180,
+            "experienced": 60
+        },
+        "category": "Combinatorics",
+        "tags": ["Probability", "Expected Value", "Casework", "Partitioning"],
+        "coreIdeas": "Casework, expected value.",
+        "nonObviousTransitions": "Correctly identifying all partitions of the three coins into three jars (e.g., 3-0-0, 2-1-0, 1-1-1).",
+        "techniques": "Using casework to find an expected value.",
+        "errorProneSteps": "Incorrectly determining the number of possibilities for a case. Incorrectly defining the random variable (maximum number of coins in a jar).",
+        "solution": "There are three jars. Each of three coins is placed in one of the three jars, chosen at random and independently of the placements of the other coins. What is the expected number of coins in a jar with the most coins?",
+        "options": [
+            "4/3",
+            "13/9",
+            "5/3",
+            "17/9",
+            "2"
+        ]
+    },
+    {
+        "id": "AMC10A_2025_P17",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 17,
+        "difficulty": 36,
+        "answerIndex": 4,
+        "idealTime": {
+            "beginner": 360,
+            "intermediate": 180,
+            "experienced": 60
+        },
+        "category": "Number Theory",
+        "tags": ["Modular Arithmetic", "Divisibility", "GCD", "Euclidean Algorithm"],
+        "coreIdeas": "Modular arithmetic, greatest common divisor, Euclidean algorithm.",
+        "nonObviousTransitions": "Reinterpreting the remainder condition as divisibility conditions: $N | (273436 - 16)$ and $N | (272760 - 15)$.",
+        "techniques": "When the problem reduces to a greatest common divisor of big numbers, apply the Euclidean algorithm. Identifying the remainder to divisibility conversion.",
+        "errorProneSteps": "Simplifying the greatest common divisor incorrectly. Forgetting the condition that $N$ must be greater than the remainder ($\min(15, 16) = 16$).",
+        "solution": "Let $N$ be the unique positive integer such that dividing $273436$ by $N$ leaves a remainder of $16$ and dividing $272760$ by $N$ leaves a remainder of $15$. What is the tens digit of $N$?",
+        "options": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+        ]
+    },
+    {
+        "id": "AMC10A_2025_P18",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 18,
+        "difficulty": 61,
+        "answerIndex": 4,
+        "idealTime": {
+            "beginner": 300,
+            "intermediate": 120,
+            "experienced": 60
+        },
+        "category": "Algebra",
+        "tags": ["Polynomials", "Roots", "Vieta's Formulas", "Harmonic Mean", "Series"],
+        "coreIdeas": "Vieta's formulas.",
+        "nonObviousTransitions": "The sum of the reciprocals of the roots of $ax^2+bx+c=0$ is $-b/c$.",
+        "techniques": "Treat each factor separately, computing the desired sum in parts.",
+        "errorProneSteps": "Attempting to expand the polynomial and directly use Vieta's formulas on the entire polynomial. Arithmetic error in summing the series.",
+        "solution": "The $\\textit{harmonic mean}$ of a collection of numbers is the reciprocal of the arithmetic mean of the reciprocals of the numbers in the collection. For example, the harmonic mean of 4, 4, and 5 is $$\\frac{1}{\\frac{1}{3}(\\frac{1}{4}+\\frac{1}{4}+\\frac{1}{5})}=\\frac{30}{7}$$. What is the harmonic mean of all the real roots of the 4050th degree polynomial $$\\prod_{k=1}^{2025} (kx^2-4x-3) = (x^2-4x-3)(2x^2-4x-3)(3x^2-4x-3)\\dots (2025x^2-4x-3) ?$$",
+        "options": [
+            "-5/3",
+            "-3/2",
+            "-6/5",
+            "-5/6",
+            "-2/3"
+        ]
+    },
+    {
+        "id": "AMC10A_2025_P19",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 19,
+        "difficulty": 48,
+        "answerIndex": 0,
+        "idealTime": {
+            "beginner": 480,
+            "intermediate": 240,
+            "experienced": 120
+        },
+        "category": "Algebra",
+        "tags": ["Sequences and Series", "Pattern Recognition", "Pascal's Triangle", "Binomial Coefficients"],
+        "coreIdeas": "Arithmetic & geometric sequences, Pascal's triangle.",
+        "nonObviousTransitions": "Recognizing that the numbers in the $n$-th row are generated by the coefficients of a polynomial, which leads to the row sum being a geometric progression.",
+        "techniques": "Pattern recognition of the geometrically increasing row sums; inductive reasoning.",
+        "errorProneSteps": "Off-by-one error when finding the desired row. Improperly computing the $k$-th term of the sequence as a linear combination of the top row's elements using binomial coefficients.",
+        "solution": "An array of numbers is constructed beginning with the numbers $-1\\quad3\\quad1$ in the top row. Each adjacent pair of numbers is summed to produce a number in the next row. Each row begins and ends with $-1$ and $1$, respectively. $$\\large{-1}\\qquad\\large{3}\\qquad\\large{1}$$ $$\\large{-1}\\qquad\\large{2}\\qquad\\large{4}\\qquad\\large{1}$$ $$\\large{-1}\\qquad\\large{1}\\qquad\\large{6}\\qquad\\large{5}\\qquad\\large{1}$$ If the process continues, one of the rows will sum to $12,288$. In that row, what is the third number from the left?",
+        "options": [
+            "-29",
+            "-21",
+            "-14",
+            "-8",
+            "-3"
+        ]
+    },
+    {
+        "id": "AMC10A_2025_P20",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 20,
+        "difficulty": 84,
+        "answerIndex": 2,
+        "idealTime": {
+            "beginner": 2700,
+            "intermediate": 1200,
+            "experienced": 600
+        },
+        "category": "Geometry",
+        "tags": ["Analytic Geometry", "Circles", "Tangents", "System of Equations", "Radical Simplification"],
+        "coreIdeas": "Circles, tangents, right triangle, similarity, system of equations, quadratics.",
+        "nonObviousTransitions": "Using similar triangles formed by the center of the silo, the points MacDonald and McGregor, and the points of tangency to establish an equation relating the coordinates.",
+        "techniques": "Converting the hidden similar triangles setup to algebra; knowing how to effectively solve a complicated system of equations. Using distance from a point to a line formula.",
+        "errorProneSteps": "Incorrectly simplifying the final rationalization; incorrectly solving the system; switching the legs up in the similarity condition. Missing the radius of the silo when setting up the tangent equation.",
+        "solution": "A silo (right circular cylinder) with diameter 20 meters stands in a field. MacDonald is located 20 meters west and 15 meters south of the center of the silo. McGregor is located 20 meters east and $g > 0$ meters south of the center of the silo. The line of sight between MacDonald and McGregor is tangent to the silo. The value of $g$ can be written as $\\frac{a\\sqrt{b}-c}{d}$, where $a,b,c,$ and $d$ are positive integers, $b$ is not divisible by the square of any prime, and $d$ is relatively prime to the greatest common divisor of $a$ and $c$. What is $a+b+c+d$?",
+        "options": [
+            "119",
+            "120",
+            "121",
+            "122",
+            "123"
+        ]
     }
     // Add P10-P25 data here when available
 ];
