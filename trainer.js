@@ -652,7 +652,7 @@ const problems = [
             "29"
         ]
     }
-]
+
     // Add P10-P25 data here when available
 ];
 
