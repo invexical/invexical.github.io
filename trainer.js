@@ -521,7 +521,7 @@ const problems = [
             "123"
         ]
     },
-    [
+    
     {
         "id": "AMC10A_2025_P21",
         "contest": "AMC 10A 2025",
