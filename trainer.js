@@ -370,7 +370,7 @@ const problems = [
         "contest": "AMC 10A 2025",
         "problemNumber": 15,
         "difficulty": 40,
-        "answerIndex": 3,
+        "answerIndex": 0,
         "idealTime": {
             "beginner": 300,
             "intermediate": 120,
@@ -448,7 +448,7 @@ const problems = [
         "contest": "AMC 10A 2025",
         "problemNumber": 18,
         "difficulty": 61,
-        "answerIndex": 4,
+        "answerIndex": 1,
         "idealTime": {
             "beginner": 300,
             "intermediate": 120,
@@ -500,7 +500,7 @@ const problems = [
         "contest": "AMC 10A 2025",
         "problemNumber": 20,
         "difficulty": 84,
-        "answerIndex": 2,
+        "answerIndex": 0,
         "idealTime": {
             "beginner": 2700,
             "intermediate": 1200,
