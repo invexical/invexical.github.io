@@ -520,7 +520,139 @@ const problems = [
             "122",
             "123"
         ]
+    },
+    [
+    {
+        "id": "AMC10A_2025_P21",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 21,
+        "difficulty": 43,
+        "answerIndex": 2,
+        "idealTime": {
+            "beginner": 600,
+            "intermediate": 360,
+            "experienced": 240
+        },
+        "category": "Combinatorics & Number Theory",
+        "tags": ["Set Theory", "Sum-Free Set", "Construction", "Maximization"],
+        "coreIdeas": "Maximizing the size of a sum-free set by constructing the set strategically and proving the optimality of that construction.",
+        "nonObviousTransitions": "N/A",
+        "techniques": "Construct a set that you know works, and convince yourself that you cannot go higher.",
+        "errorProneSteps": "Forgetting that the condition holds when the numbers are equal.",
+        "solution": "A set of numbers is called $sum$-$free$ if whenever $x$ and $y$ are (not necessarily distinct) elements of the set, $x+y$ is not an element of the set. For example, $\{1,4,6\}$ and the empty set are sum-free, but $\{2,4,5\}$ is not. What is the greatest possible number of elements in a sum-free subset of $\{1,2,3,...,20\}$?",
+        "options": [
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+        ]
+    },
+    {
+        "id": "AMC10A_2025_P22",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 22,
+        "difficulty": 68,
+        "answerIndex": 4,
+        "idealTime": {
+            "beginner": "N/A",
+            "intermediate": "N/A",
+            "experienced": 480
+        },
+        "category": "Geometry",
+        "tags": ["Circles", "Tangent Circles", "Descartes' Theorem"],
+        "coreIdeas": "The solution is a direct application of the Descartes' Kissing Circles Theorem, which relates the curvatures of four mutually externally tangent circles.",
+        "nonObviousTransitions": "The difficulty is often the lack of knowledge of Descartes' Theorem.",
+        "techniques": "Whenever you have tangent circles, always connect their centers.",
+        "errorProneSteps": "Forgetting to take the reciprocal in Descartes Kissing Circle Theorem or falling into a trigonometric dead end.",
+        "solution": "A circle of radius $r$ is surrounded by three circles, whose radii are 1, 2, and 3, all externally tangent to the inner circle and externally tangent to each other.  What is $r$?",
+        "options": [
+            "1/4",
+            "6/23",
+            "3/11",
+            "5/17",
+            "3/10"
+        ]
+    },
+    {
+        "id": "AMC10A_2025_P23",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 23,
+        "difficulty": 72,
+        "answerIndex": 2,
+        "idealTime": {
+            "beginner": "would not solve",
+            "intermediate": 600,
+            "experienced": 300
+        },
+        "category": "Geometry",
+        "tags": ["Triangle", "Cevians", "Angle Bisector", "Altitude", "Length Chasing", "Coordinate Geometry"],
+        "coreIdeas": "The problem requires length chasing to find the distance $BP$, where $P$ is the intersection of two different types of cevians, an angle bisector and an altitude.",
+        "nonObviousTransitions": "N/A",
+        "techniques": "Employ a coordinate system when dealing with unusual cevians or apply another concept such as mass points.",
+        "errorProneSteps": "N/A",
+        "solution": "Triangle $\\triangle ABC$ has side lengths $AB = 80$, $BC = 45$, and $AC = 75$. The bisector of $\\angle B$ and the altitude to side $\\overline{AB}$ intersect at point $P.$ What is $BP$?",
+        "options": [
+            "18",
+            "19",
+            "20",
+            "21",
+            "22"
+        ]
+    },
+    {
+        "id": "AMC10A_2025_P24",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 24,
+        "difficulty": 91,
+        "answerIndex": 4,
+        "idealTime": {
+            "beginner": "would not solve",
+            "intermediate": 600,
+            "experienced": 240
+        },
+        "category": "Combinatorics",
+        "tags": ["Counting", "Permutations", "Digit Restrictions", "Bijective Mapping"],
+        "coreIdeas": "Interpreting the adjacency condition as a structural constraint (mountain shape), which simplifies the counting of valid permutations of the digits, and finishing with the binomial theorem.",
+        "nonObviousTransitions": "The crucial non-obvious step is realizing that the condition implies a single-peaked structure, allowing for a combinatorial approach (e.g., using $\\sum_{k=1}^9 k \\cdot 2^{k-1}$).",
+        "techniques": "Interpret the condition as a \"mountain,\" with the largest number at the peak and the smallest numbers on the edges. Once you achieve the desired sum, the binomial theorem can be applied to finish the problem.",
+        "errorProneSteps": "Forgetting to divide the sum by $2$ when the binomial theorem is applied.",
+        "solution": "Call a positive integer $\\textit{fair}$ if no digit is used more than once, it has no 0s, and no digit is adjacent to two greater digits. For example, $196$, $23$, and $12463$ are fair, but $1546$, $320$, and $34321$ are not fair. How many fair positive integers are there?",
+        "options": [
+            "511",
+            "2584",
+            "9841",
+            "17711",
+            "19682"
+        ]
+    },
+    {
+        "id": "AMC10A_2025_P25",
+        "contest": "AMC 10A 2025",
+        "problemNumber": 25,
+        "difficulty": 66,
+        "answerIndex": 0,
+        "idealTime": {
+            "beginner": "would not solve",
+            "intermediate": 360,
+            "experienced": 180
+        },
+        "category": "Geometry",
+        "tags": ["Geometric Probability", "Square", "Inequalities", "Area Calculation"],
+        "coreIdeas": "Solving a geometric probability problem by determining the areas of the regions in the square where the length $\\overline{AP}$ is neither the shortest nor the longest side of $\\triangle APB$.",
+        "nonObviousTransitions": "The condition of one side not being the shortest or longest corresponds to a set of inequalities that define boundaries in the square, which are typically arcs or line segments.",
+        "techniques": "Splitting the problem into two cases of when $BP$ or $AB$ are the shortest side lengths, and adding the areas of each region together.",
+        "errorProneSteps": "Forgetting to subtract an extra constant when calculating the probability.",
+        "solution": "A point $P$ is chosen at random inside square $ABCD$. The probability that $\\overline{AP}$ is neither the shortest nor the longest side of $\\triangle APB$ can be written as $\\frac{a + b \\pi - c \\sqrt{d}}{e}$, where $a, b, c, d,$ and $e$ are positive integers, $\\text{gcd}(a, b, c, e) = 1$, and $d$ is not divisible by the square of a prime. What is $a+b+c+d+e$?",
+        "options": [
+            "25",
+            "26",
+            "27",
+            "28",
+            "29"
+        ]
     }
+]
     // Add P10-P25 data here when available
 ];
 
