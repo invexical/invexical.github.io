@@ -49,14 +49,14 @@ $$\textbf{(A) } \frac{2}{9} \qquad \textbf{(B) } \frac {2}{7} \qquad \textbf{(C)
         <b>Techniques:</b> <span> The condition more bluntly states that the three tallest members much each pick different color bands. From here, a probabilistic argument can be used. </span>
     </div>
     <div class="info-row">
-        <b>Error-prone Steps:</b> <span> Competitors may  </span>
+        <b>Error-prone Steps:</b> <span> Many competitors did not realize that the remaining amount of players decreased by $1$ as they got selected.  </span>
     </div>
     <div class="ideal-time">
         <b>Ideal Time:</b>
         <div class="ideal-list">
-            Experienced: ≤ 2 min<br>
-            Intermediate: ≤ 3-5 min<br>
-            Beginner: ≤ 8-10 min
+            Experienced: ≤ 1 min<br>
+            Intermediate: ≤ 2-3 min<br>
+            Beginner: ≤ 4 min
         </div>
     </div>
 </div>
