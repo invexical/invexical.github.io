@@ -37,26 +37,26 @@ $$\textbf{(A) } 2  \qquad \textbf{(B) } 3 \qquad \textbf{(C) } 4 \qquad \textbf{
 </div>
 <div class="section">
     <div class="info-row">
-        <b>Difficulty:</b> <span>35/100 - A straightforward problem  </span>
+        <b>Difficulty:</b> <span>35/100 - A straightforward factorization problem which relies on avoiding the trick of extraneous solutions. </span>
     </div>
     <div class="info-row">
-        <b>Core Concepts:</b> <span> Divisibility rules.</span>
+        <b>Core Concepts:</b> <span> Factorizations, extraneous solutions. </span>
     </div>
     <div class="info-row">
-        <b>Challenges:</b> <span> Competitors may waste time bashing combinations if unaware of divisibility rules. </span>
+        <b>Challenges:</b> <span> Competitors may be intimidated by the large polynomials and confused by the integer condition. Factorization of the cubic polynomials can also be somewhat difficult  </span>
     </div>
     <div class="info-row">
-        <b>Techniques:</b> <span> Divisibility rules for $9$ and $4$ give that $3B+2A$ is a multiple of $9$ and $\underline B~\underline A$ is a multiple of $4$. Identifying restrictions about $A$ reveals the final answer. </span>
+        <b>Techniques:</b> <span>Subtracting $1$ from $\tfrac{f(n)}{g(n)}$ gives a quadratic by a cubic - from here, factorizing the two polynomials becomes somewhat intuitive. Then discarding extraneous solutions yields the solution.</span>
     </div>
     <div class="info-row">
-        <b>Error-prone Steps:</b> <span> N/A </span>
+        <b>Error-prone Steps:</b> <span> Forgetting to discard the extraneous solution of $x=4$.  </span>
     </div>
     <div class="ideal-time">
         <b>Ideal Time:</b>
         <div class="ideal-list">
-            Experienced: ≤ 1 min<br>
-            Intermediate: ≤ 2-3 min<br>
-            Beginner: ≤ 4 min
+            Experienced: ≤ 2 min<br>
+            Intermediate: ≤ 3 min<br>
+            Beginner: ≤ 6 min
         </div>
     </div>
 </div>
