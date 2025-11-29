@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AMC 10B 2025 Problem 10</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/computer-modern@4.0.0/css/variable.css" rel="stylesheet">
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6R5V8M58EN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6R5V8M58EN');
+</script>
+<body>
+<h1>Problem 10</h1>
+    <a href="../amc10b-2025.html">← Back to AMC 10B 2025</a>
+
+<div class="section">
+    <div class="info-row">
+        <b>Category:</b> <span>Number Theory</span>
+    </div>
+</div>
+<p>Let $f(n)=n^3-5n^2+2n+8$ and $g(n)=n^3-6n^2+5n+12.$ What is the sum of all integers $n$ such that $\tfrac{f(n)}{g(n)}$ is an integer?</p>
+<div class="options">
+$$\textbf{(A) } 2  \qquad \textbf{(B) } 3 \qquad \textbf{(C) } 4 \qquad \textbf{(D) } 5 \qquad \textbf{(E) } 6$$
+</div>
+<div class="section">
+    <div class="info-row">
+        <b>Difficulty:</b> <span>35/100 - A straightforward factorization problem which relies on avoiding the trick of extraneous solutions. </span>
+    </div>
+    <div class="info-row">
+        <b>Core Concepts:</b> <span> Factorizations, extraneous solutions. </span>
+    </div>
+    <div class="info-row">
+        <b>Challenges:</b> <span> Competitors may be intimidated by the large polynomials and confused by the integer condition. Factorization of the cubic polynomials can also be somewhat difficult  </span>
+    </div>
+    <div class="info-row">
+        <b>Techniques:</b> <span>Subtracting $1$ from $\tfrac{f(n)}{g(n)}$ gives a quadratic by a cubic - from here, factorizing the two polynomials becomes somewhat intuitive. Then discarding extraneous solutions yields the solution.</span>
+    </div>
+    <div class="info-row">
+        <b>Error-prone Steps:</b> <span> Forgetting to discard the extraneous solution of $x=4$.  </span>
+    </div>
+    <div class="ideal-time">
+        <b>Ideal Time:</b>
+        <div class="ideal-list">
+            Experienced: ≤ 2 min<br>
+            Intermediate: ≤ 3 min<br>
+            Beginner: ≤ 6 min
+        </div>
+    </div>
+</div>
+</body>
+</html>
