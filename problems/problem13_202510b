@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AMC 10B 2025 Problem 12</title>
+    <title>AMC 10B 2025 Problem 13</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fontsource/computer-modern@4.0.0/css/variable.css" rel="stylesheet">
@@ -23,7 +23,7 @@
   gtag('config', 'G-6R5V8M58EN');
 </script>
 <body>
-<h1>Problem 12</h1>
+<h1>Problem 13</h1>
     <a href="../amc10b-2025.html">← Back to AMC 10B 2025</a>
 
 <div class="section">
@@ -31,22 +31,22 @@
         <b>Category:</b> <span>Geometry</span>
     </div>
 </div>
-<p>The figure below shows an equilateral triangle, a rhombus with a $60^\circ$ angle, and a regular hexagon, each of them containing some mutually tangent congruent disks. Let $T, R,$ and $H,$ respectively, denote the ratio in each case of the total area of the disks to the area of the encolsing polygon. Which of the following is true?	</p>
+<p>The altitude to the hypotenuse of a $30-60-90^\circ$ right triangle is divided into two segments of lengths $x < y$ by the median to the shortest side of the triangle. What is the ratio $\tfrac{x}{x+y}$?</p>
 <div class="options">
-$$\textbf{(A)}\ T=H=R \qquad \textbf{(B)}\ H<R=T \qquad \textbf{(C)}\ H=R<T \qquad \textbf{(D)}\ H<R<T \qquad \textbf{(E)}\ H<T<R \qquad $$
+$$\textbf{(A)}~\frac{4}{9} \qquad \textbf{(B)}~\frac{\sqrt3}{4} \qquad \textbf{(C)}~\frac{4}{9} \qquad \textbf{(D)}~\frac{5}{11} \qquad \textbf{(E)}~\frac{4\sqrt3}{15}$$
 </div>
 <div class="section">
     <div class="info-row">
-        <b>Difficulty:</b> <span>24/100 - Geometry problem that is trivialized by one realization. </span>
+        <b>Difficulty:</b> <span>45/100 - A relatively challenging geometry problem that allows many different approaches </span>
     </div>
     <div class="info-row">
-        <b>Core Concepts:</b> <span> circles, equilateral triangles, auxiliary lines </span>
+        <b>Core Concepts:</b> <span> areas, similarities, mass points, coordinates.</span>
     </div>
     <div class="info-row">
-        <b>Challenges:</b> <span> The problem encourages less experienced contestants to bash the ratios for all three figures which increases its difficulty. </span>
+        <b>Challenges:</b> <span> Competitors who are not experienced in ratio finding through techniques like mass points or areas may be flustered. </span>
     </div>
     <div class="info-row">
-        <b>Techniques:</b> <span> By dividing the rhombus and hexagon into equilateral triangles, simple observation shows the ratio comparisons.</span>
+        <b>Techniques:</b> <span> Many different approaches are viable. The most straightforward comes from coordinates, though easier solutions are provided by mass points, similar triangles, or areas.</span>
     </div>
     <div class="info-row">
         <b>Error-prone Steps:</b> <span> N/A  </span>
@@ -54,9 +54,9 @@ $$\textbf{(A)}\ T=H=R \qquad \textbf{(B)}\ H<R=T \qquad \textbf{(C)}\ H=R<T \qqu
     <div class="ideal-time">
         <b>Ideal Time:</b>
         <div class="ideal-list">
-            Experienced: ≤ 30 sec<br>
-            Intermediate: ≤ 1 min<br>
-            Beginner: ≤ 2-4 min
+            Experienced: ≤ 2 min<br>
+            Intermediate: ≤ 3-5 min<br>
+            Beginner: ≤ 8-10 min
         </div>
     </div>
 </div>
