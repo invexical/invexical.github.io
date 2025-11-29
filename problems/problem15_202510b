@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AMC 10B 2025 Problem 14</title>
+    <title>AMC 10B 2025 Problem 15</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fontsource/computer-modern@4.0.0/css/variable.css" rel="stylesheet">
@@ -23,40 +23,40 @@
   gtag('config', 'G-6R5V8M58EN');
 </script>
 <body>
-<h1>Problem 14</h1>
+<h1>Problem 15</h1>
     <a href="../amc10b-2025.html">← Back to AMC 10B 2025</a>
 
 <div class="section">
     <div class="info-row">
-        <b>Category:</b> <span>Combinatorics</span>
+        <b>Category:</b> <span>Algebra</span>
     </div>
 </div>
-<p>Nine athletes, no two of whom are the same height, try out for the basketball team. One at a time, they draw a wristband at random, without replacement, from a bag containing $3$ blue bands, $3$ red bands, and $3$ green bands. They are divided into a blue group, a red group, and a green group. The tallest member of each group is named the group captain. What is the probability that the group captains are the three tallest athletes?</p>
+<p>The sum $\sum_{k=1}^{\infty} \frac{1}{k^3 + 6k^2 + 8k}$ can be expressed as $\frac{a}{b}$, where $a$ and $b$ are relatively prime positive integers. What is $a + b$?</p>
 <div class="options">
-$$\textbf{(A) } \frac{2}{9} \qquad \textbf{(B) } \frac {2}{7} \qquad \textbf{(C) } \frac{9}{28}\qquad \textbf{(D) } \frac{1}{3} \qquad \textbf{(E) } \frac{3}{8}$$
+$$\textbf{(A) } 89 \qquad \textbf{(B) } 97 \qquad \textbf{(C) } 102 \qquad \textbf{(D) } 107 \qquad \textbf{(E) } 129$$
 </div>
 <div class="section">
     <div class="info-row">
-        <b>Difficulty:</b> <span>32/100 - A straightforward and intuitive probability problem. </span>
+        <b>Difficulty:</b> <span>61/100 - An intimidating telescoping series problem which requires somewhat advanced concepts. </span>
     </div>
     <div class="info-row">
-        <b>Core Concepts:</b> <span> probabilities. </span>
+        <b>Core Concepts:</b> <span> partial fractions, telescoping series. </span>
     </div>
     <div class="info-row">
-        <b>Challenges:</b> <span> The problem can appear as intimidating despite the simplicity of what it is truly asking. </span>
+        <b>Challenges:</b> <span> Competitors with no experience in factoring or decomposing expressions will have a lot of trouble making the seemingly random expression more workable. </span>
     </div>
     <div class="info-row">
-        <b>Techniques:</b> <span> The condition more bluntly states that the three tallest members much each pick different color bands. From here, a probabilistic argument can be used. </span>
+        <b>Techniques:</b> <span> The fraction can be written as a sum and difference of smaller reciprocals. From here, telescoping series can be employed to give a simple final expression. </span>
     </div>
     <div class="info-row">
-        <b>Error-prone Steps:</b> <span> Many competitors did not realize that the remaining amount of players decreased by $1$ as they got selected.  </span>
+        <b>Error-prone Steps:</b> <span> Many computation errors are possible for competitors who used a more crude method of evaluating the telescoping series.</span>
     </div>
     <div class="ideal-time">
         <b>Ideal Time:</b>
         <div class="ideal-list">
-            Experienced: ≤ 1 min<br>
-            Intermediate: ≤ 2-3 min<br>
-            Beginner: ≤ 4 min
+            Experienced: ≤ 3 min<br>
+            Intermediate: ≤ 9 min<br>
+            Beginner: ≤ 15 min if solved at all
         </div>
     </div>
 </div>
